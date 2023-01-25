@@ -15,7 +15,7 @@ jobs:
           node-version: 16.17
 
       - name: install node modules
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: check if it builds
         run: npm run build
