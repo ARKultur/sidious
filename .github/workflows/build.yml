@@ -1,0 +1,25 @@
+name: Build
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 18.7
+
+      - name: install node modules
+        run: npm install
+
+      - name: check if it builds
+        run: npm run build
+
+      - name: build docker image
+        run: docker build . -t sidious
+
