@@ -1,18 +1,32 @@
 import * as React from 'react';
-import {AppBar, Button, Toolbar} from "@mui/material";
+import {AppBar, Button, Toolbar, useTheme} from "@mui/material";
 import LogoIcon from "./LogoIcon";
+import {NavLink} from "react-router-dom";
 
 function MenuBarElement(props)
 {
+  const linkTo = props.link ? props.link : '/maintenance';
+  const theme = useTheme();
+
+  const activeStyle = {
+    color: theme.palette.button.main,
+    textDecoration: "none"
+  }
+
+  const defaultStyle = {
+    color: theme.palette.greyText,
+    textDecoration: "none"
+  }
+
   return (
     <li style={{ marginRight: "1.5em" }}>
-      <Button
-        key={props.name}
-        onClick= {() => { console.log("Button pressed")}}
-        sx={{ display: 'block', color: `${<theme className="palette"></theme>.greyText}`, fontWeight: 600, fontSize: 16}}
+      <NavLink to={linkTo}
+               style={({ isActive }) =>
+                   isActive && linkTo !== '/maintenance' ? activeStyle : defaultStyle
+               }
       >
         {props.name}
-      </Button>
+      </NavLink>
     </li>
   )
 }
@@ -26,6 +40,7 @@ function MenuBar()
     }}>
       <MenuBarElement
       name="Home"
+      link="/"
       />
       <MenuBarElement
         name="Our Project"
