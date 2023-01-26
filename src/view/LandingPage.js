@@ -11,7 +11,7 @@ export default function LandingPageView()
   return(
     <>
       <NavBar/>
-      <div style={{backgroundColor: `${theme.palette.mainColor.main}`}}>
+      <div>
         <Grid container
               style={{paddingTop: "7rem", paddingLeft: "1rem",
                 paddingRight: "1rem", maxWidth: "1280px",

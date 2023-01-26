@@ -1,6 +1,5 @@
 import {createTheme} from "@mui/material";
 import crimsonPro from '../resources/font/crimsonpro-bold.ttf';
-import {grey} from '@mui/material/colors'
 
 const CrimsonPro = {
   fontFamily: 'Crimson',
@@ -46,8 +45,11 @@ export const defaultTheme = createTheme({
 
   palette: {
     primary: {
-      main: grey[500],
+      main: "#9CA3AF",
       contrastText: "#FFF",
+    },
+    background: {
+      default: "#111827"
     },
     title: {
       main: "#FFF",

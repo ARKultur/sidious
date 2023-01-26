@@ -39,17 +39,20 @@ function MenuBar()
       listStyleType: "none", margin: "0", padding: "0"
     }}>
       <MenuBarElement
-      name="Home"
-      link="/"
+        name="Home"
+        link="/"
       />
       <MenuBarElement
         name="Our Project"
+        link="/project"
       />
       <MenuBarElement
         name="Feature"
+        link="/feature"
       />
       <MenuBarElement
         name="Our team"
+        link="/team"
       />
       <MenuBarElement
         name="Pricing"

@@ -52,11 +52,11 @@ jobs:
           tags: arkulturtest/sidious:canon, arkulturtest/sidious:${{ env.APP_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Build and push dev docker image
+      - name: Build and push develop docker image
         if: github.ref == 'refs/heads/develop' && github.event_name != 'pull_request'
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: arkulturtest/sidious:${{ env.APP_VERSION }}-dev, arkulturtest/sidious:dev
+          tags: arkulturtest/sidious:${{ env.APP_VERSION }}-develop, arkulturtest/sidious:develop
           labels: ${{ steps.meta.outputs.labels }}
