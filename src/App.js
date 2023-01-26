@@ -8,6 +8,7 @@ import Error from "./view/Error";
 import Maintenance from "./view/Maintenance";
 import Project from "./view/Project";
 import Team from "./view/Team";
+import Feature from "./view/Feature";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
     {
       path: "team",
       element: <Team/>
+    },
+    {
+        path: "feature",
+        element: <Feature/>
     }
 ])
 function App() {

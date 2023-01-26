@@ -48,6 +48,7 @@ function MenuBar()
       />
       <MenuBarElement
         name="Feature"
+        link="/feature"
       />
       <MenuBarElement
         name="Our team"
