@@ -66,7 +66,8 @@ export default function NavBar(props)
   document.title = props.title ? props.title : "ARKultur";
   return (
     <div style={{
-      paddingLeft: "1rem", paddingRight: "1rem"
+      paddingLeft: "1rem", paddingRight: "1rem",
+      zIndex: 100000, position: "fixed"
     }}>
       <AppBar position='static' color="mainColor" sx={{ position: "fixed", width: "100%", px: "0.625rem" }} elevation={0} >
         <Toolbar sx={{
