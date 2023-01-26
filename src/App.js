@@ -7,6 +7,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Error from "./view/Error";
 import Maintenance from "./view/Maintenance";
 import Project from "./view/Project";
+import Team from "./view/Team";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     {
         path: "project",
         element: <Project/>
+    },
+    {
+      path: "team",
+      element: <Team/>
     }
 ])
 function App() {

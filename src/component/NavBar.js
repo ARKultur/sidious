@@ -51,6 +51,7 @@ function MenuBar()
       />
       <MenuBarElement
         name="Our team"
+        link="/team"
       />
       <MenuBarElement
         name="Pricing"

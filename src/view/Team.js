@@ -1,0 +1,101 @@
+import * as React from "react";
+import NavBar from "../component/NavBar";
+import FooterComponent from "../component/Footer";
+import {Typography, useTheme} from "@mui/material";
+
+function Member(props)
+{
+  const theme = useTheme();
+  return (
+    <div style={{ marginBottom: "1rem"}}>
+      <img
+        src={props.image}
+        alt={props.alt}
+        style={{ borderRadius: "9999px", width: "10rem",
+          height: "10rem", display: "inline-block"
+      }}
+      />
+      <Typography
+        style={{fontSize: "1.25rem",
+          lineHeightStep: "1.75rem",
+          fontWeigh: 300,
+          maxWidth: "42rem"}}
+        color={theme.typography.color}
+      >{props.name}</Typography>
+      <Typography
+          color={theme.palette.greyText}
+          style={{maxWidth: "42rem", fontWeight: 300,
+            fontSize: "1.25rem", lineHeight: "1.5rem",
+            marginBottom: "2rem"
+          }}
+      >{props.job}</Typography>
+    </div>
+  )
+}
+
+export default function Team()
+{
+  const theme = useTheme();
+  return (
+    <>
+      <NavBar title={"ARKultur - Team"}/>
+      <div style={{
+        paddingTop: "7rem", paddingLeft: "1rem",
+        paddingRight: "1rem", maxWidth: "1280px",
+        marginLeft: "auto", marginRight: "auto"
+      }}>
+        <div style={{marginBottom: "2rem"}}>
+          <Typography
+              variant={"h1"}
+              color={theme.typography.color}
+              style={{marginBottom: "1rem", fontSize: "3.75rem", letterSpacing: "-0.025em",
+                fontWeight: 800
+              }}
+          >Our Team</Typography>
+        </div>
+        <div style={{display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))"}}>
+          <Member
+            image={"https://cdn.discordapp.com/avatars/206021742932656129/6ddb90cdbd2028c418089d18a6e6521b.webp?size=256"}
+            alt={"Guillaume's S photo"}
+            name={"Guillaume S."}
+            job={"Team's leader"}
+          />
+          <Member
+            image={"https://cdn.discordapp.com/avatars/210432251198963722/a_c1756fc093cb349e092d994ace0acad0.gif?size=256"}
+            alt={"Guillaume's D photo"}
+            name={"Guillaume D."}
+            job={"BackEnd developer"}
+          />
+          <Member
+            image={"https://cdn.discordapp.com/avatars/222073398195388426/a77e8fe6e176df022b4aecbb123191c3.webp?size=256"}
+            alt={"Maxime's P photo"}
+            name={"Maxime P."}
+            job={"Web developer"}
+          />
+          <Member
+            image={"https://cdn.discordapp.com/avatars/818305741856833577/fbd1c2cd446f71072574f2b000a783d2.webp?size=256"}
+            alt={"Mehdi's photo"}
+            name={"Mehdi Z."}
+            job={"Mobile developer"}
+          /><Member
+            image={"https://cdn.discordapp.com/avatars/370219157180121095/c90c25fb29433384b32c53f1b96121b0.webp?size=256"}
+            alt={"Alan-steven's photo"}
+            name={"Alan-steven L."}
+            job={"Mobile developer"}
+          /><Member
+            image={"https://cdn.discordapp.com/avatars/251875694529740810/d51c544ee46e52d95aeb15dd23f84e7b.webp?size=256"}
+            alt={"Maxime's S photo"}
+            name={"Maxime S."}
+            job={"Mobile developer"}
+          /><Member
+            image={"https://cdn.discordapp.com/avatars/220124557166510080/21e9ea632a0c9f66bbdb0de510f07491.webp?size=256"}
+            alt={"Theo's photo"}
+            name={"Théo F."}
+            job={"Mobile developer"}
+          />
+        </div>
+      </div>
+      <FooterComponent/>
+    </>
+  )
+}
