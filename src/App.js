@@ -1,11 +1,12 @@
 import * as React from 'react';
 import './App.css';
-import {ThemeProvider} from "@mui/material";
+import {CssBaseline, ThemeProvider} from "@mui/material";
 import {defaultTheme} from './theme/Theme'
 import LandingPageView from "./view/LandingPage";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Error from "./view/Error";
 import Maintenance from "./view/Maintenance";
+import Project from "./view/Project";
 
 const router = createBrowserRouter([
     {
@@ -16,12 +17,17 @@ const router = createBrowserRouter([
     {
         path: "maintenance",
         element: <Maintenance/>
+    },
+    {
+        path: "project",
+        element: <Project/>
     }
 ])
 function App() {
   return (
     <div className="App">
       <ThemeProvider theme={defaultTheme}>
+        <CssBaseline/>
         <RouterProvider router={router}/>
       </ThemeProvider>
     </div>
