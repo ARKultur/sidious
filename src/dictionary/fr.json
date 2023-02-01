@@ -10,6 +10,11 @@
     "main_title": "Améliorer vos visite culturelle grace à la realité augmenté",
     "main_subtitle": "Notre équipe de developpeur talentueux ont pour but d'amener le future dans le passé, en utilisant la realité augmenté.",
     "visit_github": "Vistez notre GitHub",
+    "back_to_menu": "Retourner à l'acceuil",
+    "maintenance": "Cette page est en maintenance. Désolé pour le dérangement",
+    "maintenance_title": "Maintenance",
+    "error": "Il semblerais qu'il n'y ai rien à découvrire ici",
+    "error_title": "Oops...",
     "footer": {
       "subtitle": "2022 - Construit avec React et MaterialUI",
       "submenu_1" : {
@@ -42,10 +47,22 @@
         "item_2": "iOS"
       }
     },
-    "back_to_menu": "Retourner à l'acceuil",
-    "maintenance": "Cette page est en maintenance. Désolé pour le dérangement",
-    "maintenance_title": "Maintenance",
-    "error": "Il semblerais qu'il n'y ai rien à découvrire ici",
-    "error_title": "Oops..."
+    "project": {
+      "tab_title": "ARKultur - Notre Projet",
+      "title": "ARKultur",
+      "subtitle": "ARKultur est un project crée par 7 étudiants d'Epitech en tant que Epitech Innovative Project (EIP), notre projet de fin d'étude.",
+      "section_1": {
+        "title": "Observation",
+        "text": "L'idée emerga après les nombreux confinement suite au Covid-19 en 2021. L'impacte fut consequent pour tout le monde, et plus particulièrement pour la cultur. Vistier un lieux peut être ennuiyany pour les plus jeunes, l'information peut ne pas être simple à lire pour tout le monde, ou juste abscente. Sans ces information nous perdons notre histoire. C'est un gros problème est nous devons y remedier."
+      },
+      "section_2": {
+        "title": "Solution",
+        "text": "ARKultur est là pour changer la fonçons dont nous visitons les lieux culturel! Avec notre application mobile nous avons accèes à toutes les donnée disponible sur un lieux que vous visitez. Vous pouvez voir une cartes avec tout les lieux culturel autour de vous, et découvrire un lieux que vous n'avez encore jamais vue. Plusieur guide pour tout les ages sont disponible. Une chasse au trésor ou un visite plus classique il y en a pour tout les gout. Vous pouvez aussi trouver de la réalité augmenté (AR) et voir tout les information même si elles ne sont pas physiquement accessible."
+      },
+      "section_3": {
+        "title": "Epitech",
+        "text": "Epitech est une école supérieur en 5 ans, avec une année à l'étranger, spécialisée en science de l'informatique. Lors de notre 3ème année on a commencé notre EIP (Epitech Innovative Project) qui dure sur nos 3 dernière année. Le but de ce projet est de créer un vrai projet professionel comme qi c'était notre entreprise. Nous devons être innovant et créatif pour créer un projet qui amène du nouveau dans notre monde."
+      }
+    }
   }
 }
