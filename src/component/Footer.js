@@ -1,17 +1,20 @@
 import * as React from "react";
 import {Grid, Typography, useTheme} from "@mui/material";
 import LogoIcon from "./LogoIcon";
+import {useTranslation} from "react-i18next";
 
 function FooterMenuElement(props)
 {
   const theme = useTheme();
+  const { t, _ } = useTranslation();
+
   const list = props.subMenu.map((item) =>
     <li key={item.name.toString() } style={{marginBottom: "1rem", display: "flex"}}>
       <a href={item.route} target={item.newPage ? '_blank' : ''} rel={"noopener"}
          style={{color: `${theme.palette.primary.main}`,
            textDecoration: "inherit"
       }}>
-        {item.name}
+        {t(item.name)}
       </a>
     </li>
   )
@@ -19,7 +22,7 @@ function FooterMenuElement(props)
       <Grid item xs container direction="column" style={{alignContent: "flex-start"}}>
       <Typography color={theme.palette.title.main} style={{marginBottom: "1.5rem", display: "flex",
         fontWeight: 600, textTransform: "uppercase"}}>
-        {props.name}
+        {t(props.name)}
       </Typography>
       <ul style={{
         listStyleType: "none",
@@ -34,95 +37,95 @@ function FooterMenuElement(props)
 export default function FooterComponent()
 {
   const companySubmenu = {
-    name: 'Company',
+    name: 'footer.submenu_1.name',
     children: [
       {
-        name: 'About',
+        name: 'footer.submenu_1.item_1',
         route: '/maintenance',
         newPage: false,
       },
       {
-        name: 'Blog',
+        name: 'footer.submenu_1.item_2',
         route: '/maintenance',
         newPage: false,
       }
     ]
   };
   const helpSubmenu = {
-    name: 'Support',
+    name: 'footer.submenu_2.name',
     children: [
       {
-        name: 'Discord Server',
+        name: 'footer.submenu_2.item_1',
         route: '/maintenance',
         newPage: false,
       },
       {
-        name: 'Github Organisation',
+        name: 'footer.submenu_2.item_2',
         route: 'https://github.com/ARKultur',
         newPage: true,
       },
       {
-        name: 'Contact us',
+        name: 'footer.submenu_2.item_3',
         route: '/maintenance',
         newPage: false,
       }
     ]
   };
   const legalSubmenu = {
-    name: 'Legal',
+    name: 'footer.submenu_3.name',
     children: [
       {
-        name: 'Privacy Policy',
+        name: 'footer.submenu_3.item_1',
         route: '/maintenance',
         newPage: false,
       },
       {
-        name: 'Licensing',
+        name: 'footer.submenu_3.item_2',
         route: '/maintenance',
         newPage: false,
       },
       {
-        name: 'Terms',
+        name: 'footer.submenu_3.item_3',
         route: '/maintenance',
         newPage: false,
       }
     ]
   };
   const projectsSubmenu = {
-    name: 'Projects',
+    name: 'footer.submenu_4.name',
     children: [
       {
-        name: 'Naboo',
+        name: 'footer.submenu_4.item_1',
         route: 'https://github.com/ARKultur/naboo',
         newPage: true,
       },
       {
-        name: 'Theed',
+        name: 'footer.submenu_4.item_2',
         route: 'https://github.com/ARKultur/theed',
         newPage: true,
       },
       {
-        name: 'Sentinel',
+        name: 'footer.submenu_4.item_3',
         route: 'https://github.com/ARKultur/sentinel',
         newPage: true,
       },
       {
-        name: 'Arkham',
+        name: 'footer.submenu_4.item_4',
         route: 'https://github.com/ARKultur/arkham',
         newPage: true,
       }
     ]
   };
   const downloadsSubmenu = {
-    name: 'Download',
+    name: 'footer.submenu_5.name',
     children: [
       {
-        name: 'Android',
+        name: 'footer.submenu_5.item_1',
         route: '/maintenance',
         newPage: false,
       },
       {
-        name: 'iOS',
+        name: 'footer.submenu_5.item_2',
         route: '/maintenance',
         newPage: false,
       }

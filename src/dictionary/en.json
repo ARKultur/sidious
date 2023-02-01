@@ -9,6 +9,38 @@
     "login": "Log in",
     "main_title": "Improving your cultural visits, using AR",
     "main_subtitle": "Our team of talented developers aims to bring the future into the past, using Augmented Reality.",
-    "visit_github": "Visit us on GitHub"
+    "visit_github": "Visit us on GitHub",
+    "footer": {
+      "subtitle": "2022 - Built with React and MaterialUI",
+      "submenu_1" : {
+        "name": "Company",
+        "item_1": "About",
+        "item_2": "Blog"
+      },
+      "submenu_2" : {
+        "name": "Support",
+        "item_1": "Discord Server",
+        "item_2": "Github Organisation",
+        "item_3": "Contact us"
+      },
+      "submenu_3" : {
+        "name": "Legal",
+        "item_1": "Privacy Policy",
+        "item_2": "Licensing",
+        "item_3": "Terms"
+      },
+      "submenu_4" : {
+        "name": "Projects",
+        "item_1": "Naboo",
+        "item_2": "Theed",
+        "item_3": "Sentinel",
+        "item_4": "Arkham"
+      },
+      "submenu_5" : {
+        "name": "Download",
+        "item_1": "Android",
+        "item_2": "iOS"
+      }
+    }
   }
 }

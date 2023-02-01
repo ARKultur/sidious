@@ -9,6 +9,38 @@
     "login": "Connexion",
     "main_title": "Améliorer vos visite culturelle grace à la realité augmenté",
     "main_subtitle": "Notre équipe de developpeur talentueux ont pour but d'amener le future dans le passé, en utilisant la realité augmenté.",
-    "visit_github": "Vistez notre GitHub"
+    "visit_github": "Vistez notre GitHub",
+    "footer": {
+      "subtitle": "2022 - Construit avec React et MaterialUI",
+      "submenu_1" : {
+        "name": "Companie",
+        "item_1": "A propos",
+        "item_2": "Blog"
+      },
+      "submenu_2" : {
+        "name": "Support",
+        "item_1": "Serveur Discord",
+        "item_2": "Github Organisation",
+        "item_3": "Contactez nous"
+      },
+      "submenu_3" : {
+        "name": "Legal",
+        "item_1": "Privacy Policy",
+        "item_2": "Licence",
+        "item_3": "Terms"
+      },
+      "submenu_4" : {
+        "name": "Projets",
+        "item_1": "Naboo",
+        "item_2": "Theed",
+        "item_3": "Sentinel",
+        "item_4": "Arkham"
+      },
+      "submenu_5" : {
+        "name": "Téléchargement",
+        "item_1": "Android",
+        "item_2": "iOS"
+      }
+    }
   }
 }
