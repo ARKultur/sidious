@@ -63,6 +63,35 @@
         "title": "Epitech",
         "text": "Epitech est une école supérieur en 5 ans, avec une année à l'étranger, spécialisée en science de l'informatique. Lors de notre 3ème année on a commencé notre EIP (Epitech Innovative Project) qui dure sur nos 3 dernière année. Le but de ce projet est de créer un vrai projet professionel comme qi c'était notre entreprise. Nous devons être innovant et créatif pour créer un projet qui amène du nouveau dans notre monde."
       }
+    },
+    "team": {
+      "title": "Notre équipe",
+      "team_leader": "Chef d'équipe",
+      "web": "Developpeur Web",
+      "back": "Developpeur Backend",
+      "mob": "Developpeur Mobile"
+    },
+    "feature": {
+      "title": "Fonctionnalitées",
+      "subtitle": "Notre project propose deux catégorie de fonctionnalitées, selon si vous êtes un touriste ou un entité en charge un lieux culturel. Vous avez:",
+      "section_mobile": "Mobile",
+      "section_dashboard": "Tableau de bord",
+      "mobile": {
+        "section_1": {
+          "title": "Map intéractive",
+          "text": "Arkultur offre une map intéractive qui vous permet de voit tout les lieux culturel autour de vous. Avec cette map sentez vous libre de (re)découvrire votre ville!"
+        },
+        "section_2": {
+          "title": "Réalitée Augmentée",
+          "text": "La Réalitée Augmentée est une bonne façons de voyager dans le passée. Regardez à travers votre téléphone pour voir comment c'était dans le passé!"
+        }
+      },
+      "web": {
+        "section_1": {
+          "title": "Interactive Map",
+          "text": "Arkultur offers you an interactive map that facilitates the management of your cultural places."
+        }
+      }
     }
   }
 }
