@@ -1,0 +1,14 @@
+{
+  "translation": {
+    "menu_home": "Acceuil",
+    "menu_project": "Notre Project",
+    "menu_feature": "Fonctionnalitée",
+    "menu_team": "Notre Equipe",
+    "menu_pricing": "Nos prix",
+    "menu_contact": "Contactez nous",
+    "login": "Connexion",
+    "main_title": "Améliorer vos visite culturelle grace à la realité augmenté",
+    "main_subtitle": "Notre équipe de developpeur talentueux ont pour but d'amener le future dans le passé, en utilisant la realité augmenté.",
+    "visit_github": "Vistez notre GitHub"
+  }
+}

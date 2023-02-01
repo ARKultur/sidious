@@ -1,7 +1,19 @@
 import * as React from 'react';
-import {AppBar, Button, Toolbar, useTheme} from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  FormControl,
+  IconButton,
+  InputLabel, MenuItem,
+  Popper, Select,
+  Toolbar,
+  useTheme
+} from "@mui/material";
 import LogoIcon from "./LogoIcon";
 import {NavLink} from "react-router-dom";
+import SettingsIcon from '@mui/icons-material/Settings';
+import {useTranslation} from "react-i18next";
 
 function MenuBarElement(props)
 {
@@ -17,6 +29,7 @@ function MenuBarElement(props)
     color: theme.palette.greyText,
     textDecoration: "none"
   }
+  const { t, i18n } = useTranslation();
 
   return (
     <li style={{ marginRight: "1.5em" }}>
@@ -25,7 +38,7 @@ function MenuBarElement(props)
                    isActive && linkTo !== '/maintenance' ? activeStyle : defaultStyle
                }
       >
-        {props.name}
+        {t(props.name)}
       </NavLink>
     </li>
   )
@@ -39,26 +52,26 @@ function MenuBar()
       listStyleType: "none", margin: "0", padding: "0"
     }}>
       <MenuBarElement
-        name="Home"
+        name="menu_home"
         link="/"
       />
       <MenuBarElement
-        name="Our Project"
+        name="menu_project"
         link="/project"
       />
       <MenuBarElement
-        name="Feature"
+        name="menu_feature"
         link="/feature"
       />
       <MenuBarElement
-        name="Our team"
+        name="menu_team"
         link="/team"
       />
       <MenuBarElement
-        name="Pricing"
+        name="menu_pricing"
       />
       <MenuBarElement
-        name="Contact Us"
+        name="menu_contact"
       />
     </ul>
   )
@@ -66,6 +79,22 @@ function MenuBar()
 
 export default function NavBar(props)
 {
+  const theme = useTheme();
+  const { t, i18n } = useTranslation();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popper' : undefined;
+
+  const handleChange = (event) => {
+    i18n.changeLanguage(event.target.value);
+  };
+
   document.title = props.title ? props.title : "ARKultur";
   return (
     <div style={{
@@ -85,11 +114,37 @@ export default function NavBar(props)
           }}>
             <LogoIcon/>
             <MenuBar/>
-            <Button
-              color="button"
-              variant="contained"
-              sw={{textTransform: 'none'}}
-            >Log in</Button>
+            <div>
+              <Button
+                  color="button"
+                  variant="contained"
+                  sw={{textTransform: 'none'}}
+              >{t('login')}</Button>
+              <IconButton aria-label={id}
+                          aria-describedby={"settings"}
+                          style={{color: `${theme.palette.primary.contrastText}`}}
+                          onClick={handleClick}
+              >
+                <SettingsIcon/>
+              </IconButton>
+              <Popper id={id} open={open} anchorEl={anchorEl}>
+                <Box sx={{ width: 300, height: "auto", m: 1, p: 1, bgcolor: 'background.paper' }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Lang</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={i18n.language}
+                        label="Lang"
+                        onChange={handleChange}
+                    >
+                      <MenuItem value={"en"}>English</MenuItem>
+                      <MenuItem value={"fr"}>Français</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </Popper>
+            </div>
           </div>
         </Toolbar>
       </AppBar>

@@ -1,0 +1,14 @@
+{
+  "translation": {
+    "menu_home": "Home",
+    "menu_project": "Our Project",
+    "menu_feature": "Feature",
+    "menu_team": "Our team",
+    "menu_pricing": "Pricing",
+    "menu_contact": "Contact us",
+    "login": "Log in",
+    "main_title": "Improving your cultural visits, using AR",
+    "main_subtitle": "Our team of talented developers aims to bring the future into the past, using Augmented Reality.",
+    "visit_github": "Visit us on GitHub"
+  }
+}
