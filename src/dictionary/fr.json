@@ -1,24 +1,24 @@
 {
   "translation": {
-    "menu_home": "Acceuil",
+    "menu_home": "Accueil",
     "menu_project": "Notre Project",
-    "menu_feature": "Fonctionnalitée",
+    "menu_feature": "Fonctionnalité",
     "menu_team": "Notre Equipe",
     "menu_pricing": "Nos prix",
     "menu_contact": "Contactez nous",
     "login": "Connexion",
-    "main_title": "Améliorer vos visite culturelle grace à la realité augmenté",
-    "main_subtitle": "Notre équipe de developpeur talentueux ont pour but d'amener le future dans le passé, en utilisant la realité augmenté.",
+    "main_title": "Améliorer vos visites culturelles grâce à la realitée augmentée",
+    "main_subtitle": "Notre équipe de développeurs talentueux ont pour but d'amener le futur dans le passé, en utilisant la réalité augmentée.",
     "visit_github": "Vistez notre GitHub",
-    "back_to_menu": "Retourner à l'acceuil",
+    "back_to_menu": "Retourner à l'accueil",
     "maintenance": "Cette page est en maintenance. Désolé pour le dérangement",
     "maintenance_title": "Maintenance",
-    "error": "Il semblerais qu'il n'y ai rien à découvrire ici",
+    "error": "Il semblerait qu'il n'y ait rien à découvrir ici",
     "error_title": "Oops...",
     "footer": {
       "subtitle": "2022 - Construit avec React et MaterialUI",
       "submenu_1" : {
-        "name": "Companie",
+        "name": "Compagnie",
         "item_1": "A propos",
         "item_2": "Blog"
       },
@@ -50,46 +50,48 @@
     "project": {
       "tab_title": "ARKultur - Notre Projet",
       "title": "ARKultur",
-      "subtitle": "ARKultur est un project crée par 7 étudiants d'Epitech en tant que Epitech Innovative Project (EIP), notre projet de fin d'étude.",
+      "subtitle": "ARKultur est un projet créé par 7 étudiants d'Epitech en tant que Epitech Innovative Projet (EIP), notre projet de fin d'études.",
       "section_1": {
         "title": "Observation",
-        "text": "L'idée emerga après les nombreux confinement suite au Covid-19 en 2021. L'impacte fut consequent pour tout le monde, et plus particulièrement pour la cultur. Vistier un lieux peut être ennuiyany pour les plus jeunes, l'information peut ne pas être simple à lire pour tout le monde, ou juste abscente. Sans ces information nous perdons notre histoire. C'est un gros problème est nous devons y remedier."
+        "text": "L'idée émergea après les nombreux confinements suite au Covid-19 en 2021. Il impacte fut conséquent pour tout le monde, et plus particulièrement pour la culture. Visiter un lieu peut être ennuyant pour les plus jeunes, l'information peut ne pas être simple à lire pour tout le monde, ou juste absente. Sans ces informations nous perdons notre histoire. C'est un gros problème et nous devons y remédier."
       },
       "section_2": {
         "title": "Solution",
-        "text": "ARKultur est là pour changer la fonçons dont nous visitons les lieux culturel! Avec notre application mobile nous avons accèes à toutes les donnée disponible sur un lieux que vous visitez. Vous pouvez voir une cartes avec tout les lieux culturel autour de vous, et découvrire un lieux que vous n'avez encore jamais vue. Plusieur guide pour tout les ages sont disponible. Une chasse au trésor ou un visite plus classique il y en a pour tout les gout. Vous pouvez aussi trouver de la réalité augmenté (AR) et voir tout les information même si elles ne sont pas physiquement accessible."
+        "text": "ARKultur est là pour changer la fonçons dont nous visitons les lieux culturels! Avec notre application mobile nous avons accès à toutes les données disponibles sur un lieu que vous visitez. Vous pouvez voir une carte avec tous les lieux culturels autour de vous, et découvrir un lieu que vous n'avez encore jamais vue. Plusieurs guides pour tous les âges sont disponibles. Une chasse au trésor ou une visite plus classique il y en a pour tous les gouts. Vous pouvez aussi trouver de la réalité augmentée (AR) et voir tous les informations même si elles ne sont pas physiquement accessibles."
       },
       "section_3": {
         "title": "Epitech",
-        "text": "Epitech est une école supérieur en 5 ans, avec une année à l'étranger, spécialisée en science de l'informatique. Lors de notre 3ème année on a commencé notre EIP (Epitech Innovative Project) qui dure sur nos 3 dernière année. Le but de ce projet est de créer un vrai projet professionel comme qi c'était notre entreprise. Nous devons être innovant et créatif pour créer un projet qui amène du nouveau dans notre monde."
+        "text": "Epitech est une école supérieure en 5 ans, avec une année à l'étranger, spécialisée en science de l'informatique. Lors de notre 3ème année on a commencé notre EIP (Epitech Innovative Projet) qui dure sur nos 3 dernières années. Le but de ce projet est de créer un vrai projet professionnel comme si c'était notre entreprise. Nous devons être innovants et créatifs pour créer un projet qui amène du nouveau dans notre monde."
       }
     },
     "team": {
+      "tab_title": "ARKultur - Notre équipe",
       "title": "Notre équipe",
       "team_leader": "Chef d'équipe",
-      "web": "Developpeur Web",
-      "back": "Developpeur Backend",
-      "mob": "Developpeur Mobile"
+      "web": "Développeur Web",
+      "back": "Développeur Backend",
+      "mob": "Développeur Mobile"
     },
     "feature": {
-      "title": "Fonctionnalitées",
-      "subtitle": "Notre project propose deux catégorie de fonctionnalitées, selon si vous êtes un touriste ou un entité en charge un lieux culturel. Vous avez:",
+      "tab_title": "ARKultur - Fonctionnalité",
+      "title": "Fonctionnalité",
+      "subtitle": "Notre projet propose deux catégories de fonctionnalités, selon si vous êtes un touriste ou une entité en charge un lieu culturel. Vous avez:",
       "section_mobile": "Mobile",
       "section_dashboard": "Tableau de bord",
       "mobile": {
         "section_1": {
           "title": "Map intéractive",
-          "text": "Arkultur offre une map intéractive qui vous permet de voit tout les lieux culturel autour de vous. Avec cette map sentez vous libre de (re)découvrire votre ville!"
+          "text": "Arkultur offre une map interactive qui vous permet se voit tous les lieux culturels autour de vous. Avec cette map sentez-vous libre de (re)découvrir votre ville!"
         },
         "section_2": {
           "title": "Réalitée Augmentée",
-          "text": "La Réalitée Augmentée est une bonne façons de voyager dans le passée. Regardez à travers votre téléphone pour voir comment c'était dans le passé!"
+          "text": "La Réalité Augmentée est une bonne façon de voyager dans la passée. Regardez à travers votre téléphone pour voir comment c'était dans le passé!"
         }
       },
       "web": {
         "section_1": {
           "title": "Interactive Map",
-          "text": "Arkultur offers you an interactive map that facilitates the management of your cultural places."
+          "text": "Arkultur vous offre une map interactive afin de faciliter le management de vos lieux culturel."
         }
       }
     }

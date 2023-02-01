@@ -65,6 +65,7 @@
       }
     },
     "team": {
+      "tab_title": "ARKultur - Team",
       "title": "Our Team",
       "team_leader": "Team's leader",
       "web": "Web Developer",
@@ -72,6 +73,7 @@
       "mob": "Mobile Developer"
     },
     "feature": {
+      "tab_title": "ARKultur - Features",
       "title": "Features",
       "subtitle": "Our project offers two categories of feature depending on weather you are a tourist or a manager of cultural place. You have:",
       "section_mobile": "Mobile",

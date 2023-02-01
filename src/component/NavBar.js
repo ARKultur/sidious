@@ -29,7 +29,7 @@ function MenuBarElement(props)
     color: theme.palette.greyText,
     textDecoration: "none"
   }
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <li style={{ marginRight: "1.5em" }}>

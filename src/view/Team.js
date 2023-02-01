@@ -7,7 +7,7 @@ import {useTranslation} from "react-i18next";
 function Member(props)
 {
   const theme = useTheme();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div style={{ marginBottom: "1rem"}}>
@@ -39,11 +39,11 @@ function Member(props)
 export default function Team()
 {
   const theme = useTheme();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <>
-      <NavBar title={"ARKultur - Team"}/>
+      <NavBar title={t("team.tab_title")}/>
       <div style={{
         paddingTop: "7rem", paddingLeft: "1rem",
         paddingRight: "1rem", maxWidth: "1280px",

@@ -10,7 +10,7 @@ import {useTranslation} from "react-i18next";
 function FeatureElement(props)
 {
   const theme = useTheme();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div style={{display: "flex", flexDirection: `${props.left ? "row" : "row-reverse"}`, marginBottom: "1rem"}}>
@@ -46,11 +46,11 @@ function FeatureElement(props)
 export default function Feature()
 {
   const theme = useTheme();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <>
-      <NavBar title={"ARKultur - Features"}/>
+      <NavBar title={t("feature.tab_title")}/>
       <div style={{paddingTop: "7rem", paddingLeft: "1rem",
         paddingRight: "1rem", maxWidth: "1280px",
         marginLeft: "auto", marginRight: "auto"

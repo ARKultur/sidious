@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 function FooterMenuElement(props)
 {
   const theme = useTheme();
-  const { t, _ } = useTranslation();
+  const { t } = useTranslation();
 
   const list = props.subMenu.map((item) =>
     <li key={item.name.toString() } style={{marginBottom: "1rem", display: "flex"}}>
@@ -139,6 +139,7 @@ export default function FooterComponent()
     />
   );
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <footer  style={{ backgroundColor: `${theme.palette.footer}`}}>
@@ -155,7 +156,7 @@ export default function FooterComponent()
         color: "inherit"}}/>
         <div style={{textAlign: "center", display: "flex", alignItems: "center", flexDirection: "column"}}>
           <LogoIcon/>
-          <span style={{color: `${theme.palette.primary.main}`}}>2022 - Built with React and MaterialUI</span>
+          <span style={{color: `${theme.palette.primary.main}`}}>{t("footer.subtitle")}</span>
         </div>
       </div>
     </footer>

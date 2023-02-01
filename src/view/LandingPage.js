@@ -9,7 +9,7 @@ import {useTranslation} from "react-i18next";
 export default function LandingPageView()
 {
   const theme = useTheme();
-  const { t, _ } = useTranslation();
+  const { t } = useTranslation();
 
   return(
     <>

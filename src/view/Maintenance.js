@@ -10,7 +10,7 @@ import {useTranslation} from "react-i18next";
 export default function Maintenance()
 {
   const theme = useTheme();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
     return (
       <div>

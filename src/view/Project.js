@@ -10,7 +10,7 @@ import {useTranslation} from "react-i18next";
 function Section(props)
 {
   const theme = useTheme();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div
@@ -40,7 +40,7 @@ function Section(props)
 export default function Project()
 {
   const theme = useTheme();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div>
