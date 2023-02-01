@@ -41,6 +41,11 @@
         "item_1": "Android",
         "item_2": "iOS"
       }
-    }
+    },
+    "back_to_menu": "Retourner à l'acceuil",
+    "maintenance": "Cette page est en maintenance. Désolé pour le dérangement",
+    "maintenance_title": "Maintenance",
+    "error": "Il semblerais qu'il n'y ai rien à découvrire ici",
+    "error_title": "Oops..."
   }
 }
