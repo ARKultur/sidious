@@ -1,0 +1,104 @@
+{
+  "translation": {
+    "menu_home": "Home",
+    "menu_project": "Our Project",
+    "menu_feature": "Feature",
+    "menu_team": "Our team",
+    "menu_pricing": "Pricing",
+    "menu_contact": "Contact us",
+    "login": "Log in",
+    "main_title": "Improving your cultural visits, using AR",
+    "main_subtitle": "Our team of talented developers aims to bring the future into the past, using Augmented Reality.",
+    "visit_github": "Visit us on GitHub",
+    "back_to_menu": "Return to the Home page",
+    "maintenance": "This page is currently in maintenance. Sorry for the inconvenience.",
+    "maintenance_title": "Maintenance",
+    "error": "It seem there is nothing to discover here sorry.",
+    "error_title": "Oops...",
+    "language": "Language",
+    "footer": {
+      "subtitle": "2022 - Built with React and MaterialUI",
+      "submenu_1" : {
+        "name": "Company",
+        "item_1": "About",
+        "item_2": "Blog"
+      },
+      "submenu_2" : {
+        "name": "Support",
+        "item_1": "Discord Server",
+        "item_2": "Github Organisation",
+        "item_3": "Contact us"
+      },
+      "submenu_3" : {
+        "name": "Legal",
+        "item_1": "Privacy Policy",
+        "item_2": "Licensing",
+        "item_3": "Terms"
+      },
+      "submenu_4" : {
+        "name": "Projects",
+        "item_1": "Naboo",
+        "item_2": "Theed",
+        "item_3": "Sentinel",
+        "item_4": "Arkham"
+      },
+      "submenu_5" : {
+        "name": "Download",
+        "item_1": "Android",
+        "item_2": "iOS"
+      }
+    },
+    "project": {
+      "tab_title": "ARKultur - Our Project",
+      "title": "ARKultur",
+      "subtitle": "ARKultur is a project made by 7 student from Epitech as a part of Epitech Innovative Project (EIP), our project graduation.",
+      "section_1": {
+        "title": "Observation",
+        "text": "The idea of the project emerges juste after the third wave of Covid-19 in 2021. The impact was hard for every one, and mostly for the culture. Visiting a place can be annoying for children, information may not be easy to read for people with disabilities, or just missing. Without theses information we loose our history. It's a big issue and we have to change it."
+      },
+      "section_2": {
+        "title": "Solution",
+        "text": "ARKultur is here to change how we visit a place! With our mobile application can can have an access to all available data of a museum. You can see in a map all cultural place around you and discover something you never notice. Several guide are available for everyone. A treasure hunter or a more classical guide there's something for everyone. You can also find an Augmented Reality (AR) view of the place to help you to catch every information even if they are physically inaccessible."
+      },
+      "section_3": {
+        "title": "Epitech",
+        "text": "Epitech is a school in 5 years, and one in a foreign country, specialized in computer science. On our 3th year we start our EIP (Epitech Innovative Project) which will last 3 years. The goal of this project is to create a real project and manage him like a project in a company. We have to be innovative and creative to create a project that bring something new in our world."
+      }
+    },
+    "team": {
+      "tab_title": "ARKultur - Team",
+      "title": "Our Team",
+      "team_leader": "Team's leader",
+      "web": "Web Developer",
+      "back": "Backend Developer",
+      "mob": "Mobile Developer"
+    },
+    "feature": {
+      "tab_title": "ARKultur - Features",
+      "title": "Features",
+      "subtitle": "Our project offers two categories of feature depending on weather you are a tourist or a manager of cultural place. You have:",
+      "section_mobile": "Mobile",
+      "section_dashboard": "Dashboard",
+      "mobile": {
+        "section_1": {
+          "title": "Interactive map",
+          "text": "Arkultur offers a interactive map that allow you to see all cultural places around you. With this map feel free to (re)discover your city!"
+        },
+        "section_2": {
+          "title": "Augmented Reality",
+          "text": "Augmented Reality is a very good technology to travel in the past. Look through your phone to see how the place was be in the past!"
+        },
+        "section_3": {
+          "title": "Profile",
+          "text": "A complete management of your profile allow you to see only what you want to do."
+        }
+      },
+      "web": {
+        "section_1": {
+          "title": "Interactive Map",
+          "text": "Arkultur offers you an interactive map that facilitates the management of your cultural places."
+        }
+      }
+    }
+  }
+}

@@ -4,10 +4,13 @@ import FooterComponent from "../component/Footer";
 import {Button, Grid, Typography, useTheme} from "@mui/material";
 import StyledLogo from '../resources/images/stylish-logo.svg';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import {useTranslation} from "react-i18next";
 
 export default function LandingPageView()
 {
   const theme = useTheme();
+  const { t } = useTranslation();
+
   return(
     <>
       <NavBar/>
@@ -26,7 +29,7 @@ export default function LandingPageView()
                 maxWidth: "42rem"
               }}
             >
-              Improving your cultural visits, using AR and AI
+              {t("main_title")}
             </Typography>
             <Typography
               color={theme.palette.greyText}
@@ -34,7 +37,7 @@ export default function LandingPageView()
                 fontSize: "1.25rem", lineHeight: "1.5rem",
                 marginBottom: "2rem"
             }}>
-              Our team of talented developers aims to bring the future into the past, using Artificial Intelligence and Augmented Reality. Read About us here!
+              {t("main_subtitle")}
             </Typography>
             <Button variant="outlined"
                     startIcon={<GitHubIcon/>}
@@ -43,7 +46,7 @@ export default function LandingPageView()
                       window.open("https://github.com/arkultur", '_blank', 'noreferrer')
                     }}
             >
-              Visit us on GitHub
+              {t("visit_github")}
             </Button>
           </Grid>
           <Grid item xs={5}>
