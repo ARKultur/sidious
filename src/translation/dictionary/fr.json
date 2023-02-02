@@ -15,6 +15,7 @@
     "maintenance_title": "Maintenance",
     "error": "Il semblerait qu'il n'y ait rien à découvrir ici",
     "error_title": "Oops...",
+    "language": "Langue",
     "footer": {
       "subtitle": "2022 - Construit avec React et MaterialUI",
       "submenu_1" : {

@@ -15,6 +15,7 @@
     "maintenance_title": "Maintenance",
     "error": "It seem there is nothing to discover here sorry.",
     "error_title": "Oops...",
+    "language": "Language",
     "footer": {
       "subtitle": "2022 - Built with React and MaterialUI",
       "submenu_1" : {

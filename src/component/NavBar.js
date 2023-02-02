@@ -1,12 +1,8 @@
 import * as React from 'react';
 import {
   AppBar,
-  Box,
   Button,
-  FormControl,
   IconButton,
-  InputLabel, MenuItem,
-  Popper, Select,
   Toolbar,
   useTheme
 } from "@mui/material";
@@ -14,6 +10,7 @@ import LogoIcon from "./LogoIcon";
 import {NavLink} from "react-router-dom";
 import SettingsIcon from '@mui/icons-material/Settings';
 import {useTranslation} from "react-i18next";
+import LangSelection from "./LangSelection";
 
 function MenuBarElement(props)
 {
@@ -99,7 +96,7 @@ export default function NavBar(props)
   return (
     <div style={{
       paddingLeft: "1rem", paddingRight: "1rem",
-      zIndex: 100000, position: "fixed"
+      zIndex: 100000
     }}>
       <AppBar position='static' color="mainColor" sx={{ position: "fixed", width: "100%", px: "0.625rem" }} elevation={0} >
         <Toolbar sx={{
@@ -127,23 +124,12 @@ export default function NavBar(props)
               >
                 <SettingsIcon/>
               </IconButton>
-              <Popper id={id} open={open} anchorEl={anchorEl}>
-                <Box sx={{ width: 300, height: "auto", m: 1, p: 1, bgcolor: 'background.paper' }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Lang</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={i18n.language}
-                        label="Lang"
-                        onChange={handleChange}
-                    >
-                      <MenuItem value={"en"}>English</MenuItem>
-                      <MenuItem value={"fr"}>Français</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
-              </Popper>
+              <LangSelection
+                id={id}
+                open={open}
+                anchor={anchorEl}
+                handleChange={handleChange}
+              />
             </div>
           </div>
         </Toolbar>

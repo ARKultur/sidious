@@ -61,6 +61,7 @@ export const defaultTheme = createTheme({
     },
     mainColor: {
       main: "#111827",
+      subMenu: "#9932CC"
     },
     footer: "#1F2937",
     greyText: "#9CA3AF",

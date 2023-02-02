@@ -1,7 +1,7 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import English from "../dictionary/en.json"
-import French from "../dictionary/fr.json"
+import English from "./dictionary/en.json"
+import French from "./dictionary/fr.json"
 
 // or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
 const resources = {
