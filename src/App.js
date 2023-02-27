@@ -9,29 +9,34 @@ import Maintenance from "./view/Maintenance";
 import Project from "./view/Project";
 import Team from "./view/Team";
 import Feature from "./view/Feature";
+import Timeline from "./view/Timeline";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <LandingPageView/>,
-        errorElement: <Error/>
-    },
-    {
-        path: "maintenance",
-        element: <Maintenance/>
-    },
-    {
-        path: "project",
-        element: <Project/>
-    },
-    {
-      path: "team",
-      element: <Team/>
-    },
-    {
-        path: "feature",
-        element: <Feature/>
-    }
+  {
+    path: "/",
+    element: <LandingPageView/>,
+    errorElement: <Error/>
+  },
+  {
+    path: "maintenance",
+    element: <Maintenance/>
+  },
+  {
+    path: "project",
+    element: <Project/>
+  },
+  {
+    path: "team",
+    element: <Team/>
+  },
+  {
+    path: 'timeline',
+    element: <Timeline/>
+  },
+  {
+    path: "feature",
+    element: <Feature/>
+  }
 ])
 function App() {
   return (

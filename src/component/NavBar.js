@@ -55,7 +55,8 @@ function MenuBar()
         link="/team"
       />
       <MenuBarElement
-        name="Pricing"
+        name="Timeline"
+        link="/timeline"
       />
       <MenuBarElement
         name="Contact Us"
