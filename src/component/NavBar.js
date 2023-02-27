@@ -65,7 +65,8 @@ function MenuBar()
         link="/team"
       />
       <MenuBarElement
-        name="menu_pricing"
+        name="Timeline"
+        link="/timeline"
       />
       <MenuBarElement
         name="menu_contact"
@@ -96,7 +97,7 @@ export default function NavBar(props)
   return (
     <div style={{
       paddingLeft: "1rem", paddingRight: "1rem",
-      zIndex: 100000
+      zIndex: 100000, position: "fixed"
     }}>
       <AppBar position='static' color="mainColor" sx={{ position: "fixed", width: "100%", px: "0.625rem" }} elevation={0} >
         <Toolbar sx={{
