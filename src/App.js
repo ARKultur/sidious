@@ -18,24 +18,29 @@ const router = createBrowserRouter([
     errorElement: <Error/>
   },
   {
-    path: "maintenance",
-    element: <Maintenance/>
+    path: "/maintenance",
+    element: <Maintenance/>,
+    errorElement: <Error/>
   },
   {
-    path: "project",
-    element: <Project/>
+    path: "/project",
+    element: <Project/>,
+    errorElement: <Error/>
   },
   {
-    path: "team",
-    element: <Team/>
+    path: "/team",
+    element: <Team/>,
+    errorElement: <Error/>
   },
   {
-    path: 'timeline',
-    element: <Timeline/>
+    path: '/timeline',
+    element: <Timeline/>,
+    errorElement: <Error/>
   },
   {
-    path: "feature",
-    element: <Feature/>
+    path: "/feature",
+    element: <Feature/>,
+    errorElement: <Error/>
   }
 ])
 function App() {
