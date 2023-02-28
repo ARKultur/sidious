@@ -4,8 +4,12 @@ import {Typography, useTheme} from "@mui/material";
 import Timeline from '@mui/lab/Timeline';
 import {TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator} from "@mui/lab";
 import FooterComponent from "../component/Footer";
+import {useTranslation} from "react-i18next";
 
 function TimeElement(props) {
+  const theme = useTheme();
+  const { t } = useTranslation();
+
   return (
     <TimelineItem>
       <TimelineSeparator>
@@ -13,7 +17,25 @@ function TimeElement(props) {
         <TimelineConnector/>
       </TimelineSeparator>
       <TimelineContent>
-        {props.children}
+        <div>
+          <Typography
+            variant={"h4"}
+            color={theme.typography.color}
+            style={{marginBottom: "1rem", letterSpacing: "-0.025em"
+            }}
+          >{t(props.title)}</Typography>
+          <Typography
+            variant={"subtitle2"}
+            color={theme.typography.color}
+            style={{marginBottom: "1rem", letterSpacing: "-0.025em"
+            }}
+          >{t(props.time)}</Typography>
+          <Typography
+            color={theme.typography.color}
+            style={{marginBottom: "1rem", letterSpacing: "-0.025em"
+            }}
+          >{t(props.text)}</Typography>
+        </div>
       </TimelineContent>
     </TimelineItem>
   )
@@ -40,215 +62,62 @@ export default function TimeLine()
             }}
           >Timeline</Typography>
         </div>
-        <div style={{}}>
+        <div>
           <Timeline position="alternate">
             <TimeElement
               color={"tm_past"}
-            >
-              <div>
-                <Typography
-                  variant={"h4"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >Moonshot</Typography>
-                <Typography
-                  variant={"subtitle2"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >September 2021</Typography>
-                <Typography
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >The Moonshot last two weeks. The first we work on different problematic to find a solution and make a little speech at the end of the day. After a week we choose 3 solution and improve these solution. At the end we have to choose one of these solution that can be our project. And we choose ARKultur. It's the beginning.</Typography>
-              </div>
-            </TimeElement>
+              title={"timeline.step1.title"}
+              time={"timeline.step1.time"}
+              text={"timeline.step1.text"}
+            />
             <TimeElement
               color={"tm_past"}
-            >
-              <div>
-                <Typography
-                  variant={"h4"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >Research</Typography>
-                <Typography
-                  variant={"subtitle2"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >October - December 2021</Typography>
-                <Typography
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >The goal now is to check is our solution feasible. To check we've created a questioner and we ask several organisation abour thier potential issue. This experience was very useful to know which tack we have to make first.</Typography>
-              </div>
-            </TimeElement>
+              title={"timeline.step2.title"}
+              time={"timeline.step2.time"}
+              text={"timeline.step2.text"}
+            />
             <TimeElement
               color={"tm_past"}
-            >
-              <div>
-                <Typography
-                  variant={"h4"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >Forward</Typography>
-                <Typography
-                  variant={"subtitle2"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >December 2021</Typography>
-                <Typography
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >After all research it time to create a little prototype to show what the final product looks like. We have two week to create this prototype with a presentation at then end. We've created a good prototype that show a good image of what we can have a the end.</Typography>
-              </div>
-            </TimeElement>
+              title={"timeline.step3.title"}
+              time={"timeline.step3.time"}
+              text={"timeline.step3.text"}
+            />
             <TimeElement
               color={"tm_past"}
-            >
-              <div>
-                <Typography
-                  variant={"h4"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >Let's work</Typography>
-                <Typography
-                  variant={"subtitle2"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >april - june 2022</Typography>
-                <Typography
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >Before we start the reale project we have to define which technologies we will use during the project. It's very important so during these month we try several technologies and choose the best at the end.</Typography>
-              </div>
-            </TimeElement>
+              title={"timeline.step4.title"}
+              time={"timeline.step4.time"}
+              text={"timeline.step4.text"}
+            />
             <TimeElement
               color={"tm_past"}
-            >
-              <div>
-                <Typography
-                  variant={"h4"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >Management</Typography>
-                <Typography
-                  variant={"subtitle2"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >jully - october 2022</Typography>
-                <Typography
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >We're going to work several month together so we have to define the rules to work faster. the development has also started.</Typography>
-              </div>
-            </TimeElement>
+              title={"timeline.step5.title"}
+              time={"timeline.step5.time"}
+              text={"timeline.step5.text"}
+            />
             <TimeElement
               color={"tm_past"}
-            >
-              <div>
-                <Typography
-                  variant={"h4"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >Fast Forward</Typography>
-                <Typography
-                  variant={"subtitle2"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >november 2022 - january 2023 </Typography>
-                <Typography
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >It is time to go faster.Tthe past month we work of the organisation of the team, tested our technologies and just started the project. Now we're going deeper to the project by creating our major features (Website, Dashboard, Mobile).</Typography>
-              </div>
-            </TimeElement>
+              title={"timeline.step6.title"}
+              time={"timeline.step6.time"}
+              text={"timeline.step6.text"}
+            />
             <TimeElement
-              color={"tm_now"}
-            >
-              <div>
-                <Typography
-                  variant={"h4"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >Preparing beta (now)</Typography>
-                <Typography
-                  variant={"subtitle2"}
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >february - may 2023 </Typography>
-                <Typography
-                  color={theme.typography.color}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >Our major features is now ready to use we have to prepare our project for a future beta. Working on the user experience and communication between our tester and us. We've improved all our feature and make easier to use.</Typography>
-              </div>
-            </TimeElement>
+              color={"tm_past"}
+              title={"timeline.step7.title"}
+              time={"timeline.step7.time"}
+              text={"timeline.step7.text"}
+            />
             <TimeElement
-              color={"tm_future"}
-            >
-              <div>
-                <Typography
-                  variant={"h4"}
-                  color={theme.palette.greyText}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >Beta (future)</Typography>
-                <Typography
-                  variant={"subtitle2"}
-                  color={theme.palette.greyText}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >june - sptember 2023 </Typography>
-                <Typography
-                  color={theme.palette.greyText}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >We'll see what the future hold for us...</Typography>
-              </div>
-            </TimeElement>
+              color={"tm_past"}
+              title={"timeline.step8.title"}
+              time={"timeline.step8.time"}
+              text={"timeline.step8.text"}
+            />
             <TimeElement
-              color={"tm_future"}
-            >
-              <div>
-                <Typography
-                  variant={"h4"}
-                  color={theme.palette.greyText}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >Prepare to lunch (future)</Typography>
-                <Typography
-                  variant={"subtitle2"}
-                  color={theme.palette.greyText}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >october - december 2023 </Typography>
-                <Typography
-                  color={theme.palette.greyText}
-                  style={{marginBottom: "1rem", letterSpacing: "-0.025em"
-                  }}
-                >We'll see what the future hold for us...</Typography>
-              </div>
-            </TimeElement>
+              color={"tm_past"}
+              title={"timeline.step9.title"}
+              time={"timeline.step9.time"}
+              text={"timeline.step9.text"}
+            />
           </Timeline>
         </div>
       </div>
