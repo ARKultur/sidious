@@ -2,7 +2,7 @@
   "translation": {
     "menu_home": "Home",
     "menu_project": "Our Project",
-    "menu_feature": "Feature",
+    "menu_feature": "Features",
     "menu_team": "Our team",
     "menu_pricing": "Pricing",
     "menu_contact": "Contact us",
@@ -98,6 +98,53 @@
           "title": "Interactive Map",
           "text": "Arkultur offers you an interactive map that facilitates the management of your cultural places."
         }
+      }
+    },
+    "timeline": {
+      "step1": {
+        "title": "Moonshot",
+        "time": "September 2021",
+        "text": "The Moonshot last two weeks. The first we work on different problematic to find a solution and make a little speech at the end of the day. After a week we choose 3 solution and improve these solution. At the end we have to choose one of these solution that can be our project. And we choose ARKultur. It's the beginning."
+      },
+      "step2": {
+        "title": "Research",
+        "time": "October - December 2021",
+        "text": "The goal now is to check is our solution feasible. To check we've created a questioner and we ask several organisation abour thier potential issue. This experience was very useful to know which tack we have to make first."
+      },
+      "step3": {
+        "title": "Forward",
+        "time": "December 2021",
+        "text": "After all research it time to create a little prototype to show what the final product looks like. We have two week to create this prototype with a presentation at then end. We've created a good prototype that show a good image of what we can have a the end."
+      },
+      "step4": {
+        "title": "Let's work",
+        "time": "April - June 2022",
+        "text": "Before we start the real project we have to define which technologies we will use during the project. It's very important so during these month we try several technologies and choose the best at the end."
+      },
+      "step5": {
+        "title": "Management",
+        "time": "July - October 2022",
+        "text": "We're going to work several month together so we have to define the rules to work faster. the development has also started."
+      },
+      "step6": {
+        "title": "Fast Forward",
+        "time": "November 2022 - January 2023 ",
+        "text": "It is time to go faster. The past month we work of the organisation of the team, tested our technologies and just started the project. Now we're going deeper to the project by creating our major features (Website, Dashboard, Mobile)."
+      },
+      "step7": {
+        "title": "Preparing beta (now)",
+        "time": "February - May 2023",
+        "text": "Our major features is now ready to use we have to prepare our project for a future beta. Working on the user experience and communication between our tester and us. We've improved all our feature and make easier to use."
+      },
+      "step8": {
+        "title": "Beta (future)",
+        "time": "June - September 2023 ",
+        "text": "We'll see what the future hold for us..."
+      },
+      "step9": {
+        "title": "Prepare to lunch (future)",
+        "time": "October - December 2023 ",
+        "text": "We'll see what the future hold for us..."
       }
     }
   }
