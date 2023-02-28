@@ -65,6 +65,18 @@ export const defaultTheme = createTheme({
     },
     footer: "#1F2937",
     greyText: "#9CA3AF",
+    tm_now: {
+      main: "#6f24ff",
+      contrastText: "#6f24ff",
+    },
+    tm_past: {
+      main: "#9258ff",
+      contrastText: "#9258ff",
+    },
+    tm_future: {
+      main: "#525252",
+      contrastText: "#525252",
+    },
   },
   shape: {
     borderRadius: 8
