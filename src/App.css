@@ -1,5 +1,5 @@
 .App {
-}
+  }
 
 .App-logo {
   height: 40vmin;
@@ -34,4 +34,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.MuiFilledInput-root {
+  color: #9CA3AFFF !important;
+  border-bottom: 1px solid #9CA3AF !important;
+}
+
+.MuiFilledInput-input {
+  color: #9CA3AFFF !important;
+}
+
+.MuiSelect-select {
+  color: white !important;
 }

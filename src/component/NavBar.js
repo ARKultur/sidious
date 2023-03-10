@@ -70,6 +70,7 @@ function MenuBar()
       />
       <MenuBarElement
         name="menu_contact"
+        link="/contact"
       />
     </ul>
   )

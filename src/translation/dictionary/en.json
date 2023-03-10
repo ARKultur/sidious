@@ -146,6 +146,10 @@
         "time": "October - December 2023 ",
         "text": "We'll see what the future hold for us..."
       }
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "If you want to contact us for any question or bug report, feel free to fill this form."
     }
   }
 }
