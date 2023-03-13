@@ -3,32 +3,10 @@ import FooterComponent from "../component/Footer";
 import {Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography, useTheme} from "@mui/material";
 import * as React from "react";
 import {useTranslation} from "react-i18next";
-import { makeStyles } from "@mui/styles";
 import SendIcon from '@mui/icons-material/Send';
-
-const useStyles = makeStyles({
-  select: {
-    '&:before': {
-      borderColor: 'white',
-    },
-    '&:after': {
-      borderColor: 'white',
-    },
-    '&:not(.Mui-disabled):hover::before': {
-      borderColor: 'white',
-    },
-  },
-  icon: {
-    fill: 'white',
-  },
-  root: {
-    color: 'white',
-  },
-})
 
 export default function Contact()
 {
-  const classes = useStyles();
   const theme = useTheme();
   const { t } = useTranslation();
   const [category, setCategory] = React.useState('');
@@ -65,9 +43,9 @@ export default function Contact()
           >
             <TextField
               id="name"
-              label="Name"
+              label={t("contact.name")}
               variant="filled"
-              helperText={"Write your name"}
+              helperText={t("contact.nameHelp")}
               FormHelperTextProps={{
                 style: {color: "#FFF"}
               }}
@@ -85,12 +63,11 @@ export default function Contact()
               sx={{
                   color: "white",
                 }}
-            >Category</InputLabel>
+            >{t("contact.category.name")}</InputLabel>
             <Select
               labelId="category-select"
               id="demo-simple-select"
               value={category}
-              label="Category"
               onChange={handleChange}
               labelStyle={{ color: '#ffffff' }}
               sx={{
@@ -109,8 +86,8 @@ export default function Contact()
                 }
               }}
             >
-              <MenuItem value={1}>FeedBack</MenuItem>
-              <MenuItem value={2}>Bugs</MenuItem>
+              <MenuItem value={1}>{t("contact.category.item1")}</MenuItem>
+              <MenuItem value={2}>{t("contact.category.item2")}</MenuItem>
             </Select>
           </FormControl>
           <FormControl
@@ -119,10 +96,10 @@ export default function Contact()
           >
             <TextField
               id="mail"
-              label="Your email"
+              label={t("contact.email")}
               variant="filled"
               type="email"
-              helperText={"Write your email"}
+              helperText={t("contact.emailHelp")}
               FormHelperTextProps={{
                 style: {color: "#FFF"}
               }}
@@ -137,12 +114,12 @@ export default function Contact()
           >
             <TextField
               id="desc"
-              label="Description"
+              label={t("contact.description")}
               variant="filled"
               multiline
               maxRows={6}
               minRows={2}
-              helperText={"Describe your request"}
+              helperText={t("contact.descriptionHelp")}
               FormHelperTextProps={{
                 style: {color: "#FFF"}
               }}
@@ -157,7 +134,7 @@ export default function Contact()
           startIcon={<SendIcon/>}
           color={"button"}
         >
-          Send
+          {t("contact.send")}
         </Button>
       </div>
       <FooterComponent/>

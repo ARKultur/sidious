@@ -148,8 +148,20 @@
       }
     },
     "contact": {
-      "title": "Contact",
-      "subtitle": "If you want to contact us for any question or bug report, feel free to fill this form."
+      "title": "Contact us",
+      "subtitle": "If you want to contact us for any question or bug report, feel free to fill this form.",
+      "name": "Your name",
+      "nameHelp": "Write your name",
+      "category": {
+        "name": "Category",
+        "item1": "FeedBack",
+        "item2": "Bug report"
+      },
+      "email": "Your email",
+      "emailHelp": "Write your email to be contacted",
+      "description": "Description",
+      "descriptionHelp": "Describe your issue or feedback",
+      "send": "Send"
     }
   }
 }
