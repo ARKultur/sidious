@@ -123,12 +123,10 @@ export default function Contact()
     }).then(() => {
       setFeedBack(true);
     }).catch(() => {
-
-    }) .finally(() => {
+    }).finally(() => {
         setLoading(false);
     })
   }
-
   return (
     <div>
       <NavBar/>
