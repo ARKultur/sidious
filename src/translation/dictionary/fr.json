@@ -157,7 +157,12 @@
       "emailHelp": "Écrivez votre email pour être recontacté",
       "description": "Description",
       "descriptionHelp": "Décrivez votre bug ou votre retour d'expérience",
-      "send": "Envoyer"
+      "send": "Envoyer",
+      "close": "Fermer",
+      "closeTitle": "Message envoyé!",
+      "closeText": "Merci pour l'intérêt envers ARKultur. Nous vous recontacterons le plus vite possible.",
+      "error": "Une erreur est survenue, merci de réessayer plus tard.",
+      "errorTitle": "Erreur"
     }
   }
 }

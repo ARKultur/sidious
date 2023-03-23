@@ -161,7 +161,12 @@
       "emailHelp": "Write your email to be contacted",
       "description": "Description",
       "descriptionHelp": "Describe your issue or feedback",
-      "send": "Send"
+      "send": "Send",
+      "close": "Close",
+      "closeTitle": "Message sent!",
+      "closeText": "Thanks for your interest for ARKultur. We will contact you as soon as possible.",
+      "error": "An error has occure, please try again.",
+      "errorTitle": "Error"
     }
   }
 }
