@@ -1,16 +1,25 @@
-FROM node:16-alpine3.17
+FROM node:16.17-alpine as builder
 
-RUN mkdir -p /app
 WORKDIR /app
 
-COPY . .
+COPY package.json .
+
+COPY package-lock.json .
 
 RUN npm ci --legacy-peer-deps
 
+COPY . .
+
 RUN npm run build
 
-ENV NODE_ENV production
+FROM nginx:1.19.0
 
-EXPOSE 3000
+WORKDIR /usr/share/nginx/html
 
-CMD ["npx", "serve", "build"]
+RUN rm -rf ./*
+
+COPY --from=builder /app/build .
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

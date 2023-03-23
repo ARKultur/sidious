@@ -146,6 +146,27 @@
         "time": "October - December 2023 ",
         "text": "We'll see what the future hold for us..."
       }
+    },
+    "contact": {
+      "title": "Contact us",
+      "subtitle": "If you want to contact us for any question or bug report, feel free to fill this form.",
+      "name": "Your name",
+      "nameHelp": "Write your name",
+      "category": {
+        "name": "Category",
+        "item1": "FeedBack",
+        "item2": "Bug report"
+      },
+      "email": "Your email",
+      "emailHelp": "Write your email to be contacted",
+      "description": "Description",
+      "descriptionHelp": "Describe your issue or feedback",
+      "send": "Send",
+      "close": "Close",
+      "closeTitle": "Message sent!",
+      "closeText": "Thanks for your interest for ARKultur. We will contact you as soon as possible.",
+      "error": "An error has occure, please try again.",
+      "errorTitle": "Error"
     }
   }
 }

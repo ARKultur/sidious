@@ -10,6 +10,7 @@ import Project from "./view/Project";
 import Team from "./view/Team";
 import Feature from "./view/Feature";
 import Timeline from "./view/Timeline";
+import Contact from "./view/Contact";
 
 const router = createBrowserRouter([
   {
@@ -18,28 +19,33 @@ const router = createBrowserRouter([
     errorElement: <Error/>
   },
   {
-    path: "/maintenance",
+    path: "maintenance",
     element: <Maintenance/>,
     errorElement: <Error/>
   },
   {
-    path: "/project",
+    path: "project",
     element: <Project/>,
     errorElement: <Error/>
   },
   {
-    path: "/team",
+    path: "team",
     element: <Team/>,
     errorElement: <Error/>
   },
   {
-    path: '/timeline',
+    path: 'timeline',
     element: <Timeline/>,
     errorElement: <Error/>
   },
   {
-    path: "/feature",
+    path: "feature",
     element: <Feature/>,
+    errorElement: <Error/>
+  },
+  {
+    path: "contact",
+    element: <Contact/>,
     errorElement: <Error/>
   }
 ])

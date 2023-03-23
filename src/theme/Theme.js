@@ -47,6 +47,8 @@ export const defaultTheme = createTheme({
     primary: {
       main: "#9CA3AF",
       contrastText: "#FFF",
+      dark: "#9CA3AF",
+      light: "#9CA3AF",
     },
     background: {
       default: "#111827"
