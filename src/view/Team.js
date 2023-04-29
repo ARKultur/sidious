@@ -85,7 +85,7 @@ export default function Team()
           /><Member
             image={"https://cdn.discordapp.com/avatars/370219157180121095/c90c25fb29433384b32c53f1b96121b0.webp?size=256"}
             alt={"Alan-steven's photo"}
-            name={"Alan-steven L."}
+            name={"Alan-Steeven L."}
             job={"team.mob"}
           /><Member
             image={"https://cdn.discordapp.com/avatars/251875694529740810/d51c544ee46e52d95aeb15dd23f84e7b.webp?size=256"}

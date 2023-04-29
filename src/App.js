@@ -11,6 +11,8 @@ import Team from "./view/Team";
 import Feature from "./view/Feature";
 import Timeline from "./view/Timeline";
 import Contact from "./view/Contact";
+import Dashboard from "./view/Dashboard";
+import MarkerForm from './component/MarkerModal';
 
 const router = createBrowserRouter([
   {
@@ -47,7 +49,12 @@ const router = createBrowserRouter([
     path: "contact",
     element: <Contact/>,
     errorElement: <Error/>
-  }
+  },
+  {
+    path: "dashboard",
+    element:  <Dashboard/>,
+    errorElement: <Error/>
+  },
 ])
 function App() {
   return (
