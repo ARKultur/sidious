@@ -11,6 +11,8 @@ import {NavLink} from "react-router-dom";
 import SettingsIcon from '@mui/icons-material/Settings';
 import {useTranslation} from "react-i18next";
 import LangSelection from "./LangSelection";
+import ConnectionModal from './connection/ConnectionModal';
+import "./menuButtonAnimation.css"
 
 function MenuBarElement(props)
 {
@@ -29,7 +31,7 @@ function MenuBarElement(props)
   const { t } = useTranslation();
 
   return (
-    <li style={{ marginRight: "1.5em" }}>
+    <li style={{ marginRight: "1.5em" }} className='menuButtonAnimation'>
       <NavLink to={linkTo}
                style={({ isActive }) =>
                    isActive && linkTo !== '/maintenance' ? activeStyle : defaultStyle
@@ -92,48 +94,68 @@ export default function NavBar(props)
     i18n.changeLanguage(event.target.value);
   };
 
+  // Connection
+  const [showConnectionModal, setShowConnectionModal] = React.useState(false);
+
+  function handleShowConnectionModal() {
+    setShowConnectionModal(true);
+  };
+
+  function handleCloseConnectionModal() {
+    setShowConnectionModal(false);
+  };
+
+
   document.title = props.title ? props.title : "ARKultur";
   return (
-    <div style={{
-      paddingLeft: "1rem", paddingRight: "1rem",
-      zIndex: 100000
-    }}>
-      <AppBar position='static' color="mainColor" sx={{ position: "fixed", width: "100%", px: "0.625rem" }} elevation={0} >
-        <Toolbar sx={{
-          alignItems: 'center'
-        }}
-        >
-          <div style={{
-            flexGrow: 1,
-            display: "flex", flexWrap: "wrap", alignItems: "center",
-            maxWidth: "1280px", justifyContent: "space-between",
-            marginRight: "auto", marginLeft: "auto",
-          }}>
-            <LogoIcon/>
-            <MenuBar/>
-            <div>
-              <Button
-                  color="button"
-                  variant="contained"
-                  sw={{textTransform: 'none'}}
-              >{t('login')}</Button>
-              <IconButton aria-label={id}
-                          aria-describedby={"settings"}
-                          style={{color: `${theme.palette.primary.contrastText}`}}
-                          onClick={handleClick}
-              >
-                <SettingsIcon/>
-              </IconButton>
-              <LangSelection
-                id={id}
-                open={open}
-                anchor={anchorEl}
-                handleChange={handleChange}
-              />
+    <>
+      <div style={{
+        paddingLeft: "1rem", paddingRight: "1rem",
+        zIndex: 100000
+      }}>
+        <AppBar position='static' color="mainColor" sx={{ position: "fixed", width: "100%", px: "0.625rem" }} elevation={0} >
+          <Toolbar sx={{
+            alignItems: 'center'
+          }}
+          >
+            <div style={{
+              flexGrow: 1,
+              display: "flex", flexWrap: "wrap", alignItems: "center",
+              maxWidth: "1280px", justifyContent: "space-between",
+              marginRight: "auto", marginLeft: "auto",
+            }}>
+              <LogoIcon/>
+              <MenuBar/>
+              <div>
+                <Button
+                    color="button"
+                    variant="contained"
+                    sw={{textTransform: 'none'}}
+                    onClick={handleShowConnectionModal}
+                >
+                  {t('login')}
+                </Button>
+                <IconButton aria-label={id}
+                            aria-describedby={"settings"}
+                            style={{color: `${theme.palette.primary.contrastText}`}}
+                            onClick={handleClick}
+                >
+                  <SettingsIcon/>
+                </IconButton>
+                <LangSelection
+                  id={id}
+                  open={open}
+                  anchor={anchorEl}
+                  handleChange={handleChange}
+                />
+              </div>
             </div>
-          </div>
-        </Toolbar>
-      </AppBar>
-    </div>
+          </Toolbar>
+        </AppBar>
+      </div>
+      {showConnectionModal && (
+        <ConnectionModal onClose={handleCloseConnectionModal}/>
+      )}
+    </>
   );
 }

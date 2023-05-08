@@ -17,7 +17,7 @@
     "error_title": "Oops...",
     "language": "Langue",
     "footer": {
-      "subtitle": "2022 - Construit avec React et MaterialUI",
+      "subtitle": "© 2022 - Construit avec React et MaterialUI",
       "submenu_1" : {
         "name": "Compagnie",
         "item_1": "A propos",

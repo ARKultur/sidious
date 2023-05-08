@@ -1,0 +1,263 @@
+.connection-panel {
+    position: relative;
+    background-color: #fefefe;
+    border-radius: 10px;
+    margin: 10% auto;
+    border: 1px solid #888;
+    width: 50%;
+    min-height: 540px;
+    overflow: hidden;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.panel {
+    position: absolute;
+    text-align: center;
+    transition: all 0.8s ease-in-out;
+    height: 100%;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 100%;
+    margin: 0 15%;
+}
+
+.contact-form h1 {
+    margin: 0;
+}
+
+.contact-form a {
+    color: #333;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+}
+
+.input-block {
+    position: relative;
+
+    background-color: #eee;
+    outline: solid 1px #999;
+    margin: 18% 0;
+    height: 2.5em;
+
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+.input-block.focus {
+    outline: outset 4px #8E38FF;
+    border-radius: 5px;
+}
+
+.input-block label {
+    position:absolute;
+    top: 9px;
+    left: 13px;
+
+    pointer-events: none;
+    font-size: 18px;
+
+    transition: all 0.25s ease;
+    color: #999;
+}
+
+.input-block.focus label {
+    transform: translateY(-30px);
+    font-size: 12px;
+    color: #494949;
+}
+
+.input-block:hover {
+    outline: outset 4px #8E38FF;
+}
+
+.input-block input {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    height: 100%;
+    width: 100%;
+    font-size: 18px;
+
+    z-index: 2;
+}
+
+#forgot-pass:hover {
+    cursor: pointer;
+    color: #8E38FF;
+}
+
+.input-block input:focus {
+    outline: none;
+}
+
+.panel-sign-in {
+    left: 0;
+    width: 50%;
+}
+
+.panel-sign-in div {
+    margin-top: 20px;
+}
+
+.panel-sign-up {
+    right: 0;
+    width: 50%;
+}
+
+.panel-overlay {
+    right: 0;
+    width: 50%;
+    background: linear-gradient(to right, #B298CB, #8E38FF) no-repeat 0 0 / cover;
+    color: #fff;
+    transition: all 1s ease-in-out;
+    z-index: 100;
+}
+
+.panel-overlay.toggle {
+    transform: translateX(-100%);
+}
+
+.panel.notshow {
+    opacity: 0;
+}
+
+.overlay-panel h1 {
+    margin: 0;
+}
+
+.overlay-panel {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 100%;
+    margin: 0 15%;
+}
+
+.overlay-panel div {
+    margin-top: 20px;
+}
+
+.overlay-right {
+    transition: all 1s ease-in-out;
+}
+
+.overlay-left {
+    transition: all 1s ease-in-out;
+}
+
+
+
+
+
+
+
+.custom-btn {
+    border: 1px solid #f3f3f3;
+    border-radius: 3px;
+    background: transparent;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 130px;
+    height: 40px;
+    position: relative;
+    display: inline-block;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     5px 5px 15px 0px rgba(0,0,0,.1),
+     2px 2px 4px 0px rgba(0,0,0,.1);
+    outline: none;
+}
+
+
+.btn-8 {
+    background-color: #f0ecfc;
+    background-image: linear-gradient(315deg, #f0ecfc 0%, #c797eb 74%);
+    line-height: 42px;
+    padding: 0;
+    border: none;
+}
+.btn-8 span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.btn-8:before,
+.btn-8:after {
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: 0;
+    background: #c797eb;
+    /*box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);*/
+    transition: all 0.3s ease;
+}
+.btn-8:before{
+    height: 0%;
+    width: 2px;
+}
+.btn-8:after {
+    width: 0%;
+    height: 2px;
+}
+.btn-8:hover:before {
+    height: 100%;
+}
+.btn-8:hover:after {
+    width: 100%;
+}
+.btn-8:hover{
+    background: transparent;
+}
+.btn-8 span:hover{
+    color: #c797eb;
+}
+.btn-8 span:before,
+.btn-8 span:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    background: #c797eb;
+    transition: all 0.3s ease;
+}
+.btn-8 span:before {
+    width: 2px;
+    height: 0%;
+}
+.btn-8 span:after {
+    height: 2px;
+    width: 0%;
+}
+.btn-8 span:hover:before {
+    height: 100%;
+}
+.btn-8 span:hover:after {
+    width: 100%;
+}
+
+
+.ghost:hover {
+    transform: scale(1.1);
+}

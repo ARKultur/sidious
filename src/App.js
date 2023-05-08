@@ -9,6 +9,8 @@ import Maintenance from "./view/Maintenance";
 import Project from "./view/Project";
 import Team from "./view/Team";
 import Feature from "./view/Feature";
+import PrivacyPolicyView from './view/PrivacyPolicyView';
+import TermsView from './view/TermsView';
 
 const router = createBrowserRouter([
     {
@@ -25,12 +27,20 @@ const router = createBrowserRouter([
         element: <Project/>
     },
     {
-      path: "team",
-      element: <Team/>
+        path: "team",
+        element: <Team/>
     },
     {
         path: "feature",
         element: <Feature/>
+    },
+    {
+        path: "privacy-policy",
+        element: <PrivacyPolicyView/>
+    },
+    {
+        path: "terms",
+        element: <TermsView/>
     }
 ])
 function App() {

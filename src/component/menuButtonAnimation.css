@@ -1,0 +1,19 @@
+.menuButtonAnimation {
+    position: relative;
+    padding: 10px;
+}
+
+.menuButtonAnimation:after {
+    content: '';
+    position: absolute;
+    border-bottom:  3px solid #8E38FF;
+    bottom: 0;
+    left: 51%;
+    right: 51%;
+    transition: all 500ms;
+}
+
+.menuButtonAnimation:hover:after {
+    right: 0;
+    left: 0;
+}

@@ -76,21 +76,16 @@ export default function FooterComponent()
     children: [
       {
         name: 'footer.submenu_3.item_1',
-        route: '/maintenance',
-        newPage: false,
-      },
-      {
-        name: 'footer.submenu_3.item_2',
-        route: '/maintenance',
+        route: '/privacy-policy',
         newPage: false,
       },
       {
         name: 'footer.submenu_3.item_3',
-        route: '/maintenance',
+        route: '/terms',
         newPage: false,
       }
     ]
-  };
+  }
   const projectsSubmenu = {
     name: 'footer.submenu_4.name',
     children: [
@@ -132,8 +127,9 @@ export default function FooterComponent()
     ]
   }
   const subMenu = [companySubmenu, helpSubmenu, legalSubmenu, projectsSubmenu, downloadsSubmenu];
-  const ye = subMenu.map((menu) =>
+  const ye = subMenu.map((menu, index) =>
     <FooterMenuElement
+      key={index}
       name={menu.name}
       subMenu={menu.children}
     />

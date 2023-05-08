@@ -6,6 +6,7 @@ import StyledLogo from "../resources/images/stylish-logo.svg";
 import HomeIcon from '@mui/icons-material/Home';
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import "./buttonBorderAnimation.css"
 
 export default function Maintenance()
 {
@@ -43,6 +44,7 @@ export default function Maintenance()
               <Link to={'/'}>
                 <Button variant="outlined"
                         startIcon={<HomeIcon/>}
+                        className="buttonAnimation"
                         color={"button"}
                 >
                   {t("back_to_menu")}

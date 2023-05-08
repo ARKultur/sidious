@@ -5,6 +5,7 @@ import {Button, Grid, Typography, useTheme} from "@mui/material";
 import StyledLogo from '../resources/images/stylish-logo.svg';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import {useTranslation} from "react-i18next";
+import './buttonBorderAnimation.css'
 
 export default function LandingPageView()
 {
@@ -42,6 +43,7 @@ export default function LandingPageView()
             <Button variant="outlined"
                     startIcon={<GitHubIcon/>}
                     color={"button"}
+                    className="buttonAnimation"
                     onClick={() => {
                       window.open("https://github.com/arkultur", '_blank', 'noreferrer')
                     }}
