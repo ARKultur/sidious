@@ -7,25 +7,37 @@ import * as React from "react";
 import {useTranslation} from "react-i18next";
 import { MarkerTable } from "../component/MarkerTable";
 import { MarkerModal } from "../component/MarkerModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../styles/view/Dashboard.css'
+import { useDispatch, useSelector } from "react-redux";
+import { requestMarkers } from "../redux-action/MarkerAction";
+import { MarkerMap } from "../component/MarkerMap";
 
 export default function Dashboard() {
-
-  const [rows, setRows] = useState([
-    {name: 'Tour Eiffel', description: "test1", longitude: 7825352 , latitude: 7623890},
-    {name: 'Tour de Pise', description: "test2", longitude:  6321321 , latitude: 1290564},
-    {name: 'Tour de l\'infini', description: "test3", longitude: 5532323 , latitude: 1629054},
-  ])
+  const dispatch = useDispatch();
+  const states = useSelector((state) => state.rootReducer.marker); 
+  const [markers, setMarkers] = useState([]);
   const [rowToEdit, setRowToEdit] = useState(null);
   const theme = useTheme();
   const { t } = useTranslation();
   const [isDashboardMap, setDashboardMap] = React.useState(true);
   const [isModalOpen, setModalOpen] = React.useState(false);
+  const [markersIsSetup, setMarkerIsSetup] = useState(false);
 
+  useEffect (() => {
+    if (states.markers.lenght !== 0 && !markersIsSetup) {
+      requestMarkers();
+      setMarkers(states.markers)
+      setMarkerIsSetup(true);
+    }
+    //if (markers !== states.markers) {
+    //  requestMarkers();
+    //  setMarkers(states.markers)
+   // }
+  }, [states, markers])
 
   const deleteRow = (targetId) => {
-    setRows(rows.filter((_, id) => id !== targetId));
+    setMarkers(markers.filter((_, id) => id !== targetId));
   };
 
   const editRow = (id) => {
@@ -35,15 +47,15 @@ export default function Dashboard() {
   };
 
   const submitForm = (newRow) => {
-    const tmpArray = Object.assign(rows);
+    const tmpArray = Object.assign(states.markers);
 
     if (rowToEdit === null) { 
       tmpArray.push(newRow);
-      setRows(tmpArray);
+      setMarkers(tmpArray);
     }
-    setRows(
-     rows.map((currentRow, id) => {
-        if (id == rowToEdit) 
+    setMarkers(
+     markers.map((currentRow, id) => {
+        if (id === rowToEdit) 
           return newRow;
 
         return currentRow;
@@ -83,14 +95,7 @@ export default function Dashboard() {
             
             <Container style={{padding: "20px"}}> 
                   { isDashboardMap ? 
-                  <Typography
-                    variant={"h1"}
-                    color={theme.typography.color}
-                    style={{marginBottom: "1rem", fontSize: "3.75rem", letterSpacing: "-0.025em",
-                        fontWeight: 800
-                    }}
-                    >{'MAP'}
-                  </Typography> :  <MarkerTable rows={rows} editRow={editRow} deleteRow={deleteRow} />}      
+                  <MarkerMap markers={markers} /> :  <MarkerTable rows={markers} editRow={editRow} deleteRow={deleteRow} />}      
             </Container>
 
           </Container>
@@ -102,7 +107,7 @@ export default function Dashboard() {
             setRowToEdit(null);
           }}
           onSubmit={submitForm}
-          defaultValue={rowToEdit !== null && rows[rowToEdit]} /> }
+          defaultValue={rowToEdit !== null && markers[rowToEdit]} /> }
 
     </>
   )
