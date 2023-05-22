@@ -12,6 +12,7 @@ import Feature from "./view/Feature";
 import Timeline from "./view/Timeline";
 import Contact from "./view/Contact";
 import Dashboard from "./view/Dashboard";
+import Login from './view/Login';
 import MarkerForm from './component/MarkerModal';
 
 const router = createBrowserRouter([
@@ -55,6 +56,11 @@ const router = createBrowserRouter([
     element:  <Dashboard/>,
     errorElement: <Error/>
   },
+  {
+    path: "login",
+    element: <Login/>,
+      errorElement: <Error/>
+  }
 ])
 function App() {
   return (

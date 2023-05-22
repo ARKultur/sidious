@@ -11,6 +11,7 @@ import {NavLink} from "react-router-dom";
 import SettingsIcon from '@mui/icons-material/Settings';
 import {useTranslation} from "react-i18next";
 import LangSelection from "./LangSelection";
+import { useNavigate } from "react-router-dom";
 
 function MenuBarElement(props)
 {
@@ -83,6 +84,7 @@ function MenuBar()
 export default function NavBar(props)
 {
   const theme = useTheme();
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -122,7 +124,9 @@ export default function NavBar(props)
                   color="button"
                   variant="contained"
                   sw={{textTransform: 'none'}}
-              >{t('login')}</Button>
+                  onClick={() => navigate("/login")}
+              >{t('login')}
+              </Button>
               <IconButton aria-label={id}
                           aria-describedby={"settings"}
                           style={{color: `${theme.palette.primary.contrastText}`}}
