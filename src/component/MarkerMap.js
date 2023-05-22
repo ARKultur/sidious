@@ -3,7 +3,6 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../styles/component/MarkerMap.css';
 
 export const MarkerMap = ({markers}) => {
-    console.log(markers)
     return (
         <MapContainer  center={[45.4, -75.7]} zoom={12}scrollWheelZoom={false}>
             <TileLayer

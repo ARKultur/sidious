@@ -132,8 +132,9 @@ export default function FooterComponent()
     ]
   }
   const subMenu = [companySubmenu, helpSubmenu, legalSubmenu, projectsSubmenu, downloadsSubmenu];
-  const ye = subMenu.map((menu) =>
+  const ye = subMenu.map((menu, id) =>
     <FooterMenuElement
+      key={id}
       name={menu.name}
       subMenu={menu.children}
     />
