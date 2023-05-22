@@ -1,4 +1,4 @@
-import { getMarkers, addMarkerToDB } from "../API/Marker";
+import { getMarkers, addMarkerToDB, editMarkerToDB, deleteMarkerToDB } from "../API/Marker";
 import markerActionType from "../config/markerAction";
 
 const GetMarkersRequest = () => {
@@ -29,10 +29,34 @@ export const requestMarkers = () => {
 export const addMarker = (marker) => {
   return async function(dispatch) {
     try {
-      console.log("addMarker");
       const errorResponce = await addMarkerToDB(marker);
-      return {type: markerActionType.ADD_MARKERS}
-    } catch (e) {
+      dispatch( () => { 
+        return {type: markerActionType.ADD_MARKERS}
+      })} catch (e) {
+        console.log(e);
+    }
+  }
+}
+
+export const editMarker = (marker) => {
+  return async function(dispatch) {
+    try {
+      const errorResponce = await editMarkerToDB(marker);
+      dispatch( () => { 
+        return {type: markerActionType.EDIT_MARKERS}
+      })} catch (e) {
+        console.log(e);
+    }
+  }
+}
+
+export const deleteMarker = (marker) => {
+  return async function(dispatch) {
+    try {
+      const errorResponce = await deleteMarkerToDB(marker);
+      dispatch( () => { 
+        return {type: markerActionType.DELETE_MARKERS}
+      })} catch (e) {
         console.log(e);
     }
   }
