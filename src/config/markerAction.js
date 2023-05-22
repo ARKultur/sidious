@@ -1,8 +1,9 @@
 const markerActionType = {
-    get: "GET_MARKERS",
-    add: "ADD_MARKER",
-    edit: "EDIT_MARKER",
-    delete: "EDIT_MARKER"
+    GET_MARKERS_REQUESTED: 'GET_MARKERS_REQUESTED',
+    GET_MARKERS_SUCCEEDED: 'GET_MARKERS_SUCCEEDED',
+    ADD_MARKERS: "ADD_MARKER",
+    EDIT_MARKERS: "EDIT_MARKER",
+    DELETE_MARKERS: "EDIT_MARKER"
 }
 
 export default markerActionType;

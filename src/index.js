@@ -6,9 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import "./translation/i18n"
 import { Provider } from 'react-redux'
 import store from './store'
-import { requestMarkers } from './redux-action/MarkerAction';
+import { addMarker, requestMarkers } from './redux-action/MarkerAction';
 
-store.dispatch(requestMarkers)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -10,12 +10,13 @@ import { MarkerModal } from "../component/MarkerModal";
 import { useState, useEffect } from "react";
 import '../styles/view/Dashboard.css'
 import { useDispatch, useSelector } from "react-redux";
-import { requestMarkers } from "../redux-action/MarkerAction";
+import { requestMarkers, addMarker } from "../redux-action/MarkerAction";
 import { MarkerMap } from "../component/MarkerMap";
+import store from "../store";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
-  const states = useSelector((state) => state.rootReducer.marker); 
+  const states = useSelector((state) => state.marker); 
   const [markers, setMarkers] = useState([]);
   const [rowToEdit, setRowToEdit] = useState(null);
   const theme = useTheme();
@@ -25,9 +26,9 @@ export default function Dashboard() {
   const [markersIsSetup, setMarkerIsSetup] = useState(false);
 
   useEffect (() => {
-    if (states.markers.lenght !== 0 && !markersIsSetup) {
-      requestMarkers();
-      setMarkers(states.markers)
+    if (!markersIsSetup) {
+      dispatch(requestMarkers());
+      //setMarkers(states.markers)
       setMarkerIsSetup(true);
     }
     //if (markers !== states.markers) {
@@ -38,6 +39,7 @@ export default function Dashboard() {
 
   const deleteRow = (targetId) => {
     setMarkers(markers.filter((_, id) => id !== targetId));
+    //deleteMarker(markers[targetId]);
   };
 
   const editRow = (id) => {
@@ -49,14 +51,17 @@ export default function Dashboard() {
   const submitForm = (newRow) => {
     const tmpArray = Object.assign(states.markers);
 
-    if (rowToEdit === null) { 
-      tmpArray.push(newRow);
-      setMarkers(tmpArray);
+    if (rowToEdit === null) {
+      store.dispatch(addMarker(newRow));
+      //tmpArray.push(newRow);
+      //setMarkers(tmpArray);
     }
     setMarkers(
      markers.map((currentRow, id) => {
-        if (id === rowToEdit) 
+        if (id === rowToEdit) { 
+          //editMarker(markers[id]);
           return newRow;
+        }
 
         return currentRow;
       })
@@ -95,7 +100,7 @@ export default function Dashboard() {
             
             <Container style={{padding: "20px"}}> 
                   { isDashboardMap ? 
-                  <MarkerMap markers={markers} /> :  <MarkerTable rows={markers} editRow={editRow} deleteRow={deleteRow} />}      
+                  <MarkerMap markers={markers} /> :  <MarkerTable rows={states.markers} editRow={editRow} deleteRow={deleteRow} />}      
             </Container>
 
           </Container>
