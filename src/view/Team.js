@@ -60,12 +60,6 @@ export default function Team()
         </div>
         <div style={{display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))"}}>
           <Member
-            image={"https://cdn.discordapp.com/avatars/206021742932656129/6ddb90cdbd2028c418089d18a6e6521b.webp?size=256"}
-            alt={"Guillaume's S photo"}
-            name={"Guillaume S."}
-            job={"team.team_leader"}
-          />
-          <Member
             image={"https://cdn.discordapp.com/avatars/210432251198963722/a_c1756fc093cb349e092d994ace0acad0.gif?size=256"}
             alt={"Guillaume's D photo"}
             name={"Guillaume D."}
