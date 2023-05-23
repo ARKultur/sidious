@@ -12,7 +12,7 @@ import Feature from "./view/Feature";
 import Timeline from "./view/Timeline";
 import Contact from "./view/Contact";
 import Dashboard from "./view/Dashboard";
-import MarkerForm from './component/MarkerModal';
+import Admin from "./view/Admin.js";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +55,11 @@ const router = createBrowserRouter([
     element:  <Dashboard/>,
     errorElement: <Error/>
   },
+  {
+    path: "admin",
+    element: <Admin/>,
+    errorElement: <Error/>
+  }
 ])
 function App() {
   return (
