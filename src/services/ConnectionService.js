@@ -42,9 +42,17 @@ export async function apiRegister(username, email, password) {
     return res.data;
 }
 
-// export async function apiUserInfos(token, email) {
-//     const res = await axios.get(`${endpoint}/`)
-// }
+export async function apiUserInfos(token, email) {
+    const res = await axios.get(`${endpoint}/accounts?email=${email}`,
+    {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+
+    console.log(res.data);
+    return res && res.data;
+}
 
 // export async function emailVerification(email) {
 //     const res = await axios.post(`${endpoint}/account/reset`, {

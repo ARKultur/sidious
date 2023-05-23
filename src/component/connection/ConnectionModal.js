@@ -41,10 +41,10 @@ function InputBlock(props) {
     );
 }
 
-export default function ConnectionModal(props)
-{
-    const { login, register, logged } = useContext(AuthContext);
-
+export default function ConnectionModal(props) {
+    const { login, register } = useContext(AuthContext);
+    const [error, setError] = useState(false);
+    const [successRegister, setSuccessRegister] = useState(false);
     const { onClose } = props;
     const { t } = useTranslation();
 
@@ -52,19 +52,19 @@ export default function ConnectionModal(props)
 
     const toggleThirdPanel = () => {
         setOpenOverlay(!openOverlay);
+        setError(false);
+        setSuccessRegister(false)
     };
 
     async function loginCall() {
-        let form = document.getElementById("Sign In").getElementsByClassName("contact-form");
-        console.log("email = ", form[0][0].value);
-        console.log("password = ", form[0][1].value);
-        await login(form[0][0].value, form[0][1].value);
-        if (logged) {
-            console.log("Logged");
-            onClose();
-            setOpenOverlay(false);
-        } else {
-            console.log("not Logged");
+        try {
+          let form = document.getElementById("Sign In").getElementsByClassName("contact-form");
+          console.log("email = ", form[0][0].value);
+          console.log("password = ", form[0][1].value);
+          await login(form[0][0].value, form[0][1].value, onClose);
+          setError(false);
+        } catch (error) {
+          setError(true);
         }
     }
 
@@ -75,9 +75,12 @@ export default function ConnectionModal(props)
         console.log("password = ", form[0][2].value);
         console.log("confirm password = ", form[0][3].value);
         if (form[0][2].value !== form[0][3].value) {
-            console.log("NOP");
+          setError(true);
+          setSuccessRegister(false)
         } else {
             register(form[0][0].value, form[0][1].value, form[0][2].value);
+            setError(false);
+            setSuccessRegister(true)
         }
     }
 
@@ -97,11 +100,12 @@ export default function ConnectionModal(props)
                 >
                     <form className="contact-form">
                         <h1>{t("Sign In")}</h1>
+                        {error && <p className="error">{t("Wrong email or password")}</p>}
                         <div className="input-container">
                             <InputBlock label="Email" form_type="email"/>
                             <InputBlock label="Password" form_type="password"/>
                         </div>
-                        <p id="forgot-pass" onClick={forgotPasswordCall}>I Forgot my Password</p>
+                        {/* <p id="forgot-pass" onClick={forgotPasswordCall}>I Forgot my Password</p> */}
                         <div className="custom-btn btn-8" onClick={ loginCall }>
                             <span>{t("Sign In")}</span>
                         </div>
@@ -113,6 +117,8 @@ export default function ConnectionModal(props)
                 >
                     <form className="contact-form">
                         <h1>{t("Sign Up")}</h1>
+                        {error && <p className="error">{t("Invalid or missing inputs")}</p>}
+                        {successRegister && !error && <p className="success">{t("Account created")}</p>}
                         <div className="input-container">
                             <InputBlock label="Name" form_type="text"/>
                             <InputBlock label="Email" form_type="email"/>

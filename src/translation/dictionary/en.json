@@ -19,31 +19,31 @@
     "language": "Language",
     "footer": {
       "subtitle": "© 2022 - Built with React and MaterialUI",
-      "submenu_1" : {
+      "submenu_1": {
         "name": "Company",
         "item_1": "About",
         "item_2": "Blog"
       },
-      "submenu_2" : {
+      "submenu_2": {
         "name": "Support",
         "item_1": "Discord Server",
         "item_2": "Github Organisation",
         "item_3": "Contact us"
       },
-      "submenu_3" : {
+      "submenu_3": {
         "name": "Legal",
         "item_1": "Privacy Policy",
         "item_2": "Licensing",
         "item_3": "Terms"
       },
-      "submenu_4" : {
+      "submenu_4": {
         "name": "Projects",
         "item_1": "Naboo",
         "item_2": "Theed",
         "item_3": "Sentinel",
         "item_4": "Arkham"
       },
-      "submenu_5" : {
+      "submenu_5": {
         "name": "Download",
         "item_1": "Android",
         "item_2": "iOS"
@@ -146,7 +146,7 @@
         "text": "We'll see what the future hold for us..."
       },
       "step9": {
-        "title": "Prepare to lunch (future)",
+        "title": "Prepare to launch (future)",
         "time": "October - December 2023 ",
         "text": "We'll see what the future hold for us..."
       }

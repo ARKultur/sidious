@@ -1,36 +1,37 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { apiLogin, apiRegister } from './ConnectionService';
+import { apiLogin, apiRegister, apiUserInfos } from './ConnectionService';
 
 export const AuthContext = createContext();
 
 export function AuthProvider({children})
 {
-    const [email, setEmail] = useState(undefined);
+    const [email, setEmail] = useState('undefined');
     const [username, setUsername] = useState(undefined);
     const [token, setToken] = useState(undefined);
     const [id, setId] = useState(undefined);
 
     const [logged, setLogged] = useState(false);
 
-    async function login(email, password) {
-        await apiLogin(email, password)
-            .then((data) => {
-                console.log("Login");
-                console.log(data);
+    async function login(email, password, onClose) {
+        try {
+            const response = await apiLogin(email, password);
+            const token = response.data;
 
-                setEmail("email");
-                setUsername("Patrick");
-                setToken(data);
-                setId("id");
-                setLogged(true);
-                localStorage.setItem("token", data);
-                console.log("token : ", data);
-                console.log("local token : ", localStorage.getItem("token"));
-            })
-            .catch((exception) => {
-                console.log(exception);
-            });
-        console.log("logged");
+            // const userData = await apiUserInfos(token, email); // TO LINK WITH SETTER WHEN API IS READY
+
+            setEmail(email);
+            setUsername(email.split("@")[0]);
+            setToken(token);
+            setId(0);
+            setLogged(true);
+
+            localStorage.setItem("token", token);
+
+            onClose();
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
     }
 
     function register(username, email, password) {
@@ -56,11 +57,10 @@ export function AuthProvider({children})
 
     useEffect(() => {
         let lToken = localStorage.getItem("token");
-        console.log(lToken);
-        if (lToken !== `null`) {
-            console.log("WTF");
+
+        if (lToken === undefined || lToken === null) {
             setToken(lToken);
-            setUsername("Patrick");
+            setLogged(false);
         }
     }, [])
 
