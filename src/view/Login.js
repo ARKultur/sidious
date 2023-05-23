@@ -9,8 +9,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
 import { storeTokenAction } from '../redux-action/TokenAction';
+import { useSelector, useDispatch } from "react-redux";
 
 function Copyright(props) {
   return (
@@ -35,9 +35,8 @@ export default function Login() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     dispatch(storeTokenAction(data));
-    console.log("handle submit", token);
-    if (token)
-      navigate("/");
+    console.log("login", token);
+    //navigate("/");
   };
 
   return (

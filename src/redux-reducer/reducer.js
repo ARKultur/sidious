@@ -1,5 +1,6 @@
-import { combineReducers } from 'redux'
-import { markerReducer, tokenReducer } from './MarkerReducer'
+import { combineReducers } from 'redux';
+import { markerReducer } from './MarkerReducer';
+import { tokenReducer } from './TokenReducer';
 
 const rootReducer = combineReducers({
   marker: markerReducer,

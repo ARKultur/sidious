@@ -65,7 +65,7 @@ const router = createBrowserRouter([
     path: "register",
     element: <Register/>,
     errorElement: <Error/>
-  }
+  },
 ])
 function App() {
   return (
