@@ -6,6 +6,7 @@
     "menu_team": "Our team",
     "menu_pricing": "Pricing",
     "menu_contact": "Contact us",
+    "menu_dashboard": "Dashboard",
     "login": "Log in",
     "main_title": "Improving your cultural visits, using AR",
     "main_subtitle": "Our team of talented developers aims to bring the future into the past, using Augmented Reality.",
@@ -72,6 +73,9 @@
       "web": "Web Developer",
       "back": "Backend Developer",
       "mob": "Mobile Developer"
+    },
+    "dashboard": {
+      "title": "Dashboard"
     },
     "feature": {
       "tab_title": "ARKultur - Features",

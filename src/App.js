@@ -13,6 +13,8 @@ import PrivacyPolicyView from './view/PrivacyPolicyView';
 import TermsView from './view/TermsView';
 import Timeline from "./view/Timeline";
 import Contact from "./view/Contact";
+import Dashboard from "./view/Dashboard";
+import MarkerForm from './component/MarkerModal';
 
 import GuideModal from "./component/guide/GuideModal";
 import { ToastProvider } from 'react-toast-notifications';
@@ -62,6 +64,11 @@ const router = createBrowserRouter([
     {
       path: "contact",
       element: <Contact/>,
+      errorElement: <Error/>
+    },
+    {
+      path: "dashboard",
+      element:  <Dashboard/>,
       errorElement: <Error/>
     }
 ])

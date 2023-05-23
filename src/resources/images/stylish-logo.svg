@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" id="svg3137" viewBox="0 0 64 64" version="1.1">
+<svg xmlnsRdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlnsCc="http://creativecommons.org/ns#" xmlnsXlink="http://www.w3.org/1999/xlink" xmlnsDc="http://purl.org/dc/elements/1.1/" id="svg3137" viewBox="0 0 64 64" version="1.1">
   <title id="title4042">institution icon</title>
   <defs id="defs3139">
     <linearGradient id="linearGradient4334" x1="-987.07" gradientUnits="userSpaceOnUse" y1="171.03" gradientTransform="matrix(.41463 0 0 .43437 432.99 -42.298)" x2="-987.79" y2="192.75">
@@ -19,22 +19,22 @@
     <rect id="rect3216" opacity="0" height="64" width="64" y="0" x="0"/>
   </g>
   <metadata>
-    <rdf:RDF>
-      <cc:Work>
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
-        <dc:publisher>
-          <cc:Agent rdf:about="http://openclipart.org/">
-            <dc:title>Openclipart</dc:title>
-          </cc:Agent>
-        </dc:publisher>
-      </cc:Work>
-      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
-        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
-        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
-        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
-      </cc:License>
-    </rdf:RDF>
+    <rdfRDF>
+      <ccWork>
+        <dcFormat>image/svg+xml</dcFormat>
+        <dcType rdfResource="http://purl.org/dc/dcmitype/StillImage"/>
+        <ccLicense rdfResource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dcPublisher>
+          <ccAgent rdfAbout="http://openclipart.org/">
+            <dcTitle>Openclipart</dcTitle>
+          </ccAgent>
+        </dcPublisher>
+      </ccWork>
+      <ccLicense rdfAbout="http://creativecommons.org/licenses/publicdomain/">
+        <ccPermits rdfResource="http://creativecommons.org/ns#Reproduction"/>
+        <ccPermits rdfResource="http://creativecommons.org/ns#Distribution"/>
+        <ccPermits rdfResource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </ccLicense>
+    </rdfRDF>
   </metadata>
 </svg>

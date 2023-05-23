@@ -6,6 +6,7 @@
     "menu_team": "Notre Equipe",
     "menu_pricing": "Nos prix",
     "menu_contact": "Contactez nous",
+    "menu_dashboard": "Dashboard",
     "login": "Connexion",
     "main_title": "Améliorer vos visites culturelles grâce à la realitée augmentée",
     "main_subtitle": "Notre équipe de développeurs talentueux ont pour but d'amener le futur dans le passé, en utilisant la réalité augmentée.",
@@ -72,6 +73,12 @@
       "web": "Développeur Web",
       "back": "Développeur Backend",
       "mob": "Développeur Mobile"
+    },
+    "dashboard": {
+      "title": "Dashboard"
+    },
+    "markerForm": {
+      "title": ""
     },
     "feature": {
       "tab_title": "ARKultur - Fonctionnalité",

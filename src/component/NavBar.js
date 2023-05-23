@@ -75,6 +75,10 @@ function MenuBar()
         name="menu_contact"
         link="/contact"
       />
+      <MenuBarElement
+        name= "menu_dashboard"
+        link="/dashboard"
+      />
     </ul>
   )
 }
