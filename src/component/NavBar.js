@@ -12,6 +12,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import {useTranslation} from "react-i18next";
 import LangSelection from "./LangSelection";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useStore } from "react-redux";
+import { Label } from '@mui/icons-material';
 
 function MenuBarElement(props)
 {
@@ -86,7 +88,7 @@ export default function NavBar(props)
   const theme = useTheme();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-
+  const token = useSelector((state) => state.loginToken);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -100,6 +102,7 @@ export default function NavBar(props)
     i18n.changeLanguage(event.target.value);
   };
 
+  console.log("token", token);
   document.title = props.title ? props.title : "ARKultur";
   return (
     <div style={{
@@ -120,6 +123,7 @@ export default function NavBar(props)
             <LogoIcon/>
             <MenuBar/>
             <div>
+                {token ? <Label>Logged in</Label> :
               <Button
                   color="button"
                   variant="contained"
@@ -127,6 +131,7 @@ export default function NavBar(props)
                   onClick={() => navigate("/login")}
               >{t('login')}
               </Button>
+                }
               <IconButton aria-label={id}
                           aria-describedby={"settings"}
                           style={{color: `${theme.palette.primary.contrastText}`}}

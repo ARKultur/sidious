@@ -13,7 +13,7 @@ import Timeline from "./view/Timeline";
 import Contact from "./view/Contact";
 import Dashboard from "./view/Dashboard";
 import Login from './view/Login';
-import MarkerForm from './component/MarkerModal';
+import Register from './view/Register';
 
 const router = createBrowserRouter([
   {
@@ -59,7 +59,12 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <Login/>,
-      errorElement: <Error/>
+    errorElement: <Error/>
+  },
+  {
+    path: "register",
+    element: <Register/>,
+    errorElement: <Error/>
   }
 ])
 function App() {

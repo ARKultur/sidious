@@ -9,8 +9,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import { storeTokenAction } from '../redux-action/TokenAction';
+import axios from 'axios';
+import { API_URL } from "../config/API"
 
 function Copyright(props) {
   return (
@@ -29,15 +29,18 @@ const defaultTheme = createTheme();
 
 export default function Login() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.loginToken);
   const HandleLogin = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    dispatch(storeTokenAction(data));
-    console.log("handle submit", token);
-    if (token)
-      navigate("/");
+    axios.post(`${API_URL}/api/signin`, {
+      username: data.get('username'),
+      email: data.get('email'),
+      password: data.get('password'),
+    }).then((res) => {
+        navigate("/login");
+    }).catch((e) => {
+        alert(e.response.data);
+    })
   };
 
   return (
@@ -53,9 +56,19 @@ export default function Login() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Sign in
+            Register
           </Typography>
           <Box component="form" onSubmit={HandleLogin} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="Username"
+              autoFocus
+            />
             <TextField
               margin="normal"
               required
@@ -82,12 +95,12 @@ export default function Login() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Register
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/register" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/login" variant="body2">
+                  {"Have an account? Sign In"}
                 </Link>
               </Grid>
             </Grid>
