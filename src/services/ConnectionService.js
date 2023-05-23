@@ -3,12 +3,17 @@ import axios from 'axios';
 const endpoint = 'http://x2024arkultur120290831001.westeurope.cloudapp.azure.com:4000/api';
 
 export async function ping() {
-    const res = await axios.get(`${endpoint}/ping`)
-    return res.data;
+    const res = await axios
+        .get(`${endpoint}/ping`)
+        .catch(() => {
+            return false;
+        });
+    return true;
 }
 
 export async function apiLogin(email, password) {
-    const res = await axios.post(`${endpoint}/login`, {
+    const res = await axios
+        .post(`${endpoint}/login`, {
             email: email,
             password: password
         }, {
@@ -19,18 +24,9 @@ export async function apiLogin(email, password) {
     return res.data;
 }
 
-export async function apiLogout(token) {
-    const res = await axios.get(`${endpoint}/logout`,
-    {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    });
-    return res.data;
-}
-
 export async function apiRegister(username, email, password) {
-    const res = await axios.post(`${endpoint}/signin`, {
+    const res = await axios
+        .post(`${endpoint}/signin`, {
             email: email,
             password: password,
             username: username
@@ -42,9 +38,17 @@ export async function apiRegister(username, email, password) {
     return res.data;
 }
 
-// export async function apiUserInfos(token, email) {
-//     const res = await axios.get(`${endpoint}/`)
-// }
+export async function apiUserInfos(token, email) {
+    console.log("token" + token);
+    const res = await axios
+        .get(`${endpoint}/accounts?email=${email}`,
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+    return res.data;
+}
 
 // export async function emailVerification(email) {
 //     const res = await axios.post(`${endpoint}/account/reset`, {

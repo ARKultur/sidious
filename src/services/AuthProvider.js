@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { apiLogin, apiRegister } from './ConnectionService';
+import { apiLogin, apiRegister, apiLogout, apiUserInfos } from './ConnectionService';
 
 export const AuthContext = createContext();
 
@@ -12,31 +12,35 @@ export function AuthProvider({children})
 
     const [logged, setLogged] = useState(false);
 
-    async function login(email, password) {
-        await apiLogin(email, password)
-            .then((data) => {
-                console.log("Login");
-                console.log(data);
+    async function login(uEmail, password) {
+        await apiLogin(uEmail, password)
+            .then(async (token) => {
+                console.log("token" + token);
 
-                setEmail("email");
-                setUsername("Patrick");
-                setToken(data);
-                setId("id");
+                setToken(token);
+                localStorage.setItem("token", token);
+
+                await apiUserInfos(token, uEmail)
+                    .then((data) => {
+                        console.log(data);
+                        setEmail(data.email);
+                        setUsername(data.username);
+                        setId(data.id);
+                    })
+                    .catch((exception) => {
+                        console.log(exception);
+                    });
+
                 setLogged(true);
-                localStorage.setItem("token", data);
-                console.log("token : ", data);
-                console.log("local token : ", localStorage.getItem("token"));
             })
             .catch((exception) => {
                 console.log(exception);
             });
-        console.log("logged");
     }
 
     function register(username, email, password) {
         apiRegister(username, email, password)
             .then((data) => {
-                console.log("Register");
                 console.log(data);
             })
             .catch((exception) => {
@@ -45,7 +49,6 @@ export function AuthProvider({children})
     }
 
     function logout() {
-        console.log("Logout");
         setEmail(undefined);
         setUsername(undefined);
         setToken(undefined);
@@ -56,11 +59,8 @@ export function AuthProvider({children})
 
     useEffect(() => {
         let lToken = localStorage.getItem("token");
-        console.log(lToken);
         if (lToken !== `null`) {
-            console.log("WTF");
             setToken(lToken);
-            setUsername("Patrick");
         }
     }, [])
 
