@@ -16,8 +16,8 @@ const OrganisationsTable = ({rows, addOrg, deleteOrg, editOrg}) => {
 
   return (
     <Container className="table-container">
-        <IconButton className="white-element" onClick={() => setModalOpen(true)}>
-            <AddIcon/>
+        <IconButton className="blu-element" onClick={() => setModalOpen(true)}>
+            <AddIcon />
         </IconButton>
         <TableContainer>
         <Table aria-label="simple table">

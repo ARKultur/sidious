@@ -78,13 +78,13 @@ function MenuBar()
         name="menu_contact"
         link="/contact"
       />
-      { token ?
+      { token && token !== "null" ?
         <MenuBarElement
             name= "menu_dashboard"
             link="/dashboard"
         /> : <></>
       }
-      { token ?
+      { token && token !== "null" ?
         <MenuBarElement
           name= "Admin"
           link="/admin"
