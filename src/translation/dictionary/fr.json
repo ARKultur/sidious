@@ -2,7 +2,7 @@
   "translation": {
     "menu_home": "Accueil",
     "menu_project": "Notre Project",
-    "menu_feature": "Fonctionnalité",
+    "menu_feature": "Fonctionnalités",
     "menu_team": "Notre Equipe",
     "menu_pricing": "Nos prix",
     "menu_contact": "Contactez nous",
@@ -95,6 +95,74 @@
           "text": "Arkultur vous offre une map interactive afin de faciliter le management de vos lieux culturel."
         }
       }
+    },
+    "timeline": {
+      "step1": {
+        "title": "Moonshot",
+        "time": "Septembre 2021",
+        "text": "La Moonshot dure deux semaines. La première semaine Nous travaillons sur différentes problématiques afin de trouver une solution et de faire une présentation de celle-ci. Pour la deuxième semaine nous devions choisir 3 solutions et les approfondir. A la fin nous devions choisir une de ces solutions qui pourront être notre projet. C'est le début d'ARKultur"
+      },
+      "step2": {
+        "title": "Recherches",
+        "time": "Octobre - Décembre 2021",
+        "text": "Maintenant que le projet est défini il nous faut faire des recherches afin de voir si le projet et réalisable et qu'elles sont précisement les problématiques. Pour ce faire nous avons fait un questionnaire afin de mieux cibler les attentes."
+      },
+      "step3": {
+        "title": "Forward",
+        "time": "Décembre 2021",
+        "text": "Après toutes ses recherches nous devions passer au stade de prototypage. Celui-ci a pour but de concrétiser l'idée du projet. Nous avions deux semaines pour le réalisée avec une présentation à la fin."
+      },
+      "step4": {
+        "title": "Commençons",
+        "time": "Avril - Juin 2022",
+        "text": "Avant de commencer concrètement dans le projet nous devions définir les techniques qui seront utilisés. Durant ces mois nous avons testé de nombreuses technologies pour choisir la meilleure."
+      },
+      "step5": {
+        "title": "Management",
+        "time": "Juillet - Octobre 2022",
+          "text": "Nous allons travailler pendant de nombreux mois ensemble c'est pourquoi il est important de définir les règles du groupe. Le projet débuta son développement en parallèle."
+      },
+      "step6": {
+        "title": "Fast Forward",
+        "time": "Novembre 2022 - Janvier 2023 ",
+        "text": "Il est temps de monter d'un cramp. Après l'organisation et le choix des technos, nous nous sommes focalisé sur les fonctionnalités principales du projet. (Site Web, Tableau de bord, Mobile)."
+      },
+      "step7": {
+        "title": "préparation à la beta (maintenent)",
+        "time": "Février - Mai 2023",
+        "text": "Nos fonctionnalités principales sont terminées il est maintenant l'heure de se préparer à au bêta du projet. Nous travaillons sur l'expérience utilisateur, la communication entre nos testeurs et nous. Nous avons globalement amélioré le projet afin de rendre plus simple d'utilisation."
+      },
+      "step8": {
+        "title": "Beta (futur)",
+        "time": "Juin - Septembre 2023 ",
+        "text": "Nous verrons ce que le futur nous réserve...."
+      },
+      "step9": {
+        "title": "Préparation au lencement (futur)",
+        "time": "Octobre - Décembere 2023 ",
+        "text": "Nous verrons ce que le futur nous réserve...."
+      }
+    },
+    "contact": {
+      "title": "Nous contacter",
+      "subtitle": "Si vous voulez nous contacter pour toutes questions/remarques, remplissez ce formulaire.",
+      "name": "Votre nom",
+      "nameHelp": "Ecrivez votre nom",
+      "category": {
+        "name": "Catégorie",
+        "item1": "Retour d'expérience",
+        "item2": "Bug rencontré"
+      },
+      "email": "Votre email",
+      "emailHelp": "Écrivez votre email pour être recontacté",
+      "description": "Description",
+      "descriptionHelp": "Décrivez votre bug ou votre retour d'expérience",
+      "send": "Envoyer",
+      "close": "Fermer",
+      "closeTitle": "Message envoyé!",
+      "closeText": "Merci pour l'intérêt envers ARKultur. Nous vous recontacterons le plus vite possible.",
+      "error": "Une erreur est survenue, merci de réessayer plus tard.",
+      "errorTitle": "Erreur"
     }
   }
 }

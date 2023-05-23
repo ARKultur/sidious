@@ -10,7 +10,7 @@ function FooterMenuElement(props)
 
   const list = props.subMenu.map((item) =>
     <li key={item.name.toString() } style={{marginBottom: "1rem", display: "flex"}}>
-      <a href={item.route} target={item.newPage ? '_blank' : ''} rel={"noopener"}
+      <a href={item.route} target={item.newPage ? '_blank' : ''} rel={item.newPage ? "noopener" : ''}
          style={{color: `${theme.palette.primary.main}`,
            textDecoration: "inherit"
       }}>

@@ -13,6 +13,7 @@ import {useTranslation} from "react-i18next";
 import LangSelection from "./LangSelection";
 import ConnectionModal from './connection/ConnectionModal';
 import "./menuButtonAnimation.css"
+import { AuthContext } from '../services/AuthProvider';
 
 function MenuBarElement(props)
 {
@@ -67,10 +68,12 @@ function MenuBar()
         link="/team"
       />
       <MenuBarElement
-        name="menu_pricing"
+        name="Timeline"
+        link="/timeline"
       />
       <MenuBarElement
         name="menu_contact"
+        link="/contact"
       />
     </ul>
   )
@@ -78,6 +81,8 @@ function MenuBar()
 
 export default function NavBar(props)
 {
+  const { logged, username, logout } = React.useContext(AuthContext);
+
   const theme = useTheme();
   const { t, i18n } = useTranslation();
 
@@ -105,13 +110,19 @@ export default function NavBar(props)
     setShowConnectionModal(false);
   };
 
+  React.useEffect(() => {
+  }, [logged]);
+
+  function logoutCall() {
+    logout();
+  };
 
   document.title = props.title ? props.title : "ARKultur";
   return (
     <>
       <div style={{
         paddingLeft: "1rem", paddingRight: "1rem",
-        zIndex: 100000
+        zIndex: 100000, position: "fixed"
       }}>
         <AppBar position='static' color="mainColor" sx={{ position: "fixed", width: "100%", px: "0.625rem" }} elevation={0} >
           <Toolbar sx={{
@@ -127,14 +138,25 @@ export default function NavBar(props)
               <LogoIcon/>
               <MenuBar/>
               <div>
-                <Button
-                    color="button"
-                    variant="contained"
-                    sw={{textTransform: 'none'}}
-                    onClick={handleShowConnectionModal}
-                >
-                  {t('login')}
-                </Button>
+                {username == null ?
+                    <Button
+                        color="button"
+                        variant="contained"
+                        sw={{textTransform: 'none'}}
+                        onClick={handleShowConnectionModal}
+                    >
+                      {t('login')}
+                    </Button>
+                  :
+                    <Button
+                        color="button"
+                        variant="contained"
+                        sw={{textTransform: 'none'}}
+                        onClick={logoutCall}
+                    >
+                      {username}
+                    </Button>
+                }
                 <IconButton aria-label={id}
                             aria-describedby={"settings"}
                             style={{color: `${theme.palette.primary.contrastText}`}}

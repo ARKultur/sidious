@@ -1,8 +1,9 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
 import Modal from '../modal/Modal';
 import './ConnectionModal.css'
 import { useTranslation } from "react-i18next";
-import * as API from "../../api"
+import * as API from "../../services/ConnectionService"
+import { AuthContext } from "../../services/AuthProvider";
 
 function InputBlock(props) {
 
@@ -23,7 +24,7 @@ function InputBlock(props) {
 
     function onChange(event) {
         if (event.target != null) {
-            event.target.value == "" ? setEmpty(true): setEmpty(false);
+            event.target.value === "" ? setEmpty(true): setEmpty(false);
         }
     }
 
@@ -42,6 +43,8 @@ function InputBlock(props) {
 
 export default function ConnectionModal(props)
 {
+    const { login, register, logged } = useContext(AuthContext);
+
     const { onClose } = props;
     const { t } = useTranslation();
 
@@ -55,7 +58,14 @@ export default function ConnectionModal(props)
         let form = document.getElementById("Sign In").getElementsByClassName("contact-form");
         console.log("email = ", form[0][0].value);
         console.log("password = ", form[0][1].value);
-        API.login(form[0][0].value, form[0][1].value);
+        await login(form[0][0].value, form[0][1].value);
+        if (logged) {
+            console.log("Logged");
+            onClose();
+            setOpenOverlay(false);
+        } else {
+            console.log("not Logged");
+        }
     }
 
     async function registerCall() {
@@ -64,15 +74,18 @@ export default function ConnectionModal(props)
         console.log("email = ", form[0][1].value);
         console.log("password = ", form[0][2].value);
         console.log("confirm password = ", form[0][3].value);
-        // if (form[0][2].value != form[0][3].value)
-        //     toast me
-        // API.register(form[0][0].value, form[0][1].value, FirstName, LastName, form[0][2].value);
+        if (form[0][2].value !== form[0][3].value) {
+            console.log("NOP");
+        } else {
+            register(form[0][0].value, form[0][1].value, form[0][2].value);
+        }
     }
 
     async function forgotPasswordCall() {
         let form = document.getElementById("Sign In").getElementsByClassName("contact-form");
         console.log("email = ", form[0][0].value);
-        // API.forgotPassword(form[0][0].value);
+        let result = await API.forgotPassword(form[0][0].value);
+        console.log(result);
     }
 
     return (
@@ -88,7 +101,7 @@ export default function ConnectionModal(props)
                             <InputBlock label="Email" form_type="email"/>
                             <InputBlock label="Password" form_type="password"/>
                         </div>
-                        <a id="forgot-pass" target="_blank" onClick={forgotPasswordCall}>I Forgot my Password</a>
+                        <p id="forgot-pass" onClick={forgotPasswordCall}>I Forgot my Password</p>
                         <div className="custom-btn btn-8" onClick={ loginCall }>
                             <span>{t("Sign In")}</span>
                         </div>

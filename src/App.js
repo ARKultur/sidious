@@ -11,6 +11,12 @@ import Team from "./view/Team";
 import Feature from "./view/Feature";
 import PrivacyPolicyView from './view/PrivacyPolicyView';
 import TermsView from './view/TermsView';
+import Timeline from "./view/Timeline";
+import Contact from "./view/Contact";
+
+import GuideModal from "./component/guide/GuideModal";
+import { ToastProvider } from 'react-toast-notifications';
+import { AuthProvider } from './services/AuthProvider';
 
 const router = createBrowserRouter([
     {
@@ -20,35 +26,68 @@ const router = createBrowserRouter([
     },
     {
         path: "maintenance",
-        element: <Maintenance/>
+        element: <Maintenance/>,
+        errorElement: <Error/>
     },
     {
         path: "project",
-        element: <Project/>
+        element: <Project/>,
+        errorElement: <Error/>
     },
     {
         path: "team",
-        element: <Team/>
+        element: <Team/>,
+        errorElement: <Error/>
+    },
+    {
+      path: 'timeline',
+      element: <Timeline/>,
+      errorElement: <Error/>
     },
     {
         path: "feature",
-        element: <Feature/>
+        element: <Feature/>,
+        errorElement: <Error/>
     },
     {
         path: "privacy-policy",
-        element: <PrivacyPolicyView/>
+        element: <PrivacyPolicyView/>,
+        errorElement: <Error/>
     },
     {
         path: "terms",
-        element: <TermsView/>
+        element: <TermsView/>,
+        errorElement: <Error/>
+    },
+    {
+      path: "contact",
+      element: <Contact/>,
+      errorElement: <Error/>
     }
 ])
+
 function App() {
+
+  // Guide
+  const [showGuideModal, setShowGuideModal] = React.useState(false);
+
+  function handleShowGuideModal() {
+    setShowGuideModal(true);
+  };
+
+  function handleCloseGuideModal() {
+    setShowGuideModal(false);
+  };
+
   return (
     <div className="App">
       <ThemeProvider theme={defaultTheme}>
-        <CssBaseline/>
-        <RouterProvider router={router}/>
+        <AuthProvider>
+          {/* <button onClick={handleShowGuideModal}>Guide</button>
+          <GuideModal onClose={handleCloseGuideModal} isActive={showGuideModal}/> */}
+          <CssBaseline/>
+          <RouterProvider router={router}/>
+        </AuthProvider>
       </ThemeProvider>
     </div>
   );
