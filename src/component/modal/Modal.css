@@ -1,0 +1,35 @@
+/* Style pour la modal */
+.modal {
+    /* display: none; Cachez la modal par défaut */
+    position: fixed; /* Restez en place même si la page est défilée */
+    z-index: 1; /* Placez la modal en haut de la pile */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largeur de l'écran */
+    height: 100%; /* Hauteur de l'écran */
+    overflow: auto; /* Activez le défilement si nécessaire */
+}
+
+/* Style pour le contenu de la modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centrez verticalement et horizontalement */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ajustez la largeur de la modal ici */
+}
+
+/* Style pour le bouton de fermeture */
+.close {
+    color: #1546af;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}

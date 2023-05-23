@@ -1,0 +1,50 @@
+.buttonAnimation{
+  color: #8E38FF;
+  margin-top: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.buttonAnimation:before{
+  position: absolute;
+  content: "";
+  width: 0px;
+  height: 0px;
+  left: 0;
+  bottom: 0;
+  border: 3px solid transparant;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.buttonAnimation:hover:before{
+  width: 100%;
+  height: 100%;
+  border: 3px solid #8E38FF;
+  border-right: none;
+  border-bottom: none;
+  transition: height 0.1s linear,
+              width 0.1s linear 0.1s;
+}
+
+.buttonAnimation:after{
+  position: absolute;
+  content: "";
+  width: 0px;
+  height: 0px;
+  top: 0;
+  right: 0;
+  border: 3px solid transparant;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.buttonAnimation:hover:after{
+  width: 100%;
+  height: 100%;
+  border: 3px solid #8E38FF;
+  border-left: none;
+  border-top: none;
+  transition: height 0.1s linear,
+              width 0.1s linear 0.1s;
+}
