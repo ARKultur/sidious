@@ -116,14 +116,14 @@ export default function FooterComponent()
     children: [
       {
         name: 'footer.submenu_5.item_1',
-        route: '/maintenance',
+        route: '/arkham.apk',
         newPage: false,
       },
-      {
-        name: 'footer.submenu_5.item_2',
-        route: '/maintenance',
-        newPage: false,
-      }
+      // {
+      //   name: 'footer.submenu_5.item_2',
+      //   route: '/maintenance',
+      //   newPage: false,
+      // }
     ]
   }
   const subMenu = [companySubmenu, helpSubmenu, legalSubmenu, projectsSubmenu, downloadsSubmenu];
