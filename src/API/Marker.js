@@ -9,6 +9,7 @@ export const getMarkers = async () => {
 
 export const addMarkerToDB = async (marker) => {
   const URL = API_URL + '/api/nodes';
+  const token = localStorage.getItem("token");
   const jsonBody = {
     name: marker.name,
     longitude: marker.longitude,
@@ -16,14 +17,15 @@ export const addMarkerToDB = async (marker) => {
     description: marker.description
   };
   const params = {
-    headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1heGltZS50ZXN0QHRlc3QubmV0IiwiaWF0IjoxNjg0Nzg5NTM5LCJleHAiOjE2ODQ3OTMxMzl9.A-IZuCNUdkx0SqtK3ApYw6J-fTUnxK2A-D8sQGo4lYI` }
+    headers: { Authorization: `Bearer ${token}` }
   }
     const response = await axios.post(URL, jsonBody, params )
-    return response.data; 
+    return response.data;
 }
 
 export const editMarkerToDB = async (marker) => {
   const URL = API_URL + '/api/nodes';
+  const token = localStorage.getItem("token");
   const jsonBody = {
     name: marker.name,
     longitude: marker.longitude,
@@ -33,10 +35,10 @@ export const editMarkerToDB = async (marker) => {
     description: marker.description
   };
   const params = {
-    headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1heGltZS50ZXN0QHRlc3QubmV0IiwiaWF0IjoxNjg0Nzg5NTM5LCJleHAiOjE2ODQ3OTMxMzl9.A-IZuCNUdkx0SqtK3ApYw6J-fTUnxK2A-D8sQGo4lYI` }
+    headers: { Authorization: `Bearer ${token}` }
   }
     const response = await axios.patch(URL, jsonBody, params );
-    return response.data; 
+    return response.data;
 }
 
 export const deleteMarkerToDB = async (marker) => {
@@ -44,9 +46,11 @@ export const deleteMarkerToDB = async (marker) => {
   const jsonBody = {
     name: marker.name,
   };
+  const token = localStorage.getItem("token");
+
   const params = {
-    headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1heGltZS50ZXN0QHRlc3QubmV0IiwiaWF0IjoxNjg0NzgzOTk3LCJleHAiOjE2ODQ3ODc1OTd9.OXJIlUQGbQS7QjHJooncSRM-TLLMuB-eMDqeRPbpAqY` }
+    headers: { Authorization: `Bearer ${token}` }
   }
     const response = await axios.delete (URL, jsonBody, params)
-    return response.data; 
+    return response.data;
 }
