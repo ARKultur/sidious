@@ -1,9 +1,7 @@
 import NavBar from "../component/NavBar";
 import FooterComponent from "../component/Footer";
-import {Button, Container, Grid, IconButton, Input, Typography, useTheme} from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
+import {Button, Container, Grid, Typography, useTheme} from "@mui/material";
 import * as React from "react";
-import {useTranslation} from "react-i18next";
 import { useState, useEffect } from "react";
 import '../styles/view/Dashboard.css'
 import axios from "axios";
@@ -12,18 +10,16 @@ import UsersTable from "../component/UsersTable";
 import OrganisationsTable from "../component/OrganisationsTable";
 
 export default function Admin() {
-  const [rowToEdit, setRowToEdit] = useState(null);
   const theme = useTheme();
-  const { t } = useTranslation();
   const [IsSetup, setIsSetup] = useState(false);
   const [users, setUsers] = useState([]);
   const [organisations, setOrganisations] = useState([]);
   const [menu, setMenu] = useState([
-      {isFocus: true, component: <UsersTable rows={[]}/>, name: "Users"},
-      {isFocus: false, component: <OrganisationsTable rows={[]}/>, name: "Organisations"}
+      {isFocus: true, component: "UsersTable", name: "Users"},
+      {isFocus: false, component: "OrganisationsTable", name: "Organisations"}
   ]);
-  const [table, setTable] = useState(<UsersTable rows={users}/>);
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjg0ODQ5MzA5LCJleHAiOjE2ODQ4NTI5MDl9.jMbI4NOuAu_SyDv_N1yjx531YNSBMPRC0ezgEo79_1w"
+  const [table, setTable] = useState(<></>);
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjg0ODY0NjI5LCJleHAiOjE2ODQ4NjgyMjl9.lw-llGjVIxJ3hC56-jmUzC3GajSAFaqbrrF3neM5wDw"
 
   useEffect (() => {
     const init = async() => {
@@ -39,33 +35,100 @@ export default function Admin() {
                 Authorization: `Bearer ${token}`
             }
         });
-
         setOrganisations(res.data);
         setIsSetup(true);
-        setMenu([
-            {isFocus: true, component: <UsersTable rows={users}/>, name: "Users"},
-            {isFocus: false, component: <OrganisationsTable rows={organisations}/>, name: "Organisations"}
-        ])
     }
     if (!IsSetup)
         init();
   }, [users, organisations, IsSetup])
 
-  const deleteRow = (targetId) => {
-  };
-
-  const editRow = (id) => {
-    setRowToEdit(id);
-  };
-
-  const submitForm = (newRow) => {
-    if (rowToEdit === null) {
+  const deleteUser = async(id) => {
+    try {
+        const res = await axios.delete(`${API_URL}/api/accounts/admin`,
+          {
+            data: { id: id },
+            headers: { Authorization: `Bearer ${token}`}
+          },
+        );
+        const updatedOrg = organisations.filter((org) => org.id !== id);
+        setOrganisations(updatedOrg);
+        window.location.reload()
+    } catch (e) {
+        alert(e.response.data);
     }
-    users.map((marker, id) => {
-      if (id === rowToEdit) {
-      }
-    })
   };
+  const deleteOrg = async(id) => {
+    try {
+        const res = await axios.delete(`${API_URL}/api/organisations`,
+          {
+            data: { id: id },
+            headers: { Authorization: `Bearer ${token}`}
+          },
+        );
+        const updatedOrg = organisations.filter((org) => org.id !== id);
+        setOrganisations(updatedOrg);
+        window.location.reload()
+    } catch (e) {
+        alert(e.response.data);
+    }
+  }
+
+  const editUser = async(id, orgId) => {
+      console.log(id, orgId);
+      try {
+          const res = await axios.patch(`${API_URL}/api/accounts/admin`, {
+              id: id,
+              OrganisationId: orgId,
+          }, { headers: { Authorization : `Bearer ${token}`}});
+          const updatedUsers = users;
+          updatedUsers.map((user) => {
+              if (user.id === id)
+                  user.OrganisationId = orgId;
+              return user;
+          });
+          setUsers(updatedUsers);
+          window.location.reload()
+      } catch (e) {
+          alert(e.response.data);
+      }
+  };
+
+  const addOrganisation = async(name) => {
+    try {
+        const res = await axios.post(`${API_URL}/api/organisations`,
+            { name: name },
+            {headers: { Authorization: `Bearer ${token}` }}
+        );
+        const updatedOrg = organisations;
+        updatedOrg.push(res.data);
+        setOrganisations(updatedOrg);
+        window.location.reload()
+    } catch (e) {
+        alert(e.response.data);
+    }
+  };
+
+  const editOrganisation = async(id, addressId, name) => {
+    try {
+        const res = await axios.patch(`${API_URL}/api/organisations`,
+            { id: id, address: addressId, new_name: name },
+            { headers: { Authorization : `Bearer ${token}`}}
+        );
+        const updatedOrgs = organisations;
+        updatedOrgs.map((org) => {
+            if (org.id === id) {
+                org.addressId = res.data.addressId;
+                org.name = res.data.name;
+            }
+            return org;
+        });
+        setOrganisations(updatedOrgs);
+        window.location.reload()
+    } catch (e) {
+        alert(e.response.data);
+    }
+  }
+
   const setMenuFocus = (name) => {
     const newMenu = menu;
     newMenu.map((item) => {
@@ -83,8 +146,15 @@ export default function Admin() {
 
   const getComponent = () => {
     const item = menu.filter((item) => item.isFocus === true)
+    const name = item[0].component;
 
-    return item[0].component;
+    if (name === "OrganisationsTable")
+      return <OrganisationsTable rows={organisations}
+                addOrg={addOrganisation}
+                editOrg={editOrganisation}
+                deleteOrg={deleteOrg}
+            />;
+    return <UsersTable rows={users} deleteUser={deleteUser} editUser={editUser}/>;
   }
   return(
     <>
@@ -102,14 +172,6 @@ export default function Admin() {
             <Container className="dashboard-header" style={{flexDirection: "row"}}>
                 <Button title="Users" onClick={() => setMenuFocus("Users")}>Users</Button>
               <Button title="Organisations" onClick={() => setMenuFocus("Organisations")}>Organisations</Button>
-            </Container>
-            <Container style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                <Container>
-                  <Input className="white-element"></Input>
-                  <IconButton className="white-element">
-                    <SearchIcon/>
-                  </IconButton>
-                </Container>
             </Container>
             <Container style={{padding: "20px"}}>
                 {table}

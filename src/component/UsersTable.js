@@ -9,8 +9,18 @@ import { Container, IconButton } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import ClearIcon from '@mui/icons-material/Clear';
 import "../styles/component/MarkerTable.css"
+import UserModal from "./UserModal";
 
-const UsersTable = ({rows, editRow, deleteRow}) => {
+const UsersTable = ({rows, editUser, deleteUser}) => {
+  const [isModalOpen, setModalOpen] = React.useState(false);
+  const [modal, setModal] = React.useState(<></>);
+  const createModal = (id) => {
+      setModal(<UserModal userId={id}
+          closeModal={() => setModalOpen(false)}
+          onSubmit={editUser}/>
+      )
+  }
+
   return (
     <Container className="table-container">
         <TableContainer>
@@ -26,23 +36,26 @@ const UsersTable = ({rows, editRow, deleteRow}) => {
             </TableRow>
             </TableHead>
             <TableBody>
-            {rows.map((row, id) => (
-                <TableRow key={id}>
+            {rows.map((row) => (
+                <TableRow key={row.id}>
                 <TableCell component="th" scope="row">
-                    {id}
+                    {row.id}
                 </TableCell>
                 <TableCell align="right">{row.username}</TableCell>
-                <TableCell align="right">{row.password}</TableCell>
                 <TableCell align="right">{row.email}</TableCell>
+                <TableCell align="right">{row.password}</TableCell>
                 <TableCell align="right">{row.addressId}</TableCell>
-                <TableCell align="right">{row.organisationId}</TableCell>
+                <TableCell align="right">{row.OrganisationId}</TableCell>
                 <TableCell align="right">
-                    <IconButton onClick={() => {editRow(id)}}>
+                    <IconButton onClick={() => {
+                        createModal(row.id);
+                        setModalOpen(true);
+                    }}>
                         <EditIcon/>
                     </IconButton>
                 </TableCell>
                 <TableCell align="right">
-                    <IconButton onClick={() => {deleteRow(id)}}>
+                    <IconButton onClick={() => {deleteUser(row.id)}}>
                         <ClearIcon/>
                     </IconButton>
                 </TableCell>
@@ -51,6 +64,7 @@ const UsersTable = ({rows, editRow, deleteRow}) => {
             </TableBody>
         </Table>
         </TableContainer>
+        { isModalOpen && modal }
     </Container>
   );
 }
