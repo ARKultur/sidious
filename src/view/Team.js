@@ -72,7 +72,7 @@ export default function Team()
             job={"team.web"}
           />
           <Member
-            image={"https://cdn.discordapp.com/avatars/818305741856833577/fbd1c2cd446f71072574f2b000a783d2.webp?size=256"}
+            image={"https://cdn.discordapp.com/avatars/818305741856833577/a_e5189d5dc33067d7c68d977043e514f1.gif?size=4096"}
             alt={"Mehdi's photo"}
             name={"Mehdi Z."}
             job={"team.mob"}
