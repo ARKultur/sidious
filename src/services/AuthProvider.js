@@ -15,7 +15,7 @@ export function AuthProvider({children})
     async function login(email, password, onClose) {
         try {
             const response = await apiLogin(email, password);
-            const token = response.data;
+            const token = response;
 
             // const userData = await apiUserInfos(token, email); // TO LINK WITH SETTER WHEN API IS READY
 

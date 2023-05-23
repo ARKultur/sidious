@@ -19,7 +19,7 @@ export default function Admin() {
       {isFocus: false, component: "OrganisationsTable", name: "Organisations"}
   ]);
   const [table, setTable] = useState(<></>);
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjg0ODY0NjI5LCJleHAiOjE2ODQ4NjgyMjl9.lw-llGjVIxJ3hC56-jmUzC3GajSAFaqbrrF3neM5wDw"
+  const token = localStorage.getItem("token");
 
   useEffect (() => {
     const init = async() => {
@@ -40,7 +40,7 @@ export default function Admin() {
     }
     if (!IsSetup)
         init();
-  }, [users, organisations, IsSetup])
+  }, [users, organisations, IsSetup, token])
 
   const deleteUser = async(id) => {
     try {
