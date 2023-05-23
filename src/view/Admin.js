@@ -19,11 +19,11 @@ export default function Admin() {
   const [users, setUsers] = useState([]);
   const [organisations, setOrganisations] = useState([]);
   const [menu, setMenu] = useState([
-      {isFocus: true, component: <UsersTable rows={users}/>, name: "Users"},
-      {isFocus: false, component: <OrganisationsTable rows={organisations}/>, name: "Organisations"}
+      {isFocus: true, component: <UsersTable rows={[]}/>, name: "Users"},
+      {isFocus: false, component: <OrganisationsTable rows={[]}/>, name: "Organisations"}
   ]);
   const [table, setTable] = useState(<UsersTable rows={users}/>);
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjg0ODQ0NDk2LCJleHAiOjE2ODQ4NDgwOTZ9.ikiu5FSFYehhZiba3EIqTVWA-F-zp1PcPLzwWyD9M6U"
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjg0ODQ5MzA5LCJleHAiOjE2ODQ4NTI5MDl9.jMbI4NOuAu_SyDv_N1yjx531YNSBMPRC0ezgEo79_1w"
 
   useEffect (() => {
     const init = async() => {
@@ -42,6 +42,10 @@ export default function Admin() {
 
         setOrganisations(res.data);
         setIsSetup(true);
+        setMenu([
+            {isFocus: true, component: <UsersTable rows={users}/>, name: "Users"},
+            {isFocus: false, component: <OrganisationsTable rows={organisations}/>, name: "Organisations"}
+        ])
     }
     if (!IsSetup)
         init();
@@ -67,7 +71,6 @@ export default function Admin() {
     newMenu.map((item) => {
         if (item.name === name) {
             item.isFocus = true;
-            setTable(item.component);
         } else {
             item.isFocus = false;
         }
@@ -75,8 +78,14 @@ export default function Admin() {
     })
 
     setMenu(newMenu);
+    setTable(getComponent());
   }
 
+  const getComponent = () => {
+    const item = menu.filter((item) => item.isFocus === true)
+
+    return item[0].component;
+  }
   return(
     <>
         <NavBar/>
