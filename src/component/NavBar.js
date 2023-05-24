@@ -48,6 +48,9 @@ function MenuBarElement(props)
 
 function MenuBar()
 {
+  const token = localStorage.getItem("token");
+
+  console.log(token)
   return(
     <ul style={{ display: "flex", width: "auto",
       justifyContent: "space-between", alignItems: "center",
@@ -77,10 +80,18 @@ function MenuBar()
         name="menu_contact"
         link="/contact"
       />
-      <MenuBarElement
-        name= "menu_dashboard"
-        link="/dashboard"
-      />
+      { token && token !== "null" ?
+        <MenuBarElement
+            name= "menu_dashboard"
+            link="/dashboard"
+        /> : <></>
+      }
+      { token && token !== "null" ?
+        <MenuBarElement
+          name= "Admin"
+          link="/admin"
+        /> : <></>
+      }
     </ul>
   )
 }

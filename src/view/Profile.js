@@ -23,7 +23,8 @@ export default function ProfileView() {
         password,
         id,
         addressId,
-        organizationId
+        organizationId,
+        getInfo
     } = React.useContext(AuthContext);
 
     const [onEdit, setEdit] = useState(false);
@@ -52,6 +53,7 @@ export default function ProfileView() {
         console.log("password_field : " + password_field.value);
         patchCall(email_field.value, username_field.value, password_field.value);
         reload();
+        getInfo(token, email_field.value);
         setEdit(false);
     }
 

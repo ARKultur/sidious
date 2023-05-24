@@ -59,10 +59,10 @@ export default function Team()
           >{t("team.title")}</Typography>
         </div>
         <div style={{display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))"}}>
-          <Member
-            image={"https://cdn.discordapp.com/avatars/206021742932656129/6ddb90cdbd2028c418089d18a6e6521b.webp?size=256"}
-            alt={"Guillaume's S photo"}
-            name={"Guillaume S."}
+        <Member
+            image={"https://cdn.discordapp.com/avatars/222073398195388426/a77e8fe6e176df022b4aecbb123191c3.webp?size=256"}
+            alt={"Maxime's P photo"}
+            name={"Maxime P."}
             job={"team.team_leader"}
           />
           <Member
@@ -72,13 +72,7 @@ export default function Team()
             job={"team.back"}
           />
           <Member
-            image={"https://cdn.discordapp.com/avatars/222073398195388426/a77e8fe6e176df022b4aecbb123191c3.webp?size=256"}
-            alt={"Maxime's P photo"}
-            name={"Maxime P."}
-            job={"team.web"}
-          />
-          <Member
-            image={"https://cdn.discordapp.com/avatars/818305741856833577/fbd1c2cd446f71072574f2b000a783d2.webp?size=256"}
+            image={"https://cdn.discordapp.com/avatars/818305741856833577/a_e5189d5dc33067d7c68d977043e514f1.gif?size=4096"}
             alt={"Mehdi's photo"}
             name={"Mehdi Z."}
             job={"team.mob"}

@@ -1,12 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { apiLogin, apiRegister, apiLogout, apiUserInfos } from './ConnectionService';
-import { Troubleshoot } from '@mui/icons-material';
+import { apiLogin, apiRegister, apiUserInfos } from './ConnectionService';
 
 export const AuthContext = createContext();
 
 export function AuthProvider({children})
 {
-    const [email, setEmail] = useState(undefined);
+    const [email, setEmail] = useState('undefined');
     const [username, setUsername] = useState(undefined);
     const [password, setPassword] = useState(undefined);
     const [addressId, setAddressId] = useState(undefined);
@@ -31,6 +30,10 @@ export function AuthProvider({children})
 
                 getInfo(uToken, uEmail);
             })
+            .catch((error) => {
+                console.log(error);
+                throw error;
+            });
     }
 
     function register(username, email, password) {
@@ -48,9 +51,11 @@ export function AuthProvider({children})
         .then((data) => {
             setUsername(data.username);
             setId(data.id);
+            setAddressId(data.password);
             setAddressId(data.addressId);
             setOrganisationId(data.OrganisationId);
             localStorage.setItem("username", data.username);
+            localStorage.setItem("password", data.password);
         })
         .catch((exception) => {
             console.log(exception);
@@ -79,6 +84,7 @@ export function AuthProvider({children})
         if (lToken !== `null`) {
             setToken(lToken);
             setEmail(lEmail);
+            getInfo(lToken, lEmail);
             setUsername(lUsername);
             setPassword(lPassword);
             setLogged(true);
@@ -102,7 +108,8 @@ export function AuthProvider({children})
             login,
             register,
             logout,
-            reload
+            reload,
+            getInfo
         }}>
             {children}
         </AuthContext.Provider>

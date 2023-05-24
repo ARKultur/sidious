@@ -39,7 +39,6 @@ export async function apiRegister(username, email, password) {
 }
 
 export async function apiUserInfos(token, email) {
-    console.log("token" + token);
     const res = await axios
         .get(`${endpoint}/accounts?email=${email}`,
         {
@@ -47,6 +46,7 @@ export async function apiUserInfos(token, email) {
                 'Authorization': `Bearer ${token}`
             }
         });
+    console.log(res.data);
     return res.data;
 }
 

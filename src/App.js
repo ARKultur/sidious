@@ -14,14 +14,11 @@ import TermsView from './view/TermsView';
 import Timeline from "./view/Timeline";
 import Contact from "./view/Contact";
 import Dashboard from "./view/Dashboard";
-import MarkerForm from './component/MarkerModal';
+import Admin from "./view/Admin.js";
 
 import GuideModal from "./component/guide/GuideModal";
-import { ToastProvider } from 'react-toast-notifications';
 import { AuthProvider } from './services/AuthProvider';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ProfileView from './view/Profile';
 
 const router = createBrowserRouter([
@@ -79,6 +76,11 @@ const router = createBrowserRouter([
       path: "profile",
       element:  <ProfileView/>,
       errorElement: <Error/>
+    },
+    {
+        path: "admin",
+        element: <Admin/>,
+        errorElement: <Error/>
     }
 ])
 
