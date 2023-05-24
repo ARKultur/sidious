@@ -127,13 +127,8 @@ export default function NavBar(props)
   const [DanchorEl, setDAnchorEl] = React.useState(null);
   const Dopen = Boolean(DanchorEl);
   const DhandleClick = (event) => {
-    if (document.contains(event.currentTarget)
-    && event.currentTarget !== null
-    && typeof event.currentTarget !== "undefined") {
-      console.log("WESH");
+    if (!showConnectionModal) {
       setDAnchorEl(event.currentTarget);
-    } else {
-      console.log("WHAT");
     }
   };
   const DhandleClose = () => {
