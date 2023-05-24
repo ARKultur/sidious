@@ -58,13 +58,11 @@ export default function ConnectionModal(props)
         let form = document.getElementById("Sign In").getElementsByClassName("contact-form");
         console.log("email = ", form[0][0].value);
         console.log("password = ", form[0][1].value);
-        await login(form[0][0].value, form[0][1].value);
-        if (logged) {
-            console.log("Logged");
-            onClose();
+        try {
+            await login(form[0][0].value, form[0][1].value);
             setOpenOverlay(false);
-        } else {
-            console.log("not Logged");
+            onClose();
+        } catch (e) {
         }
     }
 
@@ -77,7 +75,9 @@ export default function ConnectionModal(props)
         if (form[0][2].value !== form[0][3].value) {
             console.log("NOP");
         } else {
-            register(form[0][0].value, form[0][1].value, form[0][2].value);
+            await register(form[0][0].value, form[0][1].value, form[0][2].value);
+            setOpenOverlay(false);
+            onClose();
         }
     }
 

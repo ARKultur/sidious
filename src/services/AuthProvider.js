@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { apiLogin, apiRegister, apiLogout, apiUserInfos } from './ConnectionService';
+import { Troubleshoot } from '@mui/icons-material';
 
 export const AuthContext = createContext();
 
@@ -7,35 +8,29 @@ export function AuthProvider({children})
 {
     const [email, setEmail] = useState(undefined);
     const [username, setUsername] = useState(undefined);
+    const [password, setPassword] = useState(undefined);
+    const [addressId, setAddressId] = useState(undefined);
+    const [organisationId, setOrganisationId] = useState(undefined);
     const [token, setToken] = useState(undefined);
     const [id, setId] = useState(undefined);
 
     const [logged, setLogged] = useState(false);
 
-    async function login(uEmail, password) {
-        await apiLogin(uEmail, password)
-            .then(async (token) => {
-                console.log("token" + token);
-
-                setToken(token);
-                localStorage.setItem("token", token);
-
-                await apiUserInfos(token, uEmail)
-                    .then((data) => {
-                        console.log(data);
-                        setEmail(data.email);
-                        setUsername(data.username);
-                        setId(data.id);
-                    })
-                    .catch((exception) => {
-                        console.log(exception);
-                    });
-
+    async function login(uEmail, uPassword) {
+        await apiLogin(uEmail, uPassword)
+            .then(async (uToken) => {
                 setLogged(true);
+                console.log("token" + uToken);
+
+                setToken(uToken);
+                setEmail(uEmail);
+                setPassword(uPassword);
+                localStorage.setItem("token", uToken);
+                localStorage.setItem("email", uEmail);
+                localStorage.setItem("password", uPassword);
+
+                getInfo(uToken, uEmail);
             })
-            .catch((exception) => {
-                console.log(exception);
-            });
     }
 
     function register(username, email, password) {
@@ -48,32 +43,66 @@ export function AuthProvider({children})
             });
     }
 
+    async function getInfo(uToken, uEmail) {
+        await apiUserInfos(uToken, uEmail)
+        .then((data) => {
+            setUsername(data.username);
+            setId(data.id);
+            setAddressId(data.addressId);
+            setOrganisationId(data.OrganisationId);
+            localStorage.setItem("username", data.username);
+        })
+        .catch((exception) => {
+            console.log(exception);
+        });
+    }
+
     function logout() {
         setEmail(undefined);
         setUsername(undefined);
         setToken(undefined);
         setId(undefined);
+        setAddressId(undefined);
+        setOrganisationId(undefined);
         setLogged(false);
         localStorage.setItem("token", null);
+        localStorage.setItem("email", null);
+        localStorage.setItem("username", null);
+        localStorage.setItem("password", null);
+    }
+
+    function reload() {
+        let lToken = localStorage.getItem("token");
+        let lEmail = localStorage.getItem("email");
+        let lUsername = localStorage.getItem("username");
+        let lPassword = localStorage.getItem("password");
+        if (lToken !== `null`) {
+            setToken(lToken);
+            setEmail(lEmail);
+            setUsername(lUsername);
+            setPassword(lPassword);
+            setLogged(true);
+        }
     }
 
     useEffect(() => {
-        let lToken = localStorage.getItem("token");
-        if (lToken !== `null`) {
-            setToken(lToken);
-        }
+        reload();
     }, [])
 
     return (
         <AuthContext.Provider value={{
             email,
             username,
+            password,
             token,
             id,
+            addressId,
+            organisationId,
             logged,
             login,
             register,
-            logout
+            logout,
+            reload
         }}>
             {children}
         </AuthContext.Provider>

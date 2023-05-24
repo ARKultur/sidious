@@ -3,7 +3,7 @@ import './App.css';
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import {defaultTheme} from './theme/Theme'
 import LandingPageView from "./view/LandingPage";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import { createBrowserRouter, Router, RouterProvider} from "react-router-dom";
 import Error from "./view/Error";
 import Maintenance from "./view/Maintenance";
 import Project from "./view/Project";
@@ -19,6 +19,10 @@ import MarkerForm from './component/MarkerModal';
 import GuideModal from "./component/guide/GuideModal";
 import { ToastProvider } from 'react-toast-notifications';
 import { AuthProvider } from './services/AuthProvider';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import ProfileView from './view/Profile';
 
 const router = createBrowserRouter([
     {
@@ -69,6 +73,11 @@ const router = createBrowserRouter([
     {
       path: "dashboard",
       element:  <Dashboard/>,
+      errorElement: <Error/>
+    },
+    {
+      path: "profile",
+      element:  <ProfileView/>,
       errorElement: <Error/>
     }
 ])

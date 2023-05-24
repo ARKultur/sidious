@@ -81,3 +81,21 @@ export async function forgotPassword(username, email, password) {
 //     });
 //     return res.data
 // }
+
+export async function apiPatchUser(token, id, username, email, password, addressId, organizationId) {
+    const res = await axios
+        .patch(`${endpoint}/accounts`, {
+            id: id,
+            username: username,
+            email: email,
+            password: password,
+            addressId: addressId,
+            OrganisationId: organizationId
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+    return res.data;
+}

@@ -3,6 +3,8 @@ import {
   AppBar,
   Button,
   IconButton,
+  Menu,
+  MenuItem,
   Toolbar,
   useTheme
 } from "@mui/material";
@@ -121,6 +123,26 @@ export default function NavBar(props)
     logout();
   };
 
+  // Dropdown
+  const [DanchorEl, setDAnchorEl] = React.useState(null);
+  const Dopen = Boolean(DanchorEl);
+  const DhandleClick = (event) => {
+    if (document.contains(event.currentTarget)
+    && event.currentTarget !== null
+    && typeof event.currentTarget !== "undefined") {
+      console.log("WESH");
+      setDAnchorEl(event.currentTarget);
+    } else {
+      console.log("WHAT");
+    }
+  };
+  const DhandleClose = () => {
+    setDAnchorEl(null);
+  };
+  const DprofileCall = () => {
+    window.location.href = "/profile";
+  }
+
   document.title = props.title ? props.title : "ARKultur";
   return (
     <>
@@ -152,14 +174,31 @@ export default function NavBar(props)
                       {t('login')}
                     </Button>
                   :
-                    <Button
+                    <>
+                      <Button
+                        id="basic-button"
                         color="button"
                         variant="contained"
-                        sw={{textTransform: 'none'}}
-                        onClick={logoutCall}
-                    >
-                      {username}
-                    </Button>
+                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={DhandleClick}
+                      >
+                        {username}
+                      </Button>
+                      <Menu
+                        id="basic-menu"
+                        anchorEl={DanchorEl}
+                        open={Dopen}
+                        onClose={DhandleClose}
+                        MenuListProps={{
+                          'aria-labelledby': 'basic-button',
+                        }}
+                      >
+                        <MenuItem onClick={DprofileCall}>Profile</MenuItem>
+                        <MenuItem onClick={logoutCall}>Logout</MenuItem>
+                      </Menu>
+                    </>
                 }
                 <IconButton aria-label={id}
                             aria-describedby={"settings"}

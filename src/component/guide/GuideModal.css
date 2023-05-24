@@ -9,6 +9,8 @@
     animation-duration: 1.2s;
     animation-name: slideout;
     box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.7);
+
+    overflow: scroll;
 }
 
 .guide-panel.active {
@@ -18,7 +20,7 @@
 }
 
 .guide-panel .information {
-    padding: 3em;
+    padding: 5%;
 }
 
 .guide-panel .image {
@@ -38,7 +40,7 @@
     height: 100%;
     box-shadow: inset 0px -10px 10px rgb(255, 255, 255);
     z-index: 1;
-  }
+}
 
 .guide-panel .image img {
     width: 100%;
@@ -61,6 +63,7 @@
 .guide-panel .information .info-container {
     display: flex;
     align-items: center;
+    padding: 1%;
 }
 
 .guide-panel .information .info-container p {
@@ -71,10 +74,74 @@
     font-size: 1.3rem;
 }
 
+.guide-panel .information .info-container a {
+    margin: 0.5rem;
+    margin-left: 1.5rem;
+
+    font-family: "Crimson Pro", serif;
+    font-size: 1.3rem;
+    color: black;
+
+    text-decoration: none;
+}
+
+.guide-panel .information .info-container .redirect:hover {
+    color: #8E38FF;
+}
+
 .guide-panel .information .icon {
     color: #8E38FF;
 }
 
+
+.h-panel-header {
+    cursor: pointer;
+}
+
+.h-info-panel {
+    width: auto;
+}
+
+.h-panel-content {
+    display: flex;
+    width: 100%;
+}
+
+.h-panel-content p {
+    width: 20%;
+    margin-top: 0rem;
+    margin: 0.5rem;
+    margin-left: 5rem;
+
+    font-family: "Crimson Pro", serif;
+    font-size: 1.2rem;
+    color: black;
+}
+
+.desc p {
+    margin-left: 0;
+    text-align: justify;
+}
+
+.feedback-stack {
+    flex-grow: 1;
+}
+
+.feedback-card {
+    margin: 1rem;
+    background-color: rgb(235, 235, 235);
+    border-radius: 7px;
+    padding: 0.5rem;
+}
+
+.feedback-content {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    margin: 0.5rem;
+}
 
 @keyframes slidein {
     from {
@@ -104,6 +171,12 @@
     .guide-panel .information .info-container p {
         font-size: 0.7rem;
     }
+    .guide-panel .information .info-container a {
+        font-size: 0.7rem;
+    }
+    .h-panel-content p {
+        font-size: 0.7rem;
+    }
 }
 
 /* Media query pour les écrans entre 768 et 1023px */
@@ -114,6 +187,12 @@
     .guide-panel .information .info-container p {
         font-size: 1rem;
     }
+    .guide-panel .information .info-container a {
+        font-size: 1rem;
+    }
+    .h-panel-content p {
+        font-size: 1rem;
+    }
 }
 
 /* Media query pour les écrans de plus de 1024px */
@@ -122,6 +201,12 @@
         font-size: 3rem;
     }
     .guide-panel .information .info-container p {
+        font-size: 1.3rem;
+    }
+    .guide-panel .information .info-container a {
+        font-size: 1.3rem;
+    }
+    .h-panel-content p {
         font-size: 1.3rem;
     }
 }
