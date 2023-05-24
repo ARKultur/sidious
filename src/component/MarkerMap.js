@@ -13,8 +13,8 @@ export const MarkerMap = ({markers}) => {
                 <Marker
                 key={id}
                 position={[
-                    marker.longitude,
                     marker.latitude,
+                    marker.longitude,
                 ]}
                 onClick={() => {
                 }}
