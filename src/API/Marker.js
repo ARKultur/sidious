@@ -37,20 +37,22 @@ export const editMarkerToDB = async (marker) => {
   const params = {
     headers: { Authorization: `Bearer ${token}` }
   }
+    console.log(URL, jsonBody, params);
     const response = await axios.patch(URL, jsonBody, params );
     return response.data;
 }
 
 export const deleteMarkerToDB = async (marker) => {
   const URL = API_URL + '/api/nodes';
-  const jsonBody = {
-    name: marker.name,
-  };
   const token = localStorage.getItem("token");
 
-  const params = {
-    headers: { Authorization: `Bearer ${token}` }
-  }
-    const response = await axios.delete (URL, jsonBody, params)
+    const response = await axios.delete(URL, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: {
+        name: marker.name
+      }
+    });
     return response.data;
 }

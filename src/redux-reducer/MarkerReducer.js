@@ -22,11 +22,11 @@ export const markerReducer = (state = initialState, action) => {
     case markerActionType.ADD_MARKERS:
     return state
 
-    case markerActionType.edit:
+    case markerActionType.EDIT_MARKERS:
     return state
     
 
-    case markerActionType.delete:
+    case markerActionType.DELETE_MARKERS:
     return state
     
     default:

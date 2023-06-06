@@ -50,7 +50,6 @@ function MenuBar()
 {
   const token = localStorage.getItem("token");
 
-  console.log(token)
   return(
     <ul style={{ display: "flex", width: "auto",
       justifyContent: "space-between", alignItems: "center",
