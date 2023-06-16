@@ -7,6 +7,21 @@ export const getMarkers = async () => {
     return response.data;
 }
 
+export const getOrganisationMarkers = async (token) => {
+  const URL = API_URL + '/api/nodes';
+  const params = {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+  
+  try {
+     const response = await axios.get(URL, params)
+    return response.data;
+  } catch (e) {
+    console.log(e)
+  }
+   
+}
+
 export const addMarkerToDB = async (marker) => {
   const URL = API_URL + '/api/nodes';
   const token = localStorage.getItem("token");
@@ -19,8 +34,12 @@ export const addMarkerToDB = async (marker) => {
   const params = {
     headers: { Authorization: `Bearer ${token}` }
   }
-    const response = await axios.post(URL, jsonBody, params )
-    return response.data;
+  try {
+    const response = await axios.post(URL, jsonBody, params)
+  } catch (e) {
+    throw (e);
+  }
+   
 }
 
 export const editMarkerToDB = async (marker) => {
@@ -46,6 +65,7 @@ export const deleteMarkerToDB = async (marker) => {
   const URL = API_URL + '/api/nodes';
   const token = localStorage.getItem("token");
 
+  try {
     const response = await axios.delete(URL, {
       headers: {
         Authorization: `Bearer ${token}`
@@ -54,5 +74,17 @@ export const deleteMarkerToDB = async (marker) => {
         name: marker.name
       }
     });
-    return response.data;
+  } catch (e) {
+    throw(e);
+  }
 }
+
+const MarkerService = {
+  getMarkers,
+  getOrganisationMarkers,
+  addMarkerToDB,
+  editMarkerToDB,
+  deleteMarkerToDB
+}
+
+export default MarkerService;

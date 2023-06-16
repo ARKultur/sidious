@@ -19,8 +19,6 @@ export function AuthProvider({children})
         await apiLogin(uEmail, uPassword)
             .then(async (uToken) => {
                 setLogged(true);
-                console.log("token" + uToken);
-
                 setToken(uToken);
                 setEmail(uEmail);
                 setPassword(uPassword);
@@ -56,6 +54,7 @@ export function AuthProvider({children})
             setOrganisationId(data.OrganisationId);
             localStorage.setItem("username", data.username);
             localStorage.setItem("password", data.password);
+            localStorage.setItem("organisationId", data.OrganisationId);
         })
         .catch((exception) => {
             console.log(exception);

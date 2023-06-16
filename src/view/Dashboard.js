@@ -10,12 +10,14 @@ import { MarkerModal } from "../component/MarkerModal";
 import { useState, useEffect } from "react";
 import '../styles/view/Dashboard.css'
 import { useDispatch, useSelector } from "react-redux";
-import { requestMarkers, addMarker, editMarker, deleteMarker } from "../redux-action/MarkerAction";
+import { requestMarkers, addMarker, editMarker, deleteMarker, requestOrganisationMarkers } from "../redux-action/MarkerAction";
 import { MarkerMap } from "../component/MarkerMap";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
-  const states = useSelector((state) => state.marker); 
+  const markerStates = useSelector((state) => state.rootReducer.markerReducer);
+  const token = localStorage.getItem("token")  
+  const [markers, setMarkers] = useState([]); 
   const [rowToEdit, setRowToEdit] = useState(null);
   const theme = useTheme();
   const { t } = useTranslation();
@@ -24,14 +26,18 @@ export default function Dashboard() {
   const [markersIsSetup, setMarkerIsSetup] = useState(false);
 
   useEffect (() => {
-    if (states.markers.length === 0 && !markersIsSetup) {
-      dispatch(requestMarkers());
+    if (token && markerStates.markers.length === 0 && !markersIsSetup) {
+      dispatch(requestOrganisationMarkers(token));
+      setMarkers(markerStates.markers)
       setMarkerIsSetup(true);
     }
-  }, [states, markersIsSetup])
+    if (markerStates.markers !== markers) {
+      setMarkers(markerStates.markers)
+    }
+  })
 
   const deleteRow = (targetId) => {
-    dispatch(deleteMarker(states.markers[targetId]));
+    dispatch(deleteMarker(markerStates.markers[targetId]));
   };
 
   const editRow = (id) => {
@@ -43,9 +49,8 @@ export default function Dashboard() {
   const submitForm = (newRow) => {
     if (rowToEdit === null) {
       dispatch(addMarker(newRow));
-      console.log(states.markers);
     }
-     states.markers.map((marker, id) => {
+     markerStates.markers.map((id) => {
         if (id === rowToEdit) { 
           dispatch(editMarker(newRow));
         }
@@ -84,7 +89,7 @@ export default function Dashboard() {
             
             <Container style={{padding: "20px"}}> 
                   { isDashboardMap ? 
-                  <MarkerMap markers={states.markers} /> :  <MarkerTable rows={states.markers} editRow={editRow} deleteRow={deleteRow} />}      
+                  <MarkerMap markers={markers} /> :  <MarkerTable rows={markers} editRow={editRow} deleteRow={deleteRow} />}      
             </Container>
 
           </Container>
@@ -96,8 +101,7 @@ export default function Dashboard() {
             setRowToEdit(null);
           }}
           onSubmit={submitForm}
-          defaultValue={rowToEdit !== null && states.markers[rowToEdit]} /> }
-
+          defaultValue={rowToEdit !== null && markerStates.markers[rowToEdit]} /> }
     </>
   )
 }

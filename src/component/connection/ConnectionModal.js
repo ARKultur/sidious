@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext} from "react";
 import Modal from '../modal/Modal';
 import './ConnectionModal.css'
 import { useTranslation } from "react-i18next";
@@ -58,8 +58,6 @@ export default function ConnectionModal(props) {
 
     async function loginCall() {
         let form = document.getElementById("Sign In").getElementsByClassName("contact-form");
-        console.log("email = ", form[0][0].value);
-        console.log("password = ", form[0][1].value);
         try {
             await login(form[0][0].value, form[0][1].value);
             setOpenOverlay(false);

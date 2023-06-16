@@ -46,7 +46,6 @@ export async function apiUserInfos(token, email) {
                 'Authorization': `Bearer ${token}`
             }
         });
-    console.log(res.data);
     return res.data;
 }
 
