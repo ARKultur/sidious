@@ -23,18 +23,19 @@ export default function Dashboard() {
   const { t } = useTranslation();
   const [isDashboardMap, setDashboardMap] = React.useState(true);
   const [isModalOpen, setModalOpen] = React.useState(false);
-  const [markersIsSetup, setMarkerIsSetup] = useState(false);
 
   useEffect (() => {
-    if (token && markerStates.markers.length === 0 && !markersIsSetup) {
+    if (token) {
       dispatch(requestOrganisationMarkers(token));
       setMarkers(markerStates.markers)
-      setMarkerIsSetup(true);
     }
-    if (markerStates.markers !== markers) {
+  }, [])
+
+  useEffect (() => {
+    if (markerStates.markers != markers) {
       setMarkers(markerStates.markers)
     }
-  })
+  }, [markerStates.markers])
 
   const deleteRow = (targetId) => {
     dispatch(deleteMarker(markerStates.markers[targetId]));
@@ -89,7 +90,7 @@ export default function Dashboard() {
             
             <Container style={{padding: "20px"}}> 
                   { isDashboardMap ? 
-                  <MarkerMap markers={markers} /> :  <MarkerTable rows={markers} editRow={editRow} deleteRow={deleteRow} />}      
+                  <MarkerMap markers={markers}/> :  <MarkerTable rows={markers} editRow={editRow} deleteRow={deleteRow} />}      
             </Container>
 
           </Container>
