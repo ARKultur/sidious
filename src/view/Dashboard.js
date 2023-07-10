@@ -68,7 +68,7 @@ export default function Dashboard() {
     if (rowToEdit === null) {
       dispatch(addMarker(newRow));
     }
-    markerStates.markers.map((id) => {
+    markerStates.markers.map((marker, id) => {
       if (id === rowToEdit) {
         dispatch(editMarker(newRow));
       }
@@ -134,7 +134,7 @@ export default function Dashboard() {
                 ) : (
                   <MarkerMap markers={markers} />
                 )
-              ) : ( markerStates.isLoading ? (
+              ) : markerStates.isLoading ? (
                 <LoadingSpinner />
               ) : (
                 <MarkerTable
@@ -142,7 +142,7 @@ export default function Dashboard() {
                   editRow={editRow}
                   deleteRow={deleteRow}
                 />
-              )))}
+              ))}
           </Container>
         </Container>
       </Grid>
