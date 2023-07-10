@@ -27,7 +27,7 @@ export const MarkerTable = ({rows, editRow, deleteRow}) => {
             </TableRow>
             </TableHead>
             <TableBody>
-            {rows.map((row, id) => (
+            {rows && rows.map((row, id) => (
                 <TableRow key={id}>
                 <TableCell component="th" scope="row">
                     {id}

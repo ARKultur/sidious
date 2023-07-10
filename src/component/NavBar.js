@@ -16,6 +16,7 @@ import LangSelection from "./LangSelection";
 import ConnectionModal from './connection/ConnectionModal';
 import "./menuButtonAnimation.css"
 import { AuthContext } from '../services/AuthProvider';
+import { useNavigate } from "react-router-dom";
 
 function MenuBarElement(props)
 {
@@ -49,6 +50,7 @@ function MenuBarElement(props)
 function MenuBar()
 {
   const token = localStorage.getItem("token");
+  const username = localStorage.getItem("email");
 
   return(
     <ul style={{ display: "flex", width: "auto",
@@ -85,7 +87,7 @@ function MenuBar()
             link="/dashboard"
         /> : <></>
       }
-      { token && token !== "null" ?
+      { token && username && username === "admin" ?
         <MenuBarElement
           name= "Admin"
           link="/admin"
@@ -100,6 +102,7 @@ export default function NavBar(props)
   const { logged, username, logout } = React.useContext(AuthContext);
 
   const theme = useTheme();
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -131,6 +134,7 @@ export default function NavBar(props)
 
   function logoutCall() {
     logout();
+    navigate('/')
   };
 
   // Dropdown
@@ -152,7 +156,6 @@ export default function NavBar(props)
   return (
     <>
       <div style={{
-        paddingLeft: "1rem", paddingRight: "1rem",
         zIndex: 100000, position: "fixed"
       }}>
         <AppBar position='static' color="mainColor" sx={{ position: "fixed", width: "100%", px: "0.625rem" }} elevation={0} >
