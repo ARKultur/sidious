@@ -8,39 +8,46 @@ import axios from "axios";
 import { API_URL } from "../config/API";
 import UsersTable from "../component/UsersTable";
 import OrganisationsTable from "../component/OrganisationsTable";
+import { AdminMarkerTable } from "../component/AdminMarkerTable";
 
 export default function Admin() {
   const theme = useTheme();
   const [IsSetup, setIsSetup] = useState(false);
   const [users, setUsers] = useState([]);
+  const [markers, setMarkers] = useState([]);
   const [organisations, setOrganisations] = useState([]);
   const [menu, setMenu] = useState([
       {isFocus: true, component: "UsersTable", name: "Users"},
-      {isFocus: false, component: "OrganisationsTable", name: "Organisations"}
+      {isFocus: false, component: "OrganisationsTable", name: "Organisations"},
+      {isFocus: false, component: "MarkersTable", name: "Markers"}
   ]);
   const [table, setTable] = useState(<></>);
   const token = localStorage.getItem("token");
 
   useEffect (() => {
     const init = async() => {
-        let res = await axios.get(`${API_URL}/api/accounts/admin`,
+        let userRes = await axios.get(`${API_URL}/api/accounts/admin`,
             { headers: {
                 Authorization: `Bearer ${token}`
             }
         });
 
-        setUsers(res.data);
-        res = await axios.get(`${API_URL}/api/organisations`,
+        setUsers(userRes.data);
+        let orgRes = await axios.get(`${API_URL}/api/organisations`,
             { headers: {
                 Authorization: `Bearer ${token}`
             }
         });
-        setOrganisations(res.data);
+
+        setOrganisations(orgRes.data);
+        let markerRes = await axios.get(`${API_URL}/api/nodes/all`);
+
+        setMarkers(markerRes.data);
         setIsSetup(true);
     }
     if (!IsSetup)
         init();
-  }, [users, organisations, IsSetup, token])
+  }, [users, organisations, markers, IsSetup, token])
 
   const deleteUser = async(id) => {
     try {
@@ -57,6 +64,23 @@ export default function Admin() {
         alert(e.response.data);
     }
   };
+
+  const deleteMarker = async (marker) => {
+    try {
+        const res = await axios.delete(`${API_URL}/api/nodes/admin`,
+          {
+            data: { name: marker.name },
+            headers: { Authorization: `Bearer ${token}`}
+          },
+        );
+        const updatedMarkers = markers.filter((item) => item.name !== marker.name);
+        setMarkers(updatedMarkers);
+        window.location.reload()
+    } catch (e) {
+        alert(e.response.data);
+    }
+  };
+
   const deleteOrg = async(id) => {
     try {
         const res = await axios.delete(`${API_URL}/api/organisations`,
@@ -74,7 +98,6 @@ export default function Admin() {
   }
 
   const editUser = async(id, orgId) => {
-      console.log(id, orgId);
       try {
           const res = await axios.patch(`${API_URL}/api/accounts/admin`, {
               id: id,
@@ -92,6 +115,28 @@ export default function Admin() {
           alert(e.response.data);
       }
   };
+
+  const editMarker = async (marker) => {
+    try {
+        const res = await axios.patch(`${API_URL}/api/nodes/admin`, {
+            name: marker.name,
+            description: marker.description,
+            longitude: marker.longitude,
+            latitude: marker.latitude,
+            status: marker.status,
+            organisationId: marker.organisationId,
+        }, { headers: { Authorization : `Bearer ${token}`}});
+        const updatedMarkers = markers;
+        updatedMarkers.map((item) => {
+            if (item.name === marker.name)
+            return marker;
+        });
+        setUsers(updatedMarkers);
+        window.location.reload()
+    } catch (e) {
+        alert(e.response.data);
+    }
+};
 
   const addOrganisation = async(name) => {
     try {
@@ -128,6 +173,7 @@ export default function Admin() {
         alert(e.response.data);
     }
   }
+;
 
   const setMenuFocus = (name) => {
     const newMenu = menu;
@@ -154,7 +200,12 @@ export default function Admin() {
                 editOrg={editOrganisation}
                 deleteOrg={deleteOrg}
             />;
-    return <UsersTable rows={users} deleteUser={deleteUser} editUser={editUser}/>;
+    else if (name === "MarkersTable") {
+        console.log(markers);
+        return <AdminMarkerTable rows={markers} editMarker={editMarker} deleteMarker={deleteMarker}/>        
+    }
+    else
+        return <UsersTable rows={users} deleteUser={deleteUser} editUser={editUser}/>;
   }
   return(
     <>
@@ -172,6 +223,7 @@ export default function Admin() {
             <Container className="dashboard-header" style={{flexDirection: "row"}}>
                 <Button title="Users" onClick={() => setMenuFocus("Users")}>Users</Button>
               <Button title="Organisations" onClick={() => setMenuFocus("Organisations")}>Organisations</Button>
+              <Button title="Organisations" onClick={() => setMenuFocus("Markers")}>Markers</Button>
             </Container>
             <Container style={{padding: "20px"}}>
                 {table}
