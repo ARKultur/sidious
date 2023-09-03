@@ -1,25 +1,55 @@
-import { Box, Container, Input, Pagination, TextField } from "@mui/material";
-import React from "react";
+import { Box, Container, Pagination, TextField } from "@mui/material";
+import React, { useEffect } from "react";
 import "../styles/component/MarkerTable.css";
-import SearchIcon from "@mui/icons-material/Search";
+import { getContacts } from "../API/Contact";
 
-const ContactTable = ({}) => {
-  const [isModalOpen, setModalOpen] = React.useState(false);
+const ContactTable = () => {
+  const [contacts, setContacts] = React.useState([]);
+  const [page, setPage] = React.useState(1);
+  const [fields, setFields] = React.useState({
+    email: "",
+    name: "",
+    category: 0,
+    description: "",
+  });
+
+  const getData = async () => {
+    const data = await getContacts();
+
+    setContacts(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    setFields({
+      email: contacts && contacts[page - 1] && contacts[page - 1].email,
+      name: contacts && contacts[page - 1] && contacts[page - 1].name,
+      category: contacts && contacts[page - 1] && contacts[page - 1].category,
+      description:
+        contacts && contacts[page - 1] && contacts[page - 1].description,
+    });
+  }, [page, contacts]);
+
+  console.log(contacts && contacts[page - 1] && contacts[page - 1].email);
+
+  if (!contacts || !contacts.length || !fields) {
+    console.log("okokokoko");
+    return <div>Loading...</div>;
+  } else if (contacts.length === 0) {
+    return <div>No data</div>;
+  }
 
   return (
-    <Container className="table-container" sx={{
-      paddingTop: "2rem",
-      paddingBottom: "2rem",
-    }}>
-      <Input
-        placeholder="Search"
-        sx={{
-          alignSelf: "center",
-          justifyContent: "center",
-        }}
-        endAdornment={<SearchIcon />}
-      />
-
+    <Container
+      className="table-container"
+      sx={{
+        paddingTop: "2rem",
+        paddingBottom: "2rem",
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -31,33 +61,45 @@ const ContactTable = ({}) => {
       >
         <TextField
           disabled
-          id="outlined-disabled"
           label="Email"
-          defaultValue="email@email.com"
+          variant="filled"
+          value={fields && fields.email}
+          onChange={(e) => setFields({ ...fields, email: e.target.value })}
         />
 
         <TextField
           disabled
-          id="outlined-disabled"
-          label="Nom Prénom"
-          defaultValue="Nom Prénom"
+          label="Username"
+          variant="filled"
+          value={fields && fields.name}
+          onChange={(e) => setFields({ ...fields, email: e.target.value })}
         />
 
         <TextField
-          id="outlined-multiline-static"
+          disabled
+          label="Category"
+          variant="filled"
+          value={fields && fields.category === 1 ? "Feedback" : "Bug report"}
+          onChange={(e) => setFields({ ...fields, email: e.target.value })}
+        />
+
+        <TextField
           label="Message"
+          variant="filled"
           multiline
           rows={4}
           disabled
-          defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi. Sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi. Sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi. Sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi. Sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi. Sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi."
+          value={fields && fields.description}
+          onChange={(e) => setFields({ ...fields, email: e.target.value })}
         />
 
         <Pagination
-          count={10}
+          count={(contacts && contacts.length) || 0}
           sx={{
             alignSelf: "center",
             justifyContent: "center",
           }}
+          onChange={(_, value) => setPage(value)}
         />
       </Box>
     </Container>
