@@ -97,7 +97,7 @@ export default function Contact()
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
-  
+
   function send() {
     setLoading(true);
     if ((data.description === "" && data.name === "" && data.email === "") || category === '') {
@@ -115,7 +115,7 @@ export default function Contact()
       setLoading(false);
       return;
     }
-    axios.post('https://arktest.creative-rift.com/api/contact',{
+    axios.post('http://x2024arkultur120290831001.westeurope.cloudapp.azure.com:4000/api/contact',{
       name: data.name,
       category: category,
       description: data.description,

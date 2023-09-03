@@ -1,22 +1,21 @@
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import * as React from 'react';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import './App.css';
-import {CssBaseline, ThemeProvider} from "@mui/material";
-import {defaultTheme} from './theme/Theme'
-import LandingPageView from "./view/LandingPage";
-import { createBrowserRouter, Router, RouterProvider} from "react-router-dom";
-import Error from "./view/Error";
-import Maintenance from "./view/Maintenance";
-import Project from "./view/Project";
-import Team from "./view/Team";
-import Feature from "./view/Feature";
-import PrivacyPolicyView from './view/PrivacyPolicyView';
-import TermsView from './view/TermsView';
-import Timeline from "./view/Timeline";
+import { defaultTheme } from './theme/Theme';
+import Admin from "./view/Admin.js";
 import Contact from "./view/Contact";
 import Dashboard from "./view/Dashboard";
-import Admin from "./view/Admin.js";
+import Error from "./view/Error";
+import Feature from "./view/Feature";
+import LandingPageView from "./view/LandingPage";
+import Maintenance from "./view/Maintenance";
+import PrivacyPolicyView from './view/PrivacyPolicyView';
+import Project from "./view/Project";
+import Team from "./view/Team";
+import TermsView from './view/TermsView';
+import Timeline from "./view/Timeline";
 
-import GuideModal from "./component/guide/GuideModal";
 import { AuthProvider } from './services/AuthProvider';
 
 import ProfileView from './view/Profile';
