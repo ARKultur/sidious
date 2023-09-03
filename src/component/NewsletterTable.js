@@ -1,18 +1,31 @@
-import React from "react";
-import TableBody from "@material-ui/core/TableBody";
 import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { Box, Button, Container, IconButton, TextField } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import ClearIcon from "@mui/icons-material/Clear";
-import "../styles/component/MarkerTable.css";
 import { CheckBox } from "@mui/icons-material";
+import { Box, Button, Container, TextField } from "@mui/material";
+import React, { useEffect } from "react";
+import { getSubbedToNewsletter, sendNewsletter } from "../API/Newsletter";
+import "../styles/component/MarkerTable.css";
 
-const NewsletterForm = ({}) => {
-  const [isModalOpen, setModalOpen] = React.useState(false);
+const NewsletterForm = ({ setStep }) => {
+  const [fields, setFields] = React.useState({
+    subject: "",
+    text: "",
+  });
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+
+      await sendNewsletter(fields);
+      setStep(2);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <Container
@@ -34,7 +47,8 @@ const NewsletterForm = ({}) => {
         <TextField
           id="outlined-disabled"
           label="Subject"
-          defaultValue="Subject"
+          value={fields.subject}
+          onChange={(e) => setFields({ ...fields, subject: e.target.value })}
         />
 
         <TextField
@@ -42,32 +56,82 @@ const NewsletterForm = ({}) => {
           label="Message"
           multiline
           rows={6}
-          defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi. Sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi. Sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi. Sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi. Sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi. Sed euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl eget nisl. Nulla facilisi."
+          value={fields.text}
+          onChange={(e) => setFields({ ...fields, text: e.target.value })}
         />
 
-        <Button
-          variant="contained"
-          color="secondary"
-          sx={{
-            alignSelf: "center",
-            justifyContent: "center",
-          }}
-        >
-          Send
-        </Button>
+        <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              alignSelf: "center",
+              justifyContent: "center",
+            }}
+            onClick={() => setStep(0)}
+          >
+            Cancel
+          </Button>
+
+          <Button
+            variant="contained"
+            color="secondary"
+            sx={{
+              alignSelf: "center",
+              justifyContent: "center",
+            }}
+            onClick={handleSubmit}
+          >
+            Send
+          </Button>
+        </div>
       </Box>
     </Container>
   );
 };
 
-const NewsletterTable = ({}) => {
-  const [step, setStep] = React.useState(0);
-  const [data, setData] = React.useState([]);
+const TableItem = ({ account }) => {
   const [selected, setSelected] = React.useState(false);
 
   return (
+    <TableRow key={account.id}>
+      <TableCell component="th" scope="row">
+        <CheckBox checked={selected} onChange={() => setSelected(!selected)} />
+      </TableCell>
+      <TableCell component="th" scope="row">
+        {account.id}
+      </TableCell>
+      <TableCell align="right">{account.username}</TableCell>
+      <TableCell align="right">{account.email}</TableCell>
+    </TableRow>
+  );
+};
+
+const NewsletterTable = () => {
+  const [step, setStep] = React.useState(0);
+  const [accounts, setAccounts] = React.useState([]);
+
+  const getData = async () => {
+    const data = await getSubbedToNewsletter();
+
+    setAccounts(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  // if (accounts.length === 0) {
+  //   return (
+  //     <Container className="table-container" style={{ padding: 30 }}>
+  //       <h1>No accounts found.</h1>
+  //     </Container>
+  //   );
+  // }
+
+  return (
     <Container className="table-container">
-      {step === 0 ? (
+      {step === 0 && (
         <>
           <TableContainer>
             <Table aria-label="simple table">
@@ -80,19 +144,9 @@ const NewsletterTable = ({}) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableRow key={"0"}>
-                  <TableCell component="th" scope="row">
-                    <CheckBox
-                      checked={selected}
-                      onChange={() => setSelected(!selected)}
-                    />
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {"0"}
-                  </TableCell>
-                  <TableCell align="right">{"Prenom Nom"}</TableCell>
-                  <TableCell align="right">{"email@email.com"}</TableCell>
-                </TableRow>
+                {accounts.map((account) => (
+                  <TableItem account={account} />
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -110,8 +164,12 @@ const NewsletterTable = ({}) => {
             Next
           </Button>
         </>
-      ) : (
-        <NewsletterForm />
+      )}
+      {step === 1 && <NewsletterForm setStep={setStep} />}
+      {step === 2 && (
+        <Container className="table-container" style={{ padding: 30 }}>
+          <h1>Newsletter has been sent.</h1>
+        </Container>
       )}
     </Container>
   );

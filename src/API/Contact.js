@@ -11,7 +11,6 @@ export const getContacts = async () => {
 
     return response.data;
   } catch (e) {
-    return {};
-    // throw e;
+    return [];
   }
 };
