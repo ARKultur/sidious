@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import TableBody from "@material-ui/core/TableBody";
 import Table from "@material-ui/core/Table";
 import TableCell from "@material-ui/core/TableCell";
@@ -9,8 +10,32 @@ import { Container, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import ClearIcon from "@mui/icons-material/Clear";
 import "../styles/component/MarkerTable.css";
+import { AdminMarkerModal } from "./AdminMarkerModal";
 
-export const MarkerTable = ({ rows, editRow, deleteRow }) => {
+export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
+  const [isModalOpen, setModalOpen] = React.useState(false);
+  const markerStates = useSelector((state) => state.rootReducer.markerReducer);
+  const [rowToEdit, setRowToEdit] = React.useState(null);
+ 
+  const deleteRow = (targetId) => {
+    deleteMarker(markerStates.markers[targetId]);
+  };
+
+  const editRow = (id) => {
+    setRowToEdit(id);
+
+    setModalOpen(true);
+  };
+
+  const submitForm = (newRow) => {
+    markerStates.markers.map((marker, id) => {
+      if (id === rowToEdit) {
+        editMarker(newRow);
+      }
+    });
+  }
+    
+  
   return (
     <Container className="table-container">
       <TableContainer>
@@ -62,6 +87,17 @@ export const MarkerTable = ({ rows, editRow, deleteRow }) => {
           </TableBody>
         </Table>
       </TableContainer>
+      { isModalOpen && <AdminMarkerModal 
+      
+          closeModal={() => {
+            setModalOpen(false);
+            setRowToEdit(null);
+          }}
+          onSubmit={submitForm}
+          defaultValue={rowToEdit !== null && rows[rowToEdit]}
+        />
+      }
     </Container>
+    
   );
 };
