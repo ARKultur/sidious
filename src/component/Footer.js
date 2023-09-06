@@ -1,122 +1,205 @@
 import * as React from "react";
-import {Grid, Typography, useTheme} from "@mui/material";
+import { Grid, Typography, useTheme } from "@mui/material";
 import LogoIcon from "./LogoIcon";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
+import AddIcon from "@mui/icons-material/Add";
+import { subToNewsLetter } from "../API/Newsletter";
+import { Button } from "@material-ui/core";
 
-function FooterMenuElement(props)
-{
+const FooterNewsletter = () => {
+  const theme = useTheme();
+  const [email, setEmail] = React.useState("");
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      subToNewsLetter(email);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return (
+    <div>
+      <Typography
+        color={theme.palette.title.main}
+        style={{
+          marginBottom: "1.5rem",
+          display: "flex",
+          fontWeight: 600,
+          textTransform: "uppercase",
+        }}
+      >
+        Newsletter
+      </Typography>
+
+      <div style={{ display: "flex", justifyContent: "center", gap: 5 }}>
+        <input
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{
+            borderRadius: "0.25rem",
+            border: "none",
+            padding: "0.5rem 0.5rem",
+          }}
+        />
+
+        <Button
+          variant={email !== "" ? "contained" : "outlined"}
+          disabled={email === ""}
+          onClick={handleSubmit}
+          sx={{
+            color: "#fff",
+            border: "none",
+            padding: "0.5rem 0.5rem",
+            borderRadius: "0.25rem",
+            marginLeft: "1rem",
+          }}
+        >
+          <AddIcon />
+        </Button>
+      </div>
+    </div>
+  );
+};
+function FooterMenuElement(props) {
   const theme = useTheme();
   const { t } = useTranslation();
 
-  const list = props.subMenu.map((item) =>
-    <li key={item.name.toString() } style={{marginBottom: "1rem", display: "flex"}}>
-      <a href={item.route} target={item.newPage ? '_blank' : ''} rel={item.newPage ? "noopener" : ''}
-         style={{color: `${theme.palette.primary.main}`,
-           textDecoration: "inherit"
-      }}>
+  const list = props.subMenu.map((item) => (
+    <li
+      key={item.name.toString()}
+      style={{ marginBottom: "1rem", display: "flex" }}
+    >
+      <a
+        href={item.route}
+        target={item.newPage ? "_blank" : ""}
+        rel={item.newPage ? "noopener" : ""}
+        style={{
+          color: `${theme.palette.primary.main}`,
+          textDecoration: "inherit",
+        }}
+      >
         {t(item.name)}
       </a>
     </li>
-  )
+  ));
   return (
-      <Grid item xs container direction="column" style={{alignContent: "flex-start"}}>
-      <Typography color={theme.palette.title.main} style={{marginBottom: "1.5rem", display: "flex",
-        fontWeight: 600, textTransform: "uppercase"}}>
+    <Grid
+      item
+      xs
+      container
+      direction="column"
+      style={{ alignContent: "flex-start" }}
+    >
+      <Typography
+        color={theme.palette.title.main}
+        style={{
+          marginBottom: "1.5rem",
+          display: "flex",
+          fontWeight: 600,
+          textTransform: "uppercase",
+        }}
+      >
         {t(props.name)}
       </Typography>
-      <ul style={{
-        listStyleType: "none",
-        margin: "0", padding: "0"
-      }}>
+      <ul
+        style={{
+          listStyleType: "none",
+          margin: "0",
+          padding: "0",
+        }}
+      >
         {list}
       </ul>
     </Grid>
-  )
+  );
 }
 
-export default function FooterComponent()
-{
+export default function FooterComponent() {
   const companySubmenu = {
-    name: 'footer.submenu_1.name',
+    name: "footer.submenu_1.name",
     children: [
       {
-        name: 'footer.submenu_1.item_1',
-        route: '/maintenance',
+        name: "footer.submenu_1.item_1",
+        route: "/maintenance",
         newPage: false,
       },
       {
-        name: 'footer.submenu_1.item_2',
-        route: '/maintenance',
+        name: "footer.submenu_1.item_2",
+        route: "/maintenance",
         newPage: false,
-      }
-    ]
+      },
+    ],
   };
   const helpSubmenu = {
-    name: 'footer.submenu_2.name',
+    name: "footer.submenu_2.name",
     children: [
       {
-        name: 'footer.submenu_2.item_1',
-        route: '/maintenance',
+        name: "footer.submenu_2.item_1",
+        route: "/maintenance",
         newPage: false,
       },
       {
-        name: 'footer.submenu_2.item_2',
-        route: 'https://github.com/ARKultur',
+        name: "footer.submenu_2.item_2",
+        route: "https://github.com/ARKultur",
         newPage: true,
       },
       {
-        name: 'footer.submenu_2.item_3',
-        route: '/maintenance',
+        name: "footer.submenu_2.item_3",
+        route: "/maintenance",
         newPage: false,
-      }
-    ]
+      },
+    ],
   };
   const legalSubmenu = {
-    name: 'footer.submenu_3.name',
+    name: "footer.submenu_3.name",
     children: [
       {
-        name: 'footer.submenu_3.item_1',
-        route: '/privacy-policy',
+        name: "footer.submenu_3.item_1",
+        route: "/privacy-policy",
         newPage: false,
       },
       {
-        name: 'footer.submenu_3.item_3',
-        route: '/terms',
+        name: "footer.submenu_3.item_3",
+        route: "/terms",
         newPage: false,
-      }
-    ]
-  }
+      },
+    ],
+  };
   const projectsSubmenu = {
-    name: 'footer.submenu_4.name',
+    name: "footer.submenu_4.name",
     children: [
       {
-        name: 'footer.submenu_4.item_1',
-        route: 'https://github.com/ARKultur/naboo',
+        name: "footer.submenu_4.item_1",
+        route: "https://github.com/ARKultur/naboo",
         newPage: true,
       },
       {
-        name: 'footer.submenu_4.item_2',
-        route: 'https://github.com/ARKultur/theed',
+        name: "footer.submenu_4.item_2",
+        route: "https://github.com/ARKultur/theed",
         newPage: true,
       },
       {
-        name: 'footer.submenu_4.item_3',
-        route: 'https://github.com/ARKultur/sentinel',
+        name: "footer.submenu_4.item_3",
+        route: "https://github.com/ARKultur/sentinel",
         newPage: true,
       },
       {
-        name: 'footer.submenu_4.item_4',
-        route: 'https://github.com/ARKultur/arkham',
+        name: "footer.submenu_4.item_4",
+        route: "https://github.com/ARKultur/arkham",
         newPage: true,
-      }
-    ]
+      },
+    ],
   };
   const downloadsSubmenu = {
-    name: 'footer.submenu_5.name',
+    name: "footer.submenu_5.name",
     children: [
       {
-        name: 'footer.submenu_5.item_1',
-        route: '/arkham.apk',
+        name: "footer.submenu_5.item_1",
+        route: "/arkham.apk",
         newPage: false,
       },
       // {
@@ -124,37 +207,80 @@ export default function FooterComponent()
       //   route: '/maintenance',
       //   newPage: false,
       // }
-    ]
-  }
-  const subMenu = [companySubmenu, helpSubmenu, legalSubmenu, projectsSubmenu, downloadsSubmenu];
-  const ye = subMenu.map((menu, index) =>
-    <FooterMenuElement
-      key={index}
-      name={menu.name}
-      subMenu={menu.children}
-    />
+    ],
+  };
+  const subMenu = [
+    companySubmenu,
+    helpSubmenu,
+    legalSubmenu,
+    projectsSubmenu,
+    downloadsSubmenu,
+  ];
+  const ye = (
+    <>
+      {subMenu.map((menu, index) => (
+        <FooterMenuElement
+          key={index}
+          name={menu.name}
+          subMenu={menu.children}
+        />
+      ))}
+      <Grid
+        item
+        xs
+        container
+        direction="column"
+        style={{ alignContent: "flex-start" }}
+      >
+        <FooterNewsletter />
+      </Grid>
+    </>
   );
   const theme = useTheme();
   const { t } = useTranslation();
 
   return (
-    <footer  style={{ backgroundColor: `${theme.palette.footer}`}}>
-      <div style={{ padding: "2.5rem", maxWidth: "1280px",
-      marginLeft: "auto", marginRight: "auto",
-        paddingBottom: "4rem", paddingTop: "4rem"
-      }}>
+    <footer style={{ backgroundColor: `${theme.palette.footer}` }}>
+      <div
+        style={{
+          padding: "2.5rem",
+          maxWidth: "1280px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingBottom: "4rem",
+          paddingTop: "4rem",
+        }}
+      >
         <Grid container spacing={12}>
           {ye}
         </Grid>
-        <hr style={{ marginBottom: "2rem", marginTop: "2rem",
-        marginLeft: "auto", marginRight: "auto",
-        borderColor: "#8194b0", height: 0, borderWidth: 0, borderTopWidth: "1px",
-        color: "inherit"}}/>
-        <div style={{textAlign: "center", display: "flex", alignItems: "center", flexDirection: "column"}}>
-          <LogoIcon/>
-          <span style={{color: `${theme.palette.primary.main}`}}>{t("footer.subtitle")}</span>
+        <hr
+          style={{
+            marginBottom: "2rem",
+            marginTop: "2rem",
+            marginLeft: "auto",
+            marginRight: "auto",
+            borderColor: "#8194b0",
+            height: 0,
+            borderWidth: 0,
+            borderTopWidth: "1px",
+            color: "inherit",
+          }}
+        />
+        <div
+          style={{
+            textAlign: "center",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <LogoIcon />
+          <span style={{ color: `${theme.palette.primary.main}` }}>
+            {t("footer.subtitle")}
+          </span>
         </div>
       </div>
     </footer>
-  )
+  );
 }
