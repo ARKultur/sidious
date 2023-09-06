@@ -19,6 +19,7 @@
     "language": "Langue",
     "footer": {
       "subtitle": "© 2022 - Construit avec React et MaterialUI",
+      "newsletter": "Inscris-toi",
       "submenu_1" : {
         "name": "Compagnie",
         "item_1": "A propos",

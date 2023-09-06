@@ -93,16 +93,13 @@ const NewsletterForm = ({ setStep }) => {
 const TableItem = ({ account }) => {
   const [selected, setSelected] = React.useState(false);
 
+  const handleChange = (event) => {
+    setSelected(event.target.checked);
+  };
+
   return (
     <TableRow key={account.id}>
-      <TableCell component="th" scope="row">
-        <CheckBox checked={selected} onChange={() => setSelected(!selected)} />
-      </TableCell>
-      <TableCell component="th" scope="row">
-        {account.id}
-      </TableCell>
-      <TableCell align="right">{account.username}</TableCell>
-      <TableCell align="right">{account.email}</TableCell>
+      <TableCell align="center">{account.email}</TableCell>
     </TableRow>
   );
 };
@@ -121,13 +118,13 @@ const NewsletterTable = () => {
     getData();
   }, []);
 
-  // if (accounts.length === 0) {
-  //   return (
-  //     <Container className="table-container" style={{ padding: 30 }}>
-  //       <h1>No accounts found.</h1>
-  //     </Container>
-  //   );
-  // }
+  if (accounts.length === 0) {
+    return (
+      <Container className="table-container" style={{ padding: 30 }}>
+        <h1>No accounts found.</h1>
+      </Container>
+    );
+  }
 
   return (
     <Container className="table-container">
@@ -137,10 +134,7 @@ const NewsletterTable = () => {
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell></TableCell>
-                  <TableCell>ID</TableCell>
-                  <TableCell align="right">Username</TableCell>
-                  <TableCell align="right">Email</TableCell>
+                  <TableCell align="center">Email</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -151,18 +145,19 @@ const NewsletterTable = () => {
             </Table>
           </TableContainer>
 
-          <Button
-            variant="contained"
-            color="info"
-            onClick={() => setStep(1)}
-            sx={{
-              mt: 2,
-              mb: 2,
-              alignSelf: "center",
-            }}
-          >
-            Next
-          </Button>
+          <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
+            <Button
+              variant="contained"
+              color="info"
+              onClick={() => setStep(1)}
+              sx={{
+                mt: 2,
+                mb: 2,
+              }}
+            >
+              Next
+            </Button>
+          </div>
         </>
       )}
       {step === 1 && <NewsletterForm setStep={setStep} />}
