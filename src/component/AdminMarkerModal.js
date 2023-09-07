@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, Container, TextField, Typography, IconButton} from "@mui/material";
+import { Button, Container, TextField, Typography, IconButton, Input} from "@mui/material";
 import "../styles/component/MarkerModal.css"
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
@@ -78,6 +78,15 @@ export const AdminMarkerModal = ({closeModal, onSubmit, defaultValue}) => {
                     <br/>
                     <TextField onChange={handleChange}  name="latitude" defaultValue={formData.latitude} label="Latitude"/>
                     <br/>
+                    <TextField onChange={handleChange}  name="hauteur" defaultValue={formData.latitude} label="Hauteur"/>
+                    <br/>
+                    <TextField onChange={handleChange}  name="status" defaultValue={formData.latitude} label="Status"/>
+                    <br/>
+                      Model 3D
+                      <Input type="file"/>
+                    <br/>
+                      Texture
+                      <Input type="file"/>
                     {errors && <div className="modal-error">{`Please include: ${errors}`}</div>}
                     <Button className="modal-btn" onClick={handleSubmit}>Soumettre</Button>
                 </form>

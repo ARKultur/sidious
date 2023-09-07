@@ -23,6 +23,7 @@ export default function Admin() {
     { isFocus: false, component: "OrganisationsTable", name: "Organisations" },
     { isFocus: false, component: "ContactTable", name: "Contact" },
     { isFocus: false, component: "NewsletterTable", name: "Newsletter" },
+    {isFocus: false, component: "MarkersTable", name: "Markers"},
   ]);
   const [table, setTable] = useState(<></>);
   const token = localStorage.getItem("token");
@@ -227,7 +228,6 @@ export default function Admin() {
         />
       );
     else if (name === "MarkersTable") {
-      console.log(markers);
       return (
         <AdminMarkerTable
           rows={markers}
@@ -275,6 +275,12 @@ export default function Admin() {
               onClick={() => setMenuFocus("Organisations")}
             >
               Organisations
+            </Button>
+            <Button
+              title="Markers"
+              onClick={() => setMenuFocus("Markers")}
+            >
+              Markers
             </Button>
           </Container>
           <Container style={{ padding: "20px" }}>{table}</Container>
