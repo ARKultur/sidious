@@ -8,8 +8,10 @@
     "menu_contact": "Contact us",
     "menu_dashboard": "Dashboard",
     "login": "Log in",
-    "main_title": "Improving your cultural visits, using AR",
-    "main_subtitle": "Our team of talented developers aims to bring the future into the past, using Augmented Reality.",
+    "main_title": "Discover a world of culture at your fingertips",
+    "main_subtitle": "ARKultur reinvents your cultural visits and offers an exceptional immersive experience by blending the future into the past with augmented reality",
+    "pro_main_title": "Elevate your cultural sites to new horizons",
+    "pro_main_subtitle": "ARKultur reinvents your cultural visits and provides your customers with an exceptional immersive experience by integrating augmented reality",
     "visit_github": "Visit us on GitHub",
     "back_to_menu": "Return to the Home page",
     "maintenance": "This page is currently in maintenance. Sorry for the inconvenience.",
@@ -53,25 +55,26 @@
     "project": {
       "tab_title": "ARKultur - Our Project",
       "title": "ARKultur",
-      "subtitle": "ARKultur is a project made by 7 student from Epitech as a part of Epitech Innovative Project (EIP), our project graduation.",
+      "subtitle": "ARKultur is an Epitech project, created by 7 students, reinventing cultural monument visits using augmented reality to blend history, art, and technology. Our goal: an immersive experience.",
       "section_1": {
         "title": "Observation",
-        "text": "The idea of the project emerges juste after the third wave of Covid-19 in 2021. The impact was hard for every one, and mostly for the culture. Visiting a place can be annoying for children, information may not be easy to read for people with disabilities, or just missing. Without theses information we loose our history. It's a big issue and we have to change it."
+        "text": "The emergence of ARKultur is linked to the lockdowns due to the Covid-19 pandemic in 2021, disrupting our daily lives and culture. ARKultur offers an innovative solution to preserve cultural heritage and make it accessible to all, especially the younger generation, through augmented reality."
       },
       "section_2": {
         "title": "Solution",
-        "text": "ARKultur is here to change how we visit a place! With our mobile application can can have an access to all available data of a museum. You can see in a map all cultural place around you and discover something you never notice. Several guide are available for everyone. A treasure hunter or a more classical guide there's something for everyone. You can also find an Augmented Reality (AR) view of the place to help you to catch every information even if they are physically inaccessible."
+        "text": "ARKultur is a groundbreaking platform that enhances cultural site visits. Our admin panel empowers you to add descriptions, audio guides, and 3D models to your site. Through our mobile app, visitors access an abundance of information.\nWe provide an interactive map listing nearby cultural sites, enabling users to explore new places. Our diverse guides cater to all ages and interests, offering in-depth information.\nAugmented Reality (AR) is a highlight, providing immersive content and enriching the visit. AR combined with audio guides creates an unforgettable experience.\nARKultur ensures a unique and immersive cultural visit, utilizing the latest technology to deliver a personalized and enriching experience for all visitors."
       },
       "section_3": {
         "title": "Epitech",
-        "text": "Epitech is a school in 5 years, and one in a foreign country, specialized in computer science. On our 3th year we start our EIP (Epitech Innovative Project) which will last 3 years. The goal of this project is to create a real project and manage him like a project in a company. We have to be innovative and creative to create a project that bring something new in our world."
+        "text": "Epitech is a private school specializing in computer science, emphasizing hands-on learning and technical skill development. The school promotes autonomy, creativity, and an entrepreneurial spirit to prepare computer professionals for real-world challenges."
       }
     },
     "team": {
-      "tab_title": "ARKultur - Team",
+      "tab_title": "ARKultur - Our Team",
       "title": "Our Team",
       "team_leader": "Team's leader",
       "web": "Web Developer",
+      "front": "Frontend Developer",
       "back": "Backend Developer",
       "mob": "Mobile Developer"
     },
@@ -81,75 +84,65 @@
     "feature": {
       "tab_title": "ARKultur - Features",
       "title": "Features",
-      "subtitle": "Our project offers two categories of feature depending on weather you are a tourist or a manager of cultural place. You have:",
-      "section_mobile": "Mobile",
-      "section_dashboard": "Dashboard",
-      "mobile": {
-        "section_1": {
-          "title": "Interactive map",
-          "text": "Arkultur offers a interactive map that allow you to see all cultural places around you. With this map feel free to (re)discover your city!"
-        },
-        "section_2": {
-          "title": "Augmented Reality",
-          "text": "Augmented Reality is a very good technology to travel in the past. Look through your phone to see how the place was be in the past!"
-        },
-        "section_3": {
-          "title": "Profile",
-          "text": "A complete management of your profile allow you to see only what you want to do."
-        }
+      "subtitle": "Our project offers two categories of feature depending on weather you are a tourist or a manager of cultural place.",
+      "section_1": {
+        "title": "Mobile Interactive Map",
+        "text": "Explore a myriad of captivating cultural sites through our mobile app. The interactive map makes it easy to discover various locations using our solution, providing detailed information and a unique immersive experience"
       },
-      "web": {
-        "section_1": {
-          "title": "Interactive Map",
-          "text": "Arkultur offers you an interactive map that facilitates the management of your cultural places."
-        }
+      "section_2": {
+        "title": "Augmented Reality",
+        "text": "Discover cultural heritage in an entirely new way through our augmented reality technology. Explore detailed information and 3D models representing objects or structures related to the cultural sites you visit, allowing you to delve into history and enjoy an interactive and captivating experience"
+      },
+      "section_3": {
+        "title": "Web Interactive Map",
+        "text": "Explore the world of cultural heritage from the comfort of your web browser with our online interactive map. Discover a multitude of cultural sites and enjoy augmented reality features that allow you to view information and 3D models related to each location. Immerse yourself in history and have a unique immersive experience, all from your computer or mobile device"
       }
     },
     "timeline": {
       "step1": {
         "title": "Moonshot",
         "time": "September 2021",
-        "text": "The Moonshot last two weeks. The first we work on different problematic to find a solution and make a little speech at the end of the day. After a week we choose 3 solution and improve these solution. At the end we have to choose one of these solution that can be our project. And we choose ARKultur. It's the beginning."
+        "text": "Epitech's Moonshot is a two-week intensive program where students collaborate in teams on complex problems, ultimately presenting a concrete project like ARKultur."
       },
       "step2": {
         "title": "Research",
         "time": "October - December 2021",
-        "text": "The goal now is to check is our solution feasible. To check we've created a questioner and we ask several organisation abour thier potential issue. This experience was very useful to know which tack we have to make first."
+        "text": "We're assessing our solution's feasibility through surveys with organizations and individuals. Their responses guide our future actions."
       },
       "step3": {
         "title": "Forward",
         "time": "December 2021",
-        "text": "After all research it time to create a little prototype to show what the final product looks like. We have two week to create this prototype with a presentation at then end. We've created a good prototype that show a good image of what we can have a the end."
+        "text": "Epitech's Forward is a tech project incubation program. We created a Proof of Concept (PoC) for ARKultur, showcasing key features. With support and resources, we realized our entrepreneurial vision and confirmed ARKultur's technical feasibility, laying a strong foundation for our project in the market."
       },
       "step4": {
         "title": "Let's work",
         "time": "April - June 2022",
-        "text": "Before we start the real project we have to define which technologies we will use during the project. It's very important so during these month we try several technologies and choose the best at the end."
+        "text": "Before starting the concrete project, it's crucial to precisely define the technologies we'll use. This step is vital as it directly impacts the project's development and success. After months of exploration and testing, we've selected the ideal technology that meets our specific needs, ensuring efficient development and an optimal user experience."
       },
       "step5": {
         "title": "Management",
         "time": "July - October 2022",
-        "text": "We're going to work several month together so we have to define the rules to work faster. the development has also started."
+        "text": "We'll collaborate for several months, so it's crucial to establish effective work rules to optimize our partnership. We've already begun the project's development, implementing features, testing, and iterating to create a robust final product. By setting clear rules and working in an organized manner, we'll maximize our efficiency towards our shared goals."
       },
       "step6": {
         "title": "Fast Forward",
         "time": "November 2022 - January 2023 ",
-        "text": "It is time to go faster. The past month we work of the organisation of the team, tested our technologies and just started the project. Now we're going deeper to the project by creating our major features (Website, Dashboard, Mobile)."
+        "text": "It's time to accelerate. Last month, we organized the team, tested technologies, and initiated the project. Now, we're focusing on creating the core features (website, dashboard, mobile app). Our goal is rapid development of these key elements to solidify our project, making significant progress."
       },
       "step7": {
-        "title": "Preparing beta (now)",
+        "title": "Preparing beta",
         "time": "February - May 2023",
-        "text": "Our major features is now ready to use we have to prepare our project for a future beta. Working on the user experience and communication between our tester and us. We've improved all our feature and make easier to use."
+        "text": "Our core features are ready, and we're preparing our project for the beta version. We're enhancing the user experience and internal communication, making everything more intuitive. The goal is to ensure the project is beta-ready with an optimal experience for a successful testing phase."
       },
       "step8": {
-        "title": "Beta (future)",
+        "title": "Beta (now)",
         "time": "June - September 2023 ",
-        "text": "We'll see what the future hold for us..."
+        "text": "We're thrilled to announce the beta launch of our project, a significant milestone. Professionals and individuals will test our professional panel and mobile app, providing valuable feedback. This phase will help us identify issues, gather suggestions, and validate key features. We're grateful to our testers and look forward to their contributions in refining our product and delivering an exceptional user experience. Your participation is crucial in shaping the success of our project."
       },
       "step9": {
         "title": "Prepare to launch (future)",
         "time": "October - December 2023 ",
-        "text": "We'll see what the future hold for us..."
+        "text": "We'll see what the future holds..."
       }
     },
     "contact": {

@@ -1,15 +1,17 @@
 {
   "translation": {
     "menu_home": "Accueil",
-    "menu_project": "Notre Project",
+    "menu_project": "Notre Projet",
     "menu_feature": "Fonctionnalités",
     "menu_team": "Notre Equipe",
     "menu_pricing": "Nos prix",
     "menu_contact": "Contactez nous",
     "menu_dashboard": "Dashboard",
     "login": "Connexion",
-    "main_title": "Améliorer vos visites culturelles grâce à la realitée augmentée",
-    "main_subtitle": "Notre équipe de développeurs talentueux ont pour but d'amener le futur dans le passé, en utilisant la réalité augmentée.",
+    "main_title": "Découvrez un monde de culture à portée de main",
+    "main_subtitle": "ARKultur réinvente vos visites culturelles et vous offre une expérience immersive exceptionnelle en intégrant le futur dans le passé avec la réalité augmentée.",
+    "pro_main_title": "Propulsez vos sites culturels vers de nouveaux horizons",
+    "pro_main_subtitle": "ARKultur réinvente vos visites culturelles et offre à vos client une expérience immersive exceptionnelle en intégrant la réalité augmentée.",
     "visit_github": "Vistez notre GitHub",
     "back_to_menu": "Retourner à l'accueil",
     "maintenance": "Cette page est en maintenance. Désolé pour le dérangement",
@@ -53,25 +55,25 @@
     "project": {
       "tab_title": "ARKultur - Notre Projet",
       "title": "ARKultur",
-      "subtitle": "ARKultur est un projet créé par 7 étudiants d'Epitech en tant que Epitech Innovative Projet (EIP), notre projet de fin d'études.",
+      "subtitle": "ARKultur est un projet d'Epitech, créé par 7 étudiants, qui réinvente les visites culturelles des monuments en utilisant la réalité augmentée pour fusionner histoire, art et technologie. Notre objectif : une expérience immersive.",
       "section_1": {
         "title": "Observation",
-        "text": "L'idée émergea après les nombreux confinements suite au Covid-19 en 2021. Il impacte fut conséquent pour tout le monde, et plus particulièrement pour la culture. Visiter un lieu peut être ennuyant pour les plus jeunes, l'information peut ne pas être simple à lire pour tout le monde, ou juste absente. Sans ces informations nous perdons notre histoire. C'est un gros problème et nous devons y remédier."
+        "text": "L'émergence d'ARKultur est liée aux confinements dus à la pandémie de Covid-19 en 2021, bouleversant notre quotidien et la culture. ARKultur propose une réponse novatrice pour préserver le patrimoine culturel et le rendre accessible à tous, en particulier aux jeunes, grâce à la réalité augmentée."
       },
       "section_2": {
         "title": "Solution",
-        "text": "ARKultur est là pour changer la fonçons dont nous visitons les lieux culturels! Avec notre application mobile nous avons accès à toutes les données disponibles sur un lieu que vous visitez. Vous pouvez voir une carte avec tous les lieux culturels autour de vous, et découvrir un lieu que vous n'avez encore jamais vue. Plusieurs guides pour tous les âges sont disponibles. Une chasse au trésor ou une visite plus classique il y en a pour tous les gouts. Vous pouvez aussi trouver de la réalité augmentée (AR) et voir tous les informations même si elles ne sont pas physiquement accessibles."
+        "text": "ARKultur est une plateforme révolutionnaire pour des visites culturelles enrichissantes. Notre panel administrateur vous permet d'ajouter des descriptions, des guides audio et des modèles 3D à votre site. Via notre application mobile, les visiteurs accèdent à une mine d'informations.\n        Nous proposons une carte interactive listant les sites culturels à proximité, permettant aux utilisateurs de découvrir de nouveaux endroits. Nos guides diversifiés s'adaptent à tous les âges et intérêts, offrant des informations approfondies.\n        La réalité augmentée (RA) est une fonctionnalité phare, fournissant un contenu immersif. La RA, combinée aux guides audio, crée une expérience inoubliable.\n        ARKultur garantit une visite culturelle unique et immersive, en utilisant les dernières technologies pour offrir une expérience personnalisée et enrichissante à tous les visiteurs."
       },
       "section_3": {
         "title": "Epitech",
-        "text": "Epitech est une école supérieure en 5 ans, avec une année à l'étranger, spécialisée en science de l'informatique. Lors de notre 3ème année on a commencé notre EIP (Epitech Innovative Projet) qui dure sur nos 3 dernières années. Le but de ce projet est de créer un vrai projet professionnel comme si c'était notre entreprise. Nous devons être innovants et créatifs pour créer un projet qui amène du nouveau dans notre monde."
+        "text": "Epitech est une école privée spécialisée en informatique, axée sur l'apprentissage pratique et le développement de compétences techniques. L'école encourage l'autonomie, la créativité et l'esprit entrepreneurial pour former des professionnels de l'informatique prêts à relever les défis réels."
       }
     },
     "team": {
       "tab_title": "ARKultur - Notre équipe",
       "title": "Notre équipe",
       "team_leader": "Chef d'équipe",
-      "web": "Développeur Web",
+      "front": "Développeur Frontend",
       "back": "Développeur Backend",
       "mob": "Développeur Mobile"
     },
@@ -83,72 +85,66 @@
     },
     "feature": {
       "tab_title": "ARKultur - Fonctionnalité",
-      "title": "Fonctionnalité",
-      "subtitle": "Notre projet propose deux catégories de fonctionnalités, selon si vous êtes un touriste ou une entité en charge un lieu culturel. Vous avez:",
-      "section_mobile": "Mobile",
-      "section_dashboard": "Tableau de bord",
-      "mobile": {
-        "section_1": {
-          "title": "Map intéractive",
-          "text": "Arkultur offre une map interactive qui vous permet se voit tous les lieux culturels autour de vous. Avec cette map sentez-vous libre de (re)découvrir votre ville!"
-        },
-        "section_2": {
-          "title": "Réalitée Augmentée",
-          "text": "La Réalité Augmentée est une bonne façon de voyager dans la passée. Regardez à travers votre téléphone pour voir comment c'était dans le passé!"
-        }
+      "title": "Fonctionnalités",
+      "subtitle": "Notre projet propose deux catégories de fonctionnalités en fonction que vous soyez un touriste ou un gestionnaire de lieu culturel.",
+      "section_1": {
+        "title": "Carte Intéractive Mobile",
+        "text": "Explorez une multitude de sites culturels captivants grâce à notre application mobile. La carte interactive vous permettra de découvrir facilement les différents lieux utilisant notre solution, offrant des informations détaillées et une expérience immersive unique."
       },
-      "web": {
-        "section_1": {
-          "title": "Interactive Map",
-          "text": "Arkultur vous offre une map interactive afin de faciliter le management de vos lieux culturel."
-        }
+      "section_2": {
+        "title": "Réalité Augmentée",
+        "text": "Découvrez le patrimoine culturel d'une manière totalement nouvelle grâce à notre technologie de réalité augmentée. Explorez des informations détaillées et des modèles 3D représentant des objets ou des structures liés aux sites culturels que vous visitez, vous permettant de plonger dans l'histoire et de vivre une expérience interactive et captivante."
+      },
+      "section_3": {
+        "title": "Carte Intéractive Web",
+        "text": "Explorez le monde du patrimoine culturel depuis le confort de votre navigateur web grâce à notre carte interactive en ligne. Découvrez une multitude de sites culturels et bénéficiez de fonctionnalités de réalité augmentée qui vous permettent de visualiser des informations et des modèles 3D en lien avec chaque lieu. Plongez dans l'histoire et vivez une expérience immersive unique, le tout depuis votre ordinateur ou votre appareil mobile."
       }
     },
     "timeline": {
       "step1": {
         "title": "Moonshot",
         "time": "Septembre 2021",
-        "text": "La Moonshot dure deux semaines. La première semaine Nous travaillons sur différentes problématiques afin de trouver une solution et de faire une présentation de celle-ci. Pour la deuxième semaine nous devions choisir 3 solutions et les approfondir. A la fin nous devions choisir une de ces solutions qui pourront être notre projet. C'est le début d'ARKultur"
+        "text": "Le Moonshot à Epitech est un programme intensif de deux semaines. Les étudiants collaborent en équipes sur des problèmes complexes, présentant ensuite un projet concret, comme ARKultur."
       },
       "step2": {
-        "title": "Recherches",
+        "title": "Recherche",
         "time": "Octobre - Décembre 2021",
-        "text": "Maintenant que le projet est défini il nous faut faire des recherches afin de voir si le projet et réalisable et qu'elles sont précisement les problématiques. Pour ce faire nous avons fait un questionnaire afin de mieux cibler les attentes."
+        "text": "Nous évaluons la faisabilité de notre solution grâce à des questionnaires auprès d'organisations et de particuliers. Leurs réponses orientent notre approche et actions futures."
       },
       "step3": {
         "title": "Forward",
         "time": "Décembre 2021",
-        "text": "Après toutes ses recherches nous devions passer au stade de prototypage. Celui-ci a pour but de concrétiser l'idée du projet. Nous avions deux semaines pour le réalisée avec une présentation à la fin."
+        "text": "La Forward d'Epitech est un programme d'incubation de projets technologiques. Nous avons créé un Proof of Concept (PoC) pour ARKultur, démontrant les fonctionnalités clés. Grâce à l'accompagnement et aux ressources, nous avons concrétisé notre vision entrepreneuriale et validé la faisabilité technique d'ARKultur, jetant des bases solides pour notre projet sur le marché."
       },
       "step4": {
-        "title": "Commençons",
+        "title": "Début du développement",
         "time": "Avril - Juin 2022",
-        "text": "Avant de commencer concrètement dans le projet nous devions définir les techniques qui seront utilisés. Durant ces mois nous avons testé de nombreuses technologies pour choisir la meilleure."
+        "text": "Avant de commencer le projet concret, nous devons précisément définir les technologies à utiliser. Cette étape est cruciale car elle affectera directement le développement et le succès de notre projet. Après des mois de recherche et de tests, nous avons choisi la technologie idéale qui répond à nos besoins spécifiques, garantissant un développement efficace et une expérience utilisateur optimale."
       },
       "step5": {
         "title": "Management",
         "time": "Juillet - Octobre 2022",
-          "text": "Nous allons travailler pendant de nombreux mois ensemble c'est pourquoi il est important de définir les règles du groupe. Le projet débuta son développement en parallèle."
+          "text": "Nous collaborerons pendant plusieurs mois, il est donc crucial de définir des règles de travail efficaces pour optimiser notre collaboration. Nous avons déjà commencé le développement du projet, en implémentant des fonctionnalités, en effectuant des tests et en itérant pour créer un produit final solide. En établissant des règles claires et en travaillant de manière organisée, nous maximiserons notre efficacité pour atteindre nos objectifs communs."
       },
       "step6": {
         "title": "Fast Forward",
         "time": "Novembre 2022 - Janvier 2023 ",
-        "text": "Il est temps de monter d'un cramp. Après l'organisation et le choix des technos, nous nous sommes focalisé sur les fonctionnalités principales du projet. (Site Web, Tableau de bord, Mobile)."
+        "text": "Il est temps d'accélérer. Le mois dernier, nous avons organisé l'équipe, testé les technologies et commencé le projet. Maintenant, nous nous concentrons sur la création des principales fonctionnalités (site web, tableau de bord, application mobile). Notre objectif est de développer rapidement ces éléments clés pour consolider notre projet. En les mettant en place, nous progressons de manière significative."
       },
       "step7": {
-        "title": "préparation à la beta (maintenent)",
+        "title": "Préparation à la beta",
         "time": "Février - Mai 2023",
-        "text": "Nos fonctionnalités principales sont terminées il est maintenant l'heure de se préparer à au bêta du projet. Nous travaillons sur l'expérience utilisateur, la communication entre nos testeurs et nous. Nous avons globalement amélioré le projet afin de rendre plus simple d'utilisation."
+        "text": "Nos principales fonctionnalités sont prêtes, nous préparons notre projet pour sa version bêta. Nous améliorons l'expérience utilisateur et la communication interne, rendant tout plus intuitif. L'objectif est d'assurer que le projet soit prêt pour la version bêta, avec une expérience optimale, pour une phase de test réussie."
       },
       "step8": {
-        "title": "Beta (futur)",
+        "title": "Beta (maintenant)",
         "time": "Juin - Septembre 2023 ",
-        "text": "Nous verrons ce que le futur nous réserve...."
+        "text": "Nous lançons la version bêta de notre projet, une étape majeure. Les professionnels et les particuliers testeront respectivement notre panel professionnel et notre application mobile, fournissant des retours précieux. Cette phase nous permettra d'identifier les problèmes, recueillir des suggestions et valider nos fonctionnalités clés. Nous sommes reconnaissants envers nos testeurs et attendons avec impatience leur contribution pour améliorer notre produit et offrir une expérience utilisateur exceptionnelle."
       },
       "step9": {
         "title": "Préparation au lencement (futur)",
         "time": "Octobre - Décembere 2023 ",
-        "text": "Nous verrons ce que le futur nous réserve...."
+        "text": "Nous verrons ce que l'avenir nous réserve ..."
       }
     },
     "contact": {

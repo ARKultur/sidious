@@ -14,11 +14,8 @@ import CommentIcon from '@mui/icons-material/Comment';
 
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import { Avatar, Box, Card, CardContent } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import Rating from '@mui/material/Rating';
-import { WidthFull } from "@mui/icons-material";
-
-import Slider from 'react-slick';
 
 function AddressPanel() {
     return (
@@ -177,7 +174,7 @@ function FeedbackPanel() {
     );
 }
 
-export default function ConnectionModal(props)
+export default function GuideModal(props)
 {
     const { onClose, isActive } = props;
 

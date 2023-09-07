@@ -2,7 +2,7 @@ import * as React from "react";
 import NavBar from "../component/NavBar";
 import FooterComponent from "../component/Footer";
 import {Typography, useTheme} from "@mui/material";
-import Normandie from "../resources/images/Normandie.jpg"
+import Normandie from "../resources/images/Image1NotreProjet.png"
 import Fourviere from "../resources/images/colline-fourviere-lyon.jpg"
 import Epitech from "../resources/images/Campus_Lyon.jpg"
 import {useTranslation} from "react-i18next";

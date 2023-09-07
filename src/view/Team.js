@@ -72,12 +72,12 @@ export default function Team()
             job={"team.back"}
           />
           <Member
-            image={"https://cdn.discordapp.com/avatars/818305741856833577/a_e5189d5dc33067d7c68d977043e514f1.gif?size=4096"}
+            image={"https://cdn.discordapp.com/avatars/818305741856833577/a_50d60d74092f27c3664c03b9a0f25663.gif?size=128"}
             alt={"Mehdi's photo"}
             name={"Mehdi Z."}
-            job={"team.mob"}
+            job={"team.front"}
           /><Member
-            image={"https://cdn.discordapp.com/avatars/370219157180121095/c90c25fb29433384b32c53f1b96121b0.webp?size=256"}
+            image={"https://cdn.discordapp.com/avatars/370219157180121095/c1b45509807d67f56b6f101c28cbd81a.webp?size=128"}
             alt={"Alan-steven's photo"}
             name={"Alan-Steeven L."}
             job={"team.mob"}
@@ -85,12 +85,17 @@ export default function Team()
             image={"https://cdn.discordapp.com/avatars/251875694529740810/d51c544ee46e52d95aeb15dd23f84e7b.webp?size=256"}
             alt={"Maxime's S photo"}
             name={"Maxime S."}
-            job={"team.mob"}
+            job={"team.front"}
           /><Member
             image={"https://cdn.discordapp.com/avatars/220124557166510080/21e9ea632a0c9f66bbdb0de510f07491.webp?size=256"}
             alt={"Theo's photo"}
             name={"Théo F."}
             job={"team.mob"}
+          /><Member
+            image={"https://cdn.discordapp.com/avatars/264091727147696130/21e610296392728e25824279e2cb6a08.webp?size=128"}
+            alt={"Kamel's photo"}
+            name={"Kamel B."}
+            job={"team.web"}
           />
         </div>
       </div>
