@@ -18,7 +18,7 @@ export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
   const [rowToEdit, setRowToEdit] = React.useState(null);
  
   const deleteRow = (targetId) => {
-    deleteMarker(markerStates.markers[targetId]);
+    deleteMarker(rows[targetId]);
   };
 
   const editRow = (id) => {
@@ -28,7 +28,7 @@ export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
   };
 
   const submitForm = (newRow) => {
-    markerStates.markers.map((marker, id) => {
+    rows.map((marker, id) => {
       if (id === rowToEdit) {
         editMarker(newRow);
       }

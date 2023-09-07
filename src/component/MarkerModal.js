@@ -78,6 +78,12 @@ export const MarkerModal = ({closeModal, onSubmit, defaultValue}) => {
                     <br/>
                     <TextField onChange={handleChange}  name="latitude" defaultValue={formData.latitude} label="Latitude"/>
                     <br/>
+                    <TextField onChange={handleChange}  name="hauteur" defaultValue={formData.latitude} label="Hauteur"/>
+                    <br/>
+                    <TextField onChange={handleChange}  name="model_3D" defaultValue={formData.latitude} label="Model 3D"/>
+                    <br/>
+                    <TextField onChange={handleChange}  name="texture" defaultValue={formData.latitude} label="Texture"/>
+                    <br/>
                     {errors && <div className="modal-error">{`Please include: ${errors}`}</div>}
                     <Button className="modal-btn" onClick={handleSubmit}>Soumettre</Button>
                 </form>
