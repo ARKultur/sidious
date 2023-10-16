@@ -30,7 +30,6 @@ const UsersTable = ({rows, editUser, deleteUser}) => {
                 <TableCell>S.No</TableCell>
                 <TableCell align="right">Username</TableCell>
                 <TableCell align="right">Email</TableCell>
-                <TableCell align="right">Password</TableCell>
                 <TableCell align="right">Address Id</TableCell>
                 <TableCell align="right">Organisation Id</TableCell>
             </TableRow>
@@ -43,7 +42,6 @@ const UsersTable = ({rows, editUser, deleteUser}) => {
                 </TableCell>
                 <TableCell align="right">{row.username}</TableCell>
                 <TableCell align="right">{row.email}</TableCell>
-                <TableCell align="right">{row.password}</TableCell>
                 <TableCell align="right">{row.addressId}</TableCell>
                 <TableCell align="right">{row.OrganisationId}</TableCell>
                 <TableCell align="right">

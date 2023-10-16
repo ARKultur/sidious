@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const UserModal = ({closeModal, onSubmit, defaultValue, userId}) => {
     const initialState = {
-      orgId: "",
+      orgId: 0,
     }
     const [formData, setFormData] = useState( defaultValue || initialState)
     const [errors, setErrors] = useState("");
@@ -33,15 +33,13 @@ const UserModal = ({closeModal, onSubmit, defaultValue, userId}) => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(e.target);
 
       if (!validateForm()) {
         console.log("fail")
         return;
       }
 
-      console.log(e);
-      onSubmit(userId, formData.orgId);
+      onSubmit(userId, parseInt(formData.orgId));
       closeModal();
     };
 
@@ -63,7 +61,7 @@ const UserModal = ({closeModal, onSubmit, defaultValue, userId}) => {
                     </IconButton>
                 </Container>
                 <form style={{display: 'flex',  flexDirection: 'column'}}>
-                    <TextField onChange={handleChange} name="orgId" defaultValue={formData.orgId} label="Organisation Id"/>
+                    <TextField onChange={handleChange} name="orgId" defaultValue="" label="Organisation Id"/>
                     <br/>
                     <br/>
                     {errors && <div className="modal-error">{`Please include: ${errors}`}</div>}

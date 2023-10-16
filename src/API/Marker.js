@@ -48,8 +48,8 @@ export const editMarkerToDB = async (marker) => {
   const token = localStorage.getItem("token");
   const jsonBody = {
     name: marker.name,
-    longitude: marker.longitude,
-    latitude: marker.latitude,
+    longitude: parseInt(marker.longitude),
+    latitude: parseInt(marker.latitude),
     address: null,
     organisation: null,
     description: marker.description,

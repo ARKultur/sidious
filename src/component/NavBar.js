@@ -192,7 +192,7 @@ export default function NavBar(props)
                         aria-expanded={open ? 'true' : undefined}
                         onClick={DhandleClick}
                       >
-                        {username}
+                        {"Logged"}
                       </Button>
                       <Menu
                         id="basic-menu"

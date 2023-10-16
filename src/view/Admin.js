@@ -125,8 +125,8 @@ export default function Admin() {
         {
           name: marker.name,
           description: marker.description,
-          longitude: marker.longitude,
-          latitude: marker.latitude,
+          longitude: parseInt(marker.longitude),
+          latitude: parseInt(marker.latitude),
           status: marker.status,
           organisationId: marker.organisationId,
         },
