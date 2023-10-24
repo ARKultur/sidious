@@ -1,16 +1,17 @@
-import NavBar from "../component/NavBar";
-import FooterComponent from "../component/Footer";
-import { Button, Container, Grid, Typography, useTheme } from "@mui/material";
-import * as React from "react";
-import { useState, useEffect } from "react";
-import "../styles/view/Dashboard.css";
-import axios from "axios";
-import { API_URL } from "../config/API";
-import UsersTable from "../component/UsersTable";
-import OrganisationsTable from "../component/OrganisationsTable";
-import ContactTable from "../component/ContactTable";
-import NewsletterTable from "../component/NewsletterTable";
-import { AdminMarkerTable } from "../component/AdminMarkerTable";
+import NavBar from '../component/NavBar';
+import FooterComponent from '../component/Footer';
+import { Button, Container, Grid, Typography, useTheme } from '@mui/material';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import '../styles/view/Dashboard.css';
+import axios from 'axios';
+import { API_URL } from '../config/API';
+import UsersTable from '../component/UsersTable';
+import OrganisationsTable from '../component/OrganisationsTable';
+import ContactTable from '../component/ContactTable';
+import NewsletterTable from '../component/NewsletterTable';
+import { AdminMarkerTable } from '../component/AdminMarkerTable';
+import { AuthContext } from '../services/AuthProvider';
 
 export default function Admin() {
   const theme = useTheme();
@@ -19,23 +20,30 @@ export default function Admin() {
   const [markers, setMarkers] = useState([]);
   const [organisations, setOrganisations] = useState([]);
   const [menu, setMenu] = useState([
-    { isFocus: true, component: "UsersTable", name: "Users" },
-    { isFocus: false, component: "OrganisationsTable", name: "Organisations" },
-    { isFocus: false, component: "ContactTable", name: "Contact" },
-    { isFocus: false, component: "NewsletterTable", name: "Newsletter" },
+    { isFocus: true, component: 'UsersTable', name: 'Users' },
+    { isFocus: false, component: 'OrganisationsTable', name: 'Organisations' },
+    { isFocus: false, component: 'ContactTable', name: 'Contact' },
+    { isFocus: false, component: 'NewsletterTable', name: 'Newsletter' },
   ]);
   const [table, setTable] = useState(<></>);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
+  const { logout } = React.useContext(AuthContext);
 
   useEffect(() => {
     const init = async () => {
-      let userRes = await axios.get(`${API_URL}/api/accounts/admin`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      try {
+        let userRes = await axios.get(`${API_URL}/api/accounts/admin`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-      setUsers(userRes.data);
+        setUsers(userRes.data);
+      } catch (e) {
+        logout();
+        window.location.replace('/');
+      }
+
       let orgRes = await axios.get(`${API_URL}/api/organisations`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -199,7 +207,7 @@ export default function Admin() {
     const item = menu.filter((item) => item.isFocus === true);
     const name = item[0].component;
 
-    if (name === "OrganisationsTable")
+    if (name === 'OrganisationsTable')
       return (
         <OrganisationsTable
           rows={organisations}
@@ -208,7 +216,7 @@ export default function Admin() {
           deleteOrg={deleteOrg}
         />
       );
-    if (name === "ContactTable")
+    if (name === 'ContactTable')
       return (
         <ContactTable
           rows={organisations}
@@ -217,7 +225,7 @@ export default function Admin() {
           deleteOrg={deleteOrg}
         />
       );
-    if (name === "NewsletterTable")
+    if (name === 'NewsletterTable')
       return (
         <NewsletterTable
           rows={organisations}
@@ -226,7 +234,7 @@ export default function Admin() {
           deleteOrg={deleteOrg}
         />
       );
-    else if (name === "MarkersTable") {
+    else if (name === 'MarkersTable') {
       console.log(markers);
       return (
         <AdminMarkerTable
@@ -240,44 +248,45 @@ export default function Admin() {
         <UsersTable rows={users} deleteUser={deleteUser} editUser={editUser} />
       );
   };
+
   return (
     <>
       <NavBar />
-      <Grid style={{ paddingTop: "100px", paddingLeft: "50px" }}>
+      <Grid style={{ paddingTop: '100px', paddingLeft: '50px' }}>
         <Typography
-          variant={"h1"}
+          variant={'h1'}
           color={theme.typography.color}
           style={{
-            marginBottom: "1rem",
-            fontSize: "3.75rem",
-            letterSpacing: "-0.025em",
+            marginBottom: '1rem',
+            fontSize: '3.75rem',
+            letterSpacing: '-0.025em',
             fontWeight: 800,
           }}
         >
-          {"Admin"}
+          {'Admin'}
         </Typography>
         <Container>
           <Container
-            className="dashboard-header"
-            style={{ flexDirection: "row" }}
+            className='dashboard-header'
+            style={{ flexDirection: 'row' }}
           >
-            <Button title="Users" onClick={() => setMenuFocus("Contact")}>
+            <Button title='Users' onClick={() => setMenuFocus('Contact')}>
               Contact
             </Button>
-            <Button title="Users" onClick={() => setMenuFocus("Newsletter")}>
+            <Button title='Users' onClick={() => setMenuFocus('Newsletter')}>
               Newsletter
             </Button>
-            <Button title="Users" onClick={() => setMenuFocus("Users")}>
+            <Button title='Users' onClick={() => setMenuFocus('Users')}>
               Users
             </Button>
             <Button
-              title="Organisations"
-              onClick={() => setMenuFocus("Organisations")}
+              title='Organisations'
+              onClick={() => setMenuFocus('Organisations')}
             >
               Organisations
             </Button>
           </Container>
-          <Container style={{ padding: "20px" }}>{table}</Container>
+          <Container style={{ padding: '20px' }}>{table}</Container>
         </Container>
       </Grid>
       <FooterComponent />
