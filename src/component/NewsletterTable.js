@@ -4,7 +4,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { CheckBox } from '@mui/icons-material';
 import { Box, Button, Container, TextField } from '@mui/material';
 import React, { useEffect } from 'react';
 import { getSubbedToNewsletter, sendNewsletter } from '../API/Newsletter';
@@ -13,16 +12,22 @@ import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import '../styles/component/MarkerTable.css';
+import { convertToHTML } from 'draft-convert';
 
 const NewsletterForm = ({ setStep }) => {
   const [fields, setFields] = React.useState({
     subject: '',
     text: '',
   });
-  const [isModalOpen, setModalOpen] = React.useState(false);
   const [editorState, setEditorState] = React.useState(() =>
     EditorState.createEmpty()
   );
+
+  useEffect(() => {
+    const html = convertToHTML(editorState.getCurrentContent());
+
+    setFields({ ...fields, text: html });
+  }, [editorState]);
 
   const handleSubmit = async (e) => {
     try {
@@ -56,6 +61,9 @@ const NewsletterForm = ({ setStep }) => {
           id='outlined-disabled'
           label='Subject'
           defaultValue='Subject'
+          variant='outlined'
+          value={fields.subject}
+          onChange={(e) => setFields({ ...fields, subject: e.target.value })}
         />
 
         <div
@@ -67,6 +75,12 @@ const NewsletterForm = ({ setStep }) => {
             toolbarClassName='toolbarClassName'
             wrapperClassName='wrapperClassName'
             editorClassName='editorClassName'
+            toolbar={{
+              options: ['inline', 'list', 'remove', 'history'],
+              inline: {
+                options: ['bold', 'italic', 'underline', 'strikethrough'],
+              },
+            }}
           />
         </div>
 
@@ -77,6 +91,7 @@ const NewsletterForm = ({ setStep }) => {
             alignSelf: 'center',
             justifyContent: 'center',
           }}
+          onClick={handleSubmit}
         >
           Send
         </Button>
