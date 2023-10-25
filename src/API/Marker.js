@@ -35,7 +35,6 @@ export const addMarkerToDB = async (marker) => {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  console.log(URL, jsonBody, params)
   try {
     const response = await axios.post(URL, jsonBody, params);
   } catch (e) {

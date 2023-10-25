@@ -1,6 +1,6 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import * as React from 'react';
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Route, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
 import './App.css';
 import { defaultTheme } from './theme/Theme';
 import Admin from "./view/Admin.js";
@@ -8,6 +8,9 @@ import Contact from "./view/Contact";
 import Dashboard from "./view/Dashboard";
 import Error from "./view/Error";
 import Feature from "./view/Feature";
+import Journeys from "./view/Journeys"
+import Map from "./view/Map"
+import Markers from "./view/Markers"
 import LandingPageView from "./view/LandingPage";
 import Maintenance from "./view/Maintenance";
 import PrivacyPolicyView from './view/PrivacyPolicyView';
@@ -23,6 +26,25 @@ import ProfileView from './view/Profile';
 import GuideModal from "./component/guide/GuideModal";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Margin } from "@mui/icons-material";
+
+const JourneysRouter = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Journeys/>} />
+      <Route path="/:id" element={<Markers/>} />
+    </Routes>
+  );
+};
+
+const DashboardRouter = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Dashboard/>} />
+      <Route path="/journeys/*" element={<JourneysRouter/>} />
+      <Route path="/map" element={<Map/>} />
+    </Routes>
+  );
+};
 
 const router = createBrowserRouter([
     {
@@ -71,8 +93,8 @@ const router = createBrowserRouter([
       errorElement: <Error/>
     },
     {
-      path: "dashboard",
-      element:  <Dashboard/>,
+      path: "/dashboard/*",
+      element:  <DashboardRouter/>,
       errorElement: <Error/>
     },
     {
@@ -104,19 +126,6 @@ function App() {
     <div className="App">
       <ThemeProvider theme={defaultTheme}>
         <AuthProvider>
-            {/* <MapContainer center={[45.763210649627446, 4.82241931165369]} zoom={13} scrollWheelZoom={false} style={{marginTop: "1000px"}}>
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <Marker position={[45.763210649627446, 4.82241931165369]} eventHandlers={{
-                  click: (e) => {
-                    handleShowGuideModal()
-                  },
-                }}>
-              </Marker>
-              <GuideModal onClose={handleCloseGuideModal} isActive={showGuideModal} style={{zIndex: 1000}}/>
-            </MapContainer>, */}
           <CssBaseline/>
           <RouterProvider router={router}/>
         </AuthProvider>
