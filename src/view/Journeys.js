@@ -32,7 +32,7 @@ import { JourneyModal } from "../component/JourneyModal";
 export default function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const journeyStates = [{id: "0", name: "visite de fourvière"}, {id: "1", name: "visite de bellecour"}, {id: "2", name: "visite du parc de la tête d'or"}]; //useSelector((state) => state.rootReducer.markerReducer);
+  const journeyStates = [{id: "0", name: "Art-Track"}, {id: "1", name: "Quick-Track"}, {id: "2", name: "London-Downtown"}]; //useSelector((state) => state.rootReducer.markerReducer);
   const token = localStorage.getItem("token");
   const organisationId = localStorage.getItem("organisationId");
   const [journeys, setJourneys] = useState([]);
