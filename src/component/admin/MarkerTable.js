@@ -9,8 +9,8 @@ import TableRow from "@material-ui/core/TableRow";
 import { Container, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import ClearIcon from "@mui/icons-material/Clear";
-import "../styles/component/MarkerTable.css";
-import { AdminMarkerModal } from "./AdminMarkerModal";
+import "../../styles/component/MarkerTable.css";
+import { AdminMarkerModal } from "./MarkerModal";
 
 export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);

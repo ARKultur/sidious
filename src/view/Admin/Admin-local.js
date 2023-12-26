@@ -1,16 +1,16 @@
-import NavBar from "../component/NavBar";
-import FooterComponent from "../component/Footer";
+import NavBar from "../../component/NavBar";
+import FooterComponent from "../../component/Footer";
 import { Button, Container, Grid, Typography, useTheme } from "@mui/material";
 import * as React from "react";
 import { useState, useEffect } from "react";
-import "../styles/view/Dashboard.css";
+import "../../styles/view/Dashboard.css";
 import axios from "axios";
-import { API_URL } from "../config/API";
-import UsersTable from "../component/UsersTable";
-import OrganisationsTable from "../component/OrganisationsTable";
-import ContactTable from "../component/ContactTable";
-import NewsletterTable from "../component/NewsletterTable";
-import { AdminMarkerTable } from "../component/AdminMarkerTable";
+import { API_URL } from "../../config/API";
+import UsersTable from "../../component/UserTable";
+import OrganisationsTable from "../../component/OrganisationsTable";
+import ContactTable from "../../component/ContactTable";
+import NewsletterTable from "../../component/NewsletterTable";
+import { AdminMarkerTable } from "../../component/admin/MarkerTable";
 
 export default function Admin() {
   const theme = useTheme();

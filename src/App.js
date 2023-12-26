@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Route, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
 import './App.css';
 import { defaultTheme } from './theme/Theme';
-import Admin from "./view/Admin.js";
+import Admin from "./view/Admin/Admin.js";
 import Contact from "./view/Contact";
 import Dashboard from "./view/Dashboard";
 import Error from "./view/Error";
@@ -26,6 +26,13 @@ import ProfileView from './view/Profile';
 import GuideModal from "./component/guide/GuideModal";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Margin } from "@mui/icons-material";
+import AdminContact from "./view/Admin/Contact.js";
+import AdminNewsletter from "./view/Admin/Newsletter.js";
+import AdminOrganisations from "./view/Admin/Organisations.js";
+import AdminOrganisation from "./view/Admin/Organisation.js";
+import AdminOrganisationMarkers from "./view/Admin/Markers.js";
+import AdminOrganisationUsers from "./view/Admin/Users.js";
+import AdminOrganisationJourneys from "./view/Admin/Journeys.js";
 
 const JourneysRouter = () => {
   return (
@@ -36,12 +43,35 @@ const JourneysRouter = () => {
   );
 };
 
+const OrganisationsRouter = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<AdminOrganisations/>} />
+      <Route path="/:id" element={<AdminOrganisation/>} />
+      <Route path="/:id/users" element={<AdminOrganisationUsers/>} />
+      <Route path="/:id/journeys" element={<AdminOrganisationJourneys/>} />
+      <Route path="/:id/journeys/:id/markers" element={<AdminOrganisationMarkers/>} />
+    </Routes>
+  );
+}
+
 const DashboardRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Dashboard/>} />
       <Route path="/journeys/*" element={<JourneysRouter/>} />
       <Route path="/map" element={<Map/>} />
+    </Routes>
+  );
+};
+
+const AdminRouter = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Admin/>} />
+      <Route path="/organisations/*" element={<OrganisationsRouter/>} />
+      <Route path="/contact" element={<AdminContact/>} />
+      <Route path="/newsletter" element={<AdminNewsletter/>} />
     </Routes>
   );
 };
@@ -103,8 +133,8 @@ const router = createBrowserRouter([
       errorElement: <Error/>
     },
     {
-        path: "admin",
-        element: <Admin/>,
+        path: "/admin/*",
+        element: <AdminRouter/>,
         errorElement: <Error/>
     }
 ])

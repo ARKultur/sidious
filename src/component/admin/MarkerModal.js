@@ -7,7 +7,7 @@ import {
   IconButton,
   Input,
 } from "@mui/material";
-import "../styles/component/MarkerModal.css";
+import "../../styles/component/MarkerModal.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 
