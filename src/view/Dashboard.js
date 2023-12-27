@@ -28,6 +28,9 @@ export default function Dashboard() {
           }}
         >
           {t("dashboard.title")}
+          <Grid>
+            
+          </Grid>
         </Typography>
         <div
           style={{
@@ -36,7 +39,7 @@ export default function Dashboard() {
             flexWrap: "wrap",
             alignContent: "center",
             alignItems: "center",
-            justifyContent: "space-around",
+            justifyContent: "space-evenly",
             margin: "2.75rem",
           }}
         >

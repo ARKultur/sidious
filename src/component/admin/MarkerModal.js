@@ -132,6 +132,13 @@ export const AdminMarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
             />
           </div>
           <div className="modal-form-field">
+            <TextField
+              name="order"
+              label="Order"
+              style={{width: "100%"}}
+            />
+          </div>
+          <div className="modal-form-field">
             <p>Model 3D</p>
             <Input type="file" />
           </div>

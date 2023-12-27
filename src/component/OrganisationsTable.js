@@ -26,6 +26,9 @@ const OrganisationsTable = ({ rows, addOrg, deleteOrg, editOrg, showOrg }) => {
             <TableRow>
               <TableCell>S.No</TableCell>
               <TableCell align="right">Name</TableCell>
+              <TableCell align="right">Afficher</TableCell>
+              <TableCell align="right">Supprimer</TableCell>
+
             </TableRow>
           </TableHead>
           <TableBody>

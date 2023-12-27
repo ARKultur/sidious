@@ -64,19 +64,7 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
   return (
     <Container className="modal-container">
       <Container className="modal-body">
-        <Container className="modal-header">
-          <Typography
-            variant={"h1"}
-            color={"black"}
-            style={{
-              marginBottom: "1rem",
-              fontSize: "3.75rem",
-              letterSpacing: "-0.025em",
-              fontWeight: 800,
-            }}
-          >
-            Test
-          </Typography>
+        <Container style={{display: 'flex', alignItems: "flex-end", justifyContent: 'flex-end'}}>
           <IconButton onClick={() => closeModal()}>
             <CloseIcon />
           </IconButton>
@@ -93,7 +81,7 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
               name="name"
               defaultValue={formData.name}
               label="Name"
-              style={{ width: "100%"}}
+              style={{ width: "100%" }}
             />
           </div>
           <div className="modal-form-field">
@@ -104,7 +92,7 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
               label="Description"
               multiline
               className="modal-form-field"
-              style={{ width: "100%"}}
+              style={{ width: "100%" }}
             />
           </div>
           <div className="modal-form-field">
@@ -114,7 +102,7 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
               defaultValue={formData.longitude}
               label="Longitude"
               className="modal-form-field"
-              style={{ width: "100%"}}
+              style={{ width: "100%" }}
             />
           </div>
           <div className="modal-form-field">
@@ -123,7 +111,27 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
               name="latitude"
               defaultValue={formData.latitude}
               label="Latitude"
-              style={{ width: "100%"}}
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div className="modal-form-field">
+            <TextField
+              onChange={handleChange}
+              name="status"
+              defaultValue={formData.longitude}
+              label="Status"
+              className="modal-form-field"
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div className="modal-form-field">
+            <TextField
+              onChange={handleChange}
+              name="order"
+              defaultValue={formData.longitude}
+              label="Order"
+              className="modal-form-field"
+              style={{ width: "100%" }}
             />
           </div>
           {errors && (

@@ -48,6 +48,7 @@ export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
               <TableCell align="right">Latitude</TableCell>
               <TableCell align="right">Longitude</TableCell>
               <TableCell align="right">Status</TableCell>
+              <TableCell align="right">Order</TableCell>
               <TableCell align="right">Modifier</TableCell>
               <TableCell align="right">Supprimer</TableCell>
             </TableRow>
@@ -63,6 +64,7 @@ export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
                   <TableCell align="right">{row.description}</TableCell>
                   <TableCell align="right">{row.longitude}</TableCell>
                   <TableCell align="right">{row.latitude}</TableCell>
+                  <TableCell align="right">{"Not Ready"}</TableCell>
                   <TableCell align="right">{"Not Ready"}</TableCell>
                   <TableCell align="right">
                     <IconButton
