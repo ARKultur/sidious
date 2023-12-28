@@ -6,54 +6,71 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { Container, IconButton } from "@mui/material";
-import ClearIcon from '@mui/icons-material/Clear';
-import "../styles/component/MarkerTable.css"
-import AddIcon from '@mui/icons-material/Add';
-import OrgModal from '../component/OrgModal';
+import ClearIcon from "@mui/icons-material/Clear";
+import "../styles/component/MarkerTable.css";
+import AddIcon from "@mui/icons-material/Add";
+import OrgModal from "../component/OrgModal";
+import RoomIcon from "@mui/icons-material/Room";
 
-const OrganisationsTable = ({rows, addOrg, deleteOrg, editOrg}) => {
+const OrganisationsTable = ({ rows, addOrg, deleteOrg, editOrg, showOrg }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
 
   return (
     <Container className="table-container">
-        <IconButton className="blu-element" onClick={() => setModalOpen(true)}>
-            <AddIcon />
-        </IconButton>
-        <TableContainer>
+      <IconButton className="blu-element" onClick={() => setModalOpen(true)}>
+        <AddIcon />
+      </IconButton>
+      <TableContainer>
         <Table aria-label="simple table">
-            <TableHead>
+          <TableHead>
             <TableRow>
-                <TableCell>S.No</TableCell>
-                <TableCell align="right">Name</TableCell>
-                <TableCell align="right">Address id</TableCell>
+              <TableCell>S.No</TableCell>
+              <TableCell align="right">Name</TableCell>
+              <TableCell align="right">Afficher</TableCell>
+              <TableCell align="right">Supprimer</TableCell>
+
             </TableRow>
-            </TableHead>
-            <TableBody>
+          </TableHead>
+          <TableBody>
             {rows.map((row) => (
-                <TableRow key={row.id}>
+              <TableRow key={row.id}>
                 <TableCell component="th" scope="row">
-                    {row.id}
+                  {row.id}
                 </TableCell>
                 <TableCell align="right">{row.name}</TableCell>
-                <TableCell align="right">{row.addressId}</TableCell>
                 <TableCell align="right">
-                    <IconButton onClick={() => {deleteOrg(row.id)}}>
-                        <ClearIcon/>
-                    </IconButton>
+                  <IconButton
+                    onClick={() => {
+                      showOrg(row.id);
+                    }}
+                  >
+                    <RoomIcon />
+                  </IconButton>
                 </TableCell>
-                </TableRow>
+                <TableCell align="right">
+                  <IconButton
+                    onClick={() => {
+                      deleteOrg(row.id);
+                    }}
+                  >
+                    <ClearIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
             ))}
-            </TableBody>
+          </TableBody>
         </Table>
-        </TableContainer>
-        { isModalOpen && <OrgModal
+      </TableContainer>
+      {isModalOpen && (
+        <OrgModal
           closeModal={() => {
             setModalOpen(false);
           }}
-          onSubmit={addOrg}/>
-        }
+          onSubmit={addOrg}
+        />
+      )}
     </Container>
   );
-}
+};
 
 export default OrganisationsTable;

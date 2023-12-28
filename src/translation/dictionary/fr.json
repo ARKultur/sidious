@@ -80,6 +80,15 @@
     "dashboard": {
       "title": "Dashboard"
     },
+    "journey": {
+      "title": "Mes Parcours"
+    },
+    "marker": {
+      "title": "Mes Marqueurs"
+    },
+    "map": {
+      "title": "Ma Carte"
+    },
     "markerForm": {
       "title": ""
     },

@@ -1,21 +1,24 @@
-import NavBar from '../component/NavBar';
-import FooterComponent from '../component/Footer';
+import NavBar from '../../component/NavBar';
+import FooterComponent from '../../component/Footer';
 import { Button, Container, Grid, Typography, useTheme } from '@mui/material';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import '../styles/view/Dashboard.css';
+import '../../styles/view/Dashboard.css';
 import axios from 'axios';
-import { API_URL } from '../config/API';
-import UsersTable from '../component/UsersTable';
-import OrganisationsTable from '../component/OrganisationsTable';
-import ContactTable from '../component/ContactTable';
-import NewsletterTable from '../component/NewsletterTable';
-import { AdminMarkerTable } from '../component/AdminMarkerTable';
-import { AuthContext } from '../services/AuthProvider';
-import SuggestionsTable from '../component/SuggestionsTable';
+import { API_URL } from '../../config/API';
+import UsersTable from '../../component/UserTable';
+import OrganisationsTable from '../../component/OrganisationsTable';
+import ContactTable from '../../component/ContactTable';
+import NewsletterTable from '../../component/NewsletterTable';
+import { AdminMarkerTable } from '../../component/admin/MarkerTable';
+import { AuthContext } from '../../services/AuthProvider';
+import { AdminSideBar } from '../../component/admin/SideBar';
+import { useNavigate } from 'react-router-dom';
+import SuggestionsTable from '../../component/SuggestionsTable';
 
-export default function Admin() {
+export default function AdminOrganisations() {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [IsSetup, setIsSetup] = useState(false);
   const [users, setUsers] = useState([]);
   const [markers, setMarkers] = useState([]);
@@ -206,6 +209,10 @@ export default function Admin() {
     setTable(getComponent());
   };
 
+  const showOrg = (id) => {
+    navigate(`/admin/organisations/${id}`);
+  };
+
   const getComponent = () => {
     const item = menu.filter((item) => item.isFocus === true);
     const name = item[0].component;
@@ -267,7 +274,7 @@ export default function Admin() {
             fontWeight: 800,
           }}
         >
-          {'Admin'}
+          {'Organisation'}
         </Typography>
         <Container>
           <Container
@@ -301,6 +308,17 @@ export default function Admin() {
           </Container>
           <Container style={{ padding: '20px' }}>{table}</Container>
         </Container>
+
+        <Grid style={{ display: 'flex', flexDirection: 'row', padding: 10 }}>
+          <AdminSideBar option={'organisation'} />
+          <OrganisationsTable
+            rows={organisations}
+            addOrg={addOrganisation}
+            editOrg={editOrganisation}
+            deleteOrg={deleteOrg}
+            showOrg={showOrg}
+          />
+        </Grid>
       </Grid>
       <FooterComponent />
     </>

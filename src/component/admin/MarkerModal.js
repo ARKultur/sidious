@@ -7,7 +7,7 @@ import {
   IconButton,
   Input,
 } from "@mui/material";
-import "../styles/component/MarkerModal.css";
+import "../../styles/component/MarkerModal.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 
@@ -128,6 +128,13 @@ export const AdminMarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
             <TextField
               name="status"
               label="Status"
+              style={{width: "100%"}}
+            />
+          </div>
+          <div className="modal-form-field">
+            <TextField
+              name="order"
+              label="Order"
               style={{width: "100%"}}
             />
           </div>

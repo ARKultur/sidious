@@ -81,6 +81,15 @@
     "dashboard": {
       "title": "Dashboard"
     },
+    "journey": {
+      "title": "My Journeys"
+    },
+    "marker": {
+      "title": "My Markers"
+    },
+    "map": {
+      "title": "My Map"
+    },
     "feature": {
       "tab_title": "ARKultur - Features",
       "title": "Features",
