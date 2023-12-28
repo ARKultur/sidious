@@ -12,6 +12,7 @@ import ContactTable from '../component/ContactTable';
 import NewsletterTable from '../component/NewsletterTable';
 import { AdminMarkerTable } from '../component/AdminMarkerTable';
 import { AuthContext } from '../services/AuthProvider';
+import SuggestionsTable from '../component/SuggestionsTable';
 
 export default function Admin() {
   const theme = useTheme();
@@ -25,6 +26,7 @@ export default function Admin() {
     { isFocus: false, component: 'ContactTable', name: 'Contact' },
     { isFocus: false, component: 'NewsletterTable', name: 'Newsletter' },
     { isFocus: false, component: 'MarkersTable', name: 'Markers' },
+    { isFocus: false, component: 'SuggestionsTable', name: 'Suggestions' },
   ]);
   const [table, setTable] = useState(<></>);
   const token = localStorage.getItem('token');
@@ -243,6 +245,8 @@ export default function Admin() {
           deleteMarker={deleteMarker}
         />
       );
+    } else if (name === 'SuggestionsTable') {
+      return <SuggestionsTable />;
     } else
       return (
         <UsersTable rows={users} deleteUser={deleteUser} editUser={editUser} />
@@ -287,6 +291,12 @@ export default function Admin() {
             </Button>
             <Button title='Markers' onClick={() => setMenuFocus('Markers')}>
               Markers
+            </Button>
+            <Button
+              title='Suggestions'
+              onClick={() => setMenuFocus('Suggestions')}
+            >
+              Suggestions
             </Button>
           </Container>
           <Container style={{ padding: '20px' }}>{table}</Container>
