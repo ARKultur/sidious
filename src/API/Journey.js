@@ -28,6 +28,20 @@ export const getOrganisationJourneys = async (token, id) => {
   }
 };
 
+export const getOrganisationJourneysByAdmin = async (token, id) => {
+  const URL = API_URL + `/api/parkours/admin/orga/${id}`;
+  const params = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  try {
+    const response = await axios.get(URL, params);
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const addJourneyToDB = async (journey, organisationId) => {
   const URL = API_URL + "/api/parkours";
   const token = localStorage.getItem("token");
@@ -85,12 +99,29 @@ export const deleteJourneyToDB = async (journey, id) => {
   }
 };
 
+export const deleteJourneyByAdminToDB = async (journey, id) => {
+  const URL = API_URL + `/api/parkours/admin/${id}`;
+  const token = localStorage.getItem("token");
+
+  try {
+    const response = await axios.delete(URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (e) {
+    throw e;
+  }
+};
+
 const JourneyService = {
   getJourneys,
   getOrganisationJourneys,
+  getOrganisationJourneysByAdmin,
   addJourneyToDB,
   editJourneyToDB,
   deleteJourneyToDB,
+  deleteJourneyByAdminToDB,
 };
 
 export default JourneyService;

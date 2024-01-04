@@ -31,7 +31,7 @@ export default function AdminOrganisation() {
   useEffect(() => {
     const init = async () => {
       try {
-        let userRes = await axios.get(`${API_URL}/api/accounts/admin`, {
+        let userRes = await axios.get(`${API_URL}/api/organisations/${params.id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -39,8 +39,9 @@ export default function AdminOrganisation() {
 
         setUsers(userRes.data);
       } catch (e) {
-        logout();
-        window.location.replace("/");
+        console.log(e)
+        //logout();
+        //window.location.replace("/");
       }
 
       let orgRes = await axios.get(`${API_URL}/api/organisations`, {
@@ -49,12 +50,30 @@ export default function AdminOrganisation() {
         },
       });
 
-      setJourneys(journeyStates);
+
+      try {
+        let JourneyRes = await axios.get(`${API_URL}/api/parkours/admin/orga/${params.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        });
+        setJourneys(JourneyRes.data)
+      } catch (e) {
+        console.log(e)
+      }
+      
+      await axios.get(`${API_URL}/api/organisations`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }); 
+
       setOrganisations(orgRes.data);
       setIsSetup(true);
     };
     if (!IsSetup) init();
-  }, [users, organisations, IsSetup, token]);
+  }, [users, organisations, journeys, IsSetup, token]);
+  console.log(journeys)
 
   return (
     <>

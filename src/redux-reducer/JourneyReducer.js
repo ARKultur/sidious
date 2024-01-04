@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { requestJourneys, requestOrganisationJourneys, addJourney, editJourney, deleteJourney } from "../redux-action/JourneyAction";
+import { requestJourneys, requestOrganisationJourneys, addJourney, editJourney, deleteJourney, requestOrganisationJourneysByAdmin, deleteJourneyByAdmin } from "../redux-action/JourneyAction";
 const initialState = {
   journeys: [],
   isLoading: false
@@ -30,10 +30,23 @@ const journeySlice = createSlice({
         builder.addCase(requestOrganisationJourneys.rejected, (state) => {
           state.isLoading = false
         })
+        builder.addCase(requestOrganisationJourneysByAdmin.pending, (state) => {
+          state.isLoading = true
+        })
+        builder.addCase(requestOrganisationJourneysByAdmin.fulfilled, (state, action) => {
+          state.isLoading = false
+          state.journeys = action.payload
+        })
+        builder.addCase(requestOrganisationJourneysByAdmin.rejected, (state) => {
+          state.isLoading = false
+        })
         builder.addCase(addJourney.fulfilled, (state, action) => {
           state.journeys = action.payload
         })
         builder.addCase(deleteJourney.fulfilled, (state, action) => {
+          state.journeys = action.payload
+        })
+        builder.addCase(deleteJourneyByAdmin.fulfilled, (state, action) => {
           state.journeys = action.payload
         })
         builder.addCase(editJourney.fulfilled, (state, action) => {

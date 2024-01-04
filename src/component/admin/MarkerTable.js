@@ -60,12 +60,12 @@ export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
                   <TableCell component="th" scope="row">
                     {id}
                   </TableCell>
-                  <TableCell align="right">{row.name}</TableCell>
-                  <TableCell align="right">{row.description}</TableCell>
-                  <TableCell align="right">{row.longitude}</TableCell>
-                  <TableCell align="right">{row.latitude}</TableCell>
-                  <TableCell align="right">{"Not Ready"}</TableCell>
-                  <TableCell align="right">{"Not Ready"}</TableCell>
+                  <TableCell align="right">{row.node.name}</TableCell>
+                  <TableCell align="right">{row.node.description}</TableCell>
+                  <TableCell align="right">{row.node.longitude}</TableCell>
+                  <TableCell align="right">{row.node.latitude}</TableCell>
+                  <TableCell align="right">{row.node.status}</TableCell>
+                  <TableCell align="right">{row.order}</TableCell>
                   <TableCell align="right">
                     <IconButton
                       onClick={() => {

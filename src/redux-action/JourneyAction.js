@@ -1,4 +1,4 @@
-import JourneyService, { getJourneys, addJourneyToDB, editJourneyToDB, deleteJourneyToDB } from "../API/Journey";
+import JourneyService from "../API/Journey";
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
 
@@ -20,6 +20,18 @@ export const requestOrganisationJourneys = createAsyncThunk(
   async (params) => {
     try { 
       const result = await JourneyService.getOrganisationJourneys(params.token, params.organisationId);
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+export const requestOrganisationJourneysByAdmin = createAsyncThunk(
+  'journeysOrganisationAdmin/get',
+  async (params) => {
+    try { 
+      const result = await JourneyService.getOrganisationJourneysByAdmin(params.token, params.organisationId);
       return result;
     } catch (error) {
       console.error(error);
@@ -68,6 +80,22 @@ export const deleteJourney = createAsyncThunk(
     const journeys = [].concat(states.rootReducer.journeyReducer.journeys);
     try { 
       await JourneyService.deleteJourneyToDB(journey, journey.uuid);
+      journeys.pop(journey); 
+      return (journeys);
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+export const deleteJourneyByAdmin = createAsyncThunk(
+  'journeyAdmin/delete',
+  async (journey, { getState }) => {
+    const states = getState();
+    const journeys = [].concat(states.rootReducer.journeyReducer.journeys);
+    try { 
+      await JourneyService.deleteJourneyByAdminToDB(journey, journey.uuid);
       journeys.pop(journey); 
       return (journeys);
 

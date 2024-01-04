@@ -8,6 +8,7 @@ import axios from "axios";
 import { API_URL } from "../../config/API";
 import { AdminMarkerTable } from "../../component/admin/MarkerTable";
 import { AdminSideBar } from "../../component/admin/SideBar";
+import { useParams } from "react-router-dom";
 
 export default function AdminOrganisationMarkers() {
   const theme = useTheme();
@@ -15,11 +16,15 @@ export default function AdminOrganisationMarkers() {
   const [users, setUsers] = useState([]);
   const [markers, setMarkers] = useState([]);
   const token = localStorage.getItem("token");
+  const params = useParams();
 
+  console.log(params)
   useEffect(() => {
     const init = async () => {
 
-      let markerRes = await axios.get(`${API_URL}/api/nodes/all`);
+      let markerRes = await axios.get(`${API_URL}/api/nodes/admin/parkour/${params.id}`, {
+        headers:  { Authorization: `Bearer ${token}` },
+      });
 
       setMarkers(markerRes.data);
       setIsSetup(true);

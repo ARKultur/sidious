@@ -27,11 +27,12 @@ import GuideModal from "./component/guide/GuideModal";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Margin } from "@mui/icons-material";
 import AdminContact from "./view/Admin/Contact.js";
+import AdminUsers from "./view/Admin/Users";
 import AdminNewsletter from "./view/Admin/Newsletter.js";
 import AdminOrganisations from "./view/Admin/Organisations.js";
 import AdminOrganisation from "./view/Admin/Organisation.js";
 import AdminOrganisationMarkers from "./view/Admin/Markers.js";
-import AdminOrganisationUsers from "./view/Admin/Users.js";
+import AdminOrganisationUsers from "./view/Admin/OrganisationUsers.js";
 import AdminOrganisationJourneys from "./view/Admin/Journeys.js";
 import AdminSuggestion from "./view/Admin/Suggestion.js";
 
@@ -71,6 +72,7 @@ const AdminRouter = () => {
     <Routes>
       <Route path="/" element={<Admin/>} />
       <Route path="/organisations/*" element={<OrganisationsRouter/>} />
+      <Route path="/users" element={<AdminUsers/>} />
       <Route path="/contact" element={<AdminContact/>} />
       <Route path="/newsletter" element={<AdminNewsletter/>} />
       <Route path="/suggestion" element={<AdminSuggestion/>} />

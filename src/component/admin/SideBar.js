@@ -40,6 +40,27 @@ export const AdminSideBar = (props) => {
       </Button>
       <Button
         style={
+          props.option === "users"
+            ? {
+                width: 300,
+                height: 50,
+                justifyContent: "flex-start",
+                color: theme.palette.button.main,
+              }
+            : {
+                width: 300,
+                height: 50,
+                justifyContent: "flex-start",
+                color: theme.palette.greyText,
+              }
+        }
+        title="Users"
+        onClick={() => navigate("/admin/users")}
+      >
+        Users
+      </Button>
+      <Button
+        style={
           props.option === "contact"
             ? {
                 width: 300,
