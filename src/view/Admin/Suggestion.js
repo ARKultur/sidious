@@ -263,56 +263,23 @@ export default function AdminOrganisations() {
   return (
     <>
       <NavBar />
-      <Grid style={{ paddingTop: "100px", paddingLeft: "50px" }}>
+      <Grid style={{ paddingTop: '100px', paddingLeft: '50px' }}>
         <Typography
-          variant={"h1"}
+          variant={'h1'}
           color={theme.typography.color}
           style={{
-            marginBottom: "1rem",
-            fontSize: "3.75rem",
-            letterSpacing: "-0.025em",
+            marginBottom: '1rem',
+            fontSize: '3.75rem',
+            letterSpacing: '-0.025em',
             fontWeight: 800,
           }}
         >
-          {"Suggestion"}
+          {'Suggestion'}
         </Typography>
 
-        <Container>
-          <Container
-            className='dashboard-header'
-            style={{ flexDirection: 'row' }}
-          >
-            <Button title='Users' onClick={() => setMenuFocus('Contact')}>
-              Contact
-            </Button>
-            <Button title='Users' onClick={() => setMenuFocus('Newsletter')}>
-              Newsletter
-            </Button>
-            <Button title='Users' onClick={() => setMenuFocus('Users')}>
-              Users
-            </Button>
-            <Button
-              title='Organisations'
-              onClick={() => setMenuFocus('Organisations')}
-            >
-              Organisations
-            </Button>
-            <Button title='Markers' onClick={() => setMenuFocus('Markers')}>
-              Markers
-            </Button>
-            <Button
-              title='Suggestions'
-              onClick={() => setMenuFocus('Suggestions')}
-            >
-              Suggestions
-            </Button>
-          </Container>
-          <Container style={{ padding: '20px' }}>{table}</Container>
-        </Container>
-
-        <Grid style={{display: 'flex', flexDirection: 'row', padding: 10}}>
-          <AdminSideBar option={'suggestion'}/>
-          <SuggestionsTable/>;
+        <Grid style={{ display: 'flex', flexDirection: 'row', padding: 10 }}>
+          <AdminSideBar option={'suggestion'} />
+          <SuggestionsTable />;
         </Grid>
       </Grid>
       <FooterComponent />
