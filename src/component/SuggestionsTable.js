@@ -144,6 +144,12 @@ const AddSuggestionModal = ({
 
       await addSuggestions(fields);
       setSuggestions([...suggestions, fields]);
+      setFields({
+        name: null,
+        tag: null,
+        description: null,
+        imageUrl: null,
+      });
       handleClose();
     } catch (e) {
       console.log(e);
