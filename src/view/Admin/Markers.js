@@ -18,16 +18,18 @@ export default function AdminOrganisationMarkers() {
   const token = localStorage.getItem("token");
   const params = useParams();
 
-  console.log(params)
   useEffect(() => {
     const init = async () => {
+      try {
+        let markerRes = await axios.get(`${API_URL}/api/nodes/admin/parkour/${params.id}`, {
+          headers:  { Authorization: `Bearer ${token}` },
+        });
 
-      let markerRes = await axios.get(`${API_URL}/api/nodes/admin/parkour/${params.id}`, {
-        headers:  { Authorization: `Bearer ${token}` },
-      });
-
-      setMarkers(markerRes.data);
-      setIsSetup(true);
+        setMarkers(markerRes.data);
+        setIsSetup(true);
+      } catch (e) {
+        console.log(e)
+      }
     };
     if (!IsSetup) init();
   }, [users, markers, IsSetup, token]);
@@ -36,7 +38,7 @@ export default function AdminOrganisationMarkers() {
   const deleteMarker = async (marker) => {
     try {
       const res = await axios.delete(`${API_URL}/api/nodes/admin`, {
-        data: { name: marker.name },
+        data: { id: marker.node.id, parkourId: params.id },
         headers: { Authorization: `Bearer ${token}` },
       });
       const updatedMarkers = markers.filter(
@@ -52,7 +54,8 @@ export default function AdminOrganisationMarkers() {
 
 
   const editMarker = async (marker) => {
-    try {
+    console.log(marker)
+    /*try {
       const res = await axios.patch(
         `${API_URL}/api/nodes/admin`,
         {
@@ -73,7 +76,7 @@ export default function AdminOrganisationMarkers() {
       window.location.reload();
     } catch (e) {
       alert(e.response.data);
-    }
+    }*/
   };
 
   return (

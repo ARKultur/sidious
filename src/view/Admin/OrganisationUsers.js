@@ -9,10 +9,12 @@ import { API_URL } from "../../config/API";
 import UsersTable from "../../component/UserTable";
 import { AuthContext } from "../../services/AuthProvider";
 import { AdminSideBar } from "../../component/admin/SideBar";
+import { useParams } from "react-router-dom";
 
 export default function AdminOrganisationUsers() {
   const theme = useTheme();
   const [IsSetup, setIsSetup] = useState(false);
+  const params = useParams();
   const [users, setUsers] = useState([]);
   const [organisations, setOrganisations] = useState([]);
 
@@ -22,7 +24,7 @@ export default function AdminOrganisationUsers() {
   useEffect(() => {
     const init = async () => {
       try {
-        let userRes = await axios.get(`${API_URL}/api/accounts/admin`, {
+        let userRes = await axios.get(`${API_URL}/api/organisations/${params.id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -30,8 +32,9 @@ export default function AdminOrganisationUsers() {
 
         setUsers(userRes.data);
       } catch (e) {
-        logout();
-        window.location.replace("/");
+        console.log(e)
+        //logout();
+        //window.location.replace("/");
       }
 
       let orgRes = await axios.get(`${API_URL}/api/organisations`, {

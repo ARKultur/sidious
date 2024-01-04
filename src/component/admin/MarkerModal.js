@@ -42,6 +42,7 @@ export const AdminMarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
     }
   };
 
+  console.log(formData);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -79,14 +80,19 @@ export const AdminMarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
             <CloseIcon />
           </IconButton>
         </Container>
-        <form style={{ display: "flex", flexDirection: "column" }}>
+        <form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <div className="modal-form-field">
             <TextField
               onChange={handleChange}
               name="name"
               defaultValue={formData.name}
               label="Name"
-              style={{width: "100%"}}
+              style={{ width: "100%" }}
             />
           </div>
           <div className="modal-form-field">
@@ -96,7 +102,8 @@ export const AdminMarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
               defaultValue={formData.description}
               label="Description"
               multiline
-              style={{width: "100%"}}
+              className="modal-form-field"
+              style={{ width: "100%" }}
             />
           </div>
           <div className="modal-form-field">
@@ -105,7 +112,8 @@ export const AdminMarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
               name="longitude"
               defaultValue={formData.longitude}
               label="Longitude"
-              style={{width: "100%"}}
+              className="modal-form-field"
+              style={{ width: "100%" }}
             />
           </div>
           <div className="modal-form-field">
@@ -114,37 +122,47 @@ export const AdminMarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
               name="latitude"
               defaultValue={formData.latitude}
               label="Latitude"
-              style={{width: "100%"}}
+              style={{ width: "100%" }}
             />
           </div>
           <div className="modal-form-field">
             <TextField
-              name="hauteur"
-              label="Hauteur"
-              style={{width: "100%"}}
+              onChange={handleChange}
+              name="altitude"
+              defaultValue={formData.altitude}
+              label="Altitude"
+              style={{ width: "100%" }}
             />
           </div>
           <div className="modal-form-field">
             <TextField
+              onChange={handleChange}
               name="status"
+              defaultValue={formData.status}
               label="Status"
-              style={{width: "100%"}}
+              className="modal-form-field"
+              style={{ width: "100%" }}
             />
           </div>
           <div className="modal-form-field">
             <TextField
-              name="order"
-              label="Order"
-              style={{width: "100%"}}
+              onChange={handleChange}
+              name="model"
+              defaultValue={formData.model}
+              label="Model"
+              className="modal-form-field"
+              style={{ width: "100%" }}
             />
           </div>
           <div className="modal-form-field">
-            <p>Model 3D</p>
-            <Input type="file" />
-          </div>
-          <div className="modal-form-field">
-            <p>Texture</p>
-            <Input type="file" />
+            <TextField
+              onChange={handleChange}
+              name="texture"
+              defaultValue={formData.texture}
+              label="Texture"
+              className="modal-form-field"
+              style={{ width: "100%" }}
+            />
           </div>
           {errors && (
             <div className="modal-error">{`Please include: ${errors}`}</div>
