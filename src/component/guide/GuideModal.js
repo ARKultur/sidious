@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Modal from '../modal/Modal';
-import { useTranslation } from "react-i18next";
 // import * as API from "../../services/ConnectionService"
 import "./GuideModal.css"
 
@@ -16,24 +15,36 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import { Avatar, Box } from "@mui/material";
 import Rating from '@mui/material/Rating';
+import { downloadGuideImage, getGuide, getGuideImages } from "../../services/GuideService";
+import moment from "moment";
+import { API_URL } from "../../config/API";
 
-function AddressPanel() {
+function AddressPanel(props) {
+
+    const { address } = props;
+
     return (
         <div className="info-container">
             <LocationOnOutlinedIcon className="icon"/>
-            <a className="redirect" href="https://goo.gl/maps/ZdDashXwn6oAfJP47" target="_blank">8 Pl. de Fourvière, 69005 Lyon</a>
+            <a
+                className="redirect"
+                href={`https://www.google.com/maps/search/?api=1&query=${address.replace(' ', '+')}`}
+                target="_blank" rel="noreferrer">{address}
+            </a>
         </div>
     );
 }
 
-function KeyWordsPanel() {
+function KeyWordsPanel(props) {
+
+    const { keywords } = props;
+
     return (
         <div className="info-container h-panel">
             <Stack direction="row" spacing={1}>
-                <Chip label="Monument" />
-                <Chip label="Catholique" />
-                <Chip label="Musée" />
-                <Chip label="Religieux" />
+                {keywords && keywords.map((keyword) =>
+                    <Chip label={keyword} />
+                )}
             </Stack>
         </div>
     );
@@ -57,7 +68,10 @@ function RatingPanel(props) {
     );
 }
 
-function HoursPanel() {
+function HoursPanel(props) {
+
+    const { hours } = props;
+
     const [expanded, setExpanded] = useState(false);
 
     const togglePanel = () => {
@@ -76,35 +90,35 @@ function HoursPanel() {
                         <ExpandMoreIcon/>
                 }
             </div>
-            {expanded && (
+            {hours && expanded && (
                 <Box className="h-info-panel">
                     <div className="h-panel-content">
-                        <p>lundi</p>
-                        <p>07:00–20:00</p>
+                        <p>Lundi</p>
+                        <p>{hours[0]}</p>
                     </div>
                     <div className="h-panel-content">
-                        <p>mardi</p>
-                        <p>07:00–20:00</p>
+                        <p>Mardi</p>
+                        <p>{hours[1]}</p>
                     </div>
                     <div className="h-panel-content">
-                        <p>mercredi</p>
-                        <p>07:00–20:00</p>
+                        <p>Mercredi</p>
+                        <p>{hours[2]}</p>
                     </div>
                     <div className="h-panel-content">
-                        <p>jeudi</p>
-                        <p>07:00–20:00</p>
+                        <p>Jeudi</p>
+                        <p>{hours[3]}</p>
                     </div>
                     <div className="h-panel-content">
-                        <p>vendredi</p>
-                        <p>07:00–20:00</p>
+                        <p>Vendredi</p>
+                        <p>{hours[4]}</p>
                     </div>
                     <div className="h-panel-content">
-                        <p>samedi</p>
-                        <p>07:00–20:00</p>
+                        <p>Samedi</p>
+                        <p>{hours[5]}</p>
                     </div>
                     <div className="h-panel-content">
-                        <p>dimanche</p>
-                        <p>07:00–20:00</p>
+                        <p>Dimanche</p>
+                        <p>{hours[6]}</p>
                     </div>
                 </Box>
             )}
@@ -112,54 +126,93 @@ function HoursPanel() {
     );
 }
 
-function DescriptionPanel() {
+function DescriptionPanel(props) {
+
+    const { description } = props;
+
     return (
         <div className="info-container desc">
             <p
                 style={
                     {"margin-left": 0}
                 }
-            >
-                La basilique Notre-Dame de Fourvière est l’œuvre des architectes Bossan et Sainte-Marie Perrin. Elle est édifiée à partir d’une souscription publique en 1870 et consacrée en 1896.
-Du haut de “la colline qui prie”, la basilique dédiée à la Vierge Marie est classée monument historique. Elle fait partie du site lyonnais inscrit au Patrimoine mondial de l’UNESCO. Aujourd’hui, emblème de la ville de Lyon, la basilique accueille chaque année plus de 2,5 millions de pèlerins et visiteurs.
-            </p>
+            >{description}</p>
         </div>
     );
 }
 
-function WebSitePanel() {
+function WebSitePanel(props) {
+
+    const { website } = props;
+
     return (
         <div className="info-container">
             <PublicIcon className="icon"/>
-            <a className="redirect" href="https://www.fourviere.org/" target="_blank">fourviere.org/</a>
+            <a className="redirect" href={website} target="_blank">{new URL(website).hostname}/</a>
         </div>
     );
 }
 
-function PricePanel() {
+function PricePanel(props) {
+
+    const { prices, pricesDescription } = props;
+
+    const [expanded, setExpanded] = useState(false);
+
+    const togglePanel = () => {
+        setExpanded(!expanded);
+    };
+
     return (
-        <div className="info-container">
-            <LocalActivityIcon className="icon"/>
-            <p>Gratuit</p>
-        </div>
+        <>
+            <div className="info-container h-panel-header" onClick={togglePanel}>
+                <LocalActivityIcon className="icon"/>
+                <p className="redirect">Prix</p>
+                {expanded
+                    ?
+                        <ExpandLessIcon/>
+                    :
+                        <ExpandMoreIcon/>
+                }
+            </div>
+            {prices && pricesDescription && expanded && (
+                <Box className="h-info-panel">
+                    {prices.map((price, index) => {
+                        if (pricesDescription.at(index))
+                            return (
+                                <div className="h-panel-content">
+                                    <p>{pricesDescription[index]}</p>
+                                    <p>{price}</p>
+                                </div>
+                            )
+                    })}
+                </Box>
+            )}
+        </>
     );
 }
 
-function FeedbackCard() {
+function FeedbackCard(props) {
+
+    const { feedback } = props;
+
     return (
         <div className="feedback-card">
             <div className="feedback-content">
                 <Avatar className="avatar" alt="Patrick" src="https://images.pexels.com/photos/16110027/pexels-photo-16110027/free-photo-of-animal-chien-animal-de-compagnie-mignon.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"></Avatar>
-                <p>Patrick</p>
+                <p>{feedback.user.username} - {moment(feedback.datetime).format("DD.MM.YYYY")} - {feedback.stars}/5</p>
             </div>
             <div>
-                <p>C'est cool</p>
+                <p>{feedback.message}</p>
             </div>
         </div>
     );
 }
 
-function FeedbackPanel() {
+function FeedbackPanel(props) {
+
+    const { feedbacks } = props;
+
     return (
         <>
             <div className="info-container">
@@ -167,8 +220,9 @@ function FeedbackPanel() {
                 <p>Avis</p>
             </div>
             <Stack className="feedback-stack">
-                <FeedbackCard/>
-                <FeedbackCard/>
+                {feedbacks && feedbacks.map((feedback) =>
+                    <FeedbackCard key={feedback.datetime} feedback={feedback}/>
+                )}
             </Stack>
         </>
     );
@@ -176,7 +230,14 @@ function FeedbackPanel() {
 
 export default function GuideModal(props)
 {
-    const { onClose, isActive } = props;
+
+    const { onClose, isActive, guide, address } = props;
+
+    // Sorting
+    const [sortByNote, setSortByNote] = React.useState(false);
+    const [sortByDate, setSortByDate] = React.useState(false);
+    const [guideData, setGuideData] = React.useState(undefined);
+    const [guideImages, setGuideImages] = React.useState(undefined);
 
     const [isShow, setShow] = useState(isActive);
 
@@ -189,56 +250,79 @@ export default function GuideModal(props)
         }
     }
 
+    function getRatingFromFeedback(feedbacks) {
+        return Math.round(feedbacks.map((feedback) => feedback.stars))
+    }
+
+    async function getGuideData() {
+        const data = await getGuide(guide.id);
+        const imagesNames = await getGuideImages(guide.id);
+
+        // console.log(`data : ${JSON.stringify(data, null, 2)}`);
+        // console.log(`imagesNames : ${JSON.stringify(imagesNames, null, 2)}`);
+        setGuideData(data);
+
+        const images = await imagesNames.map(async (name) => await downloadGuideImage(guide.id, name));
+        // console.log(`images : ${JSON.stringify(images, null, 2)}`)
+        // console.log(`images : ${JSON.stringify(images[0], null, 2)}`)
+        setGuideImages(images);
+    }
+
     useEffect(() => {
         if (isActive)
             setShow(isActive);
     }, [isActive])
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 10000,
-        adaptiveHeight: true,
-        accessibility: true,
-    };
+    useEffect(() => {
+        console.log(`address : ${address}`)
+        if (guide) {
+            console.log(guide);
+            getGuideData();
+        }
+        if (sortByDate) {
+            guide.reviews.sort((a, b) => a.datetime < b.datetime)
+        }
+        if (sortByNote) {
+            guide.reviews.sort((a, b) => a.stars < b.stars)
+        }
+    }, [guide, address, sortByDate, sortByNote])
 
     return (
         <>
-            {isShow && (
+            {isShow && guideData && (
                 <Modal onClose={close} frame={false}>
                     <div className={`guide-panel ${isActive ? 'active' : ''}`}>
+                        {/* {guideImages &&
+                            <div className="image">
+                                <img
+                                    src={URL.createObjectURL(guideImages[0])}
+                                    alt="Image1"
+                                    className="h-full w-full object-cover"
+                                />
+                            </div>
+                        } */}
                         <div className="image">
                             <img
                                 src="https://images.pexels.com/photos/8430276/pexels-photo-8430276.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                                 alt="Image1"
                                 className="h-full w-full object-cover"
                             />
-                            {/* <img
-                                src="https://images.pexels.com/photos/8430273/pexels-photo-8430273.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                                alt="Image2"
-                                className="h-full w-full object-cover"
-                            />
-                            <img
-                                src="https://images.pexels.com/photos/5868282/pexels-photo-5868282.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                                alt="Image3"
-                                className="h-full w-full object-cover"
-                            /> */}
                         </div>
-                        {/* <div className="cadre" /> */}
                         <Box className="information">
-                            <p className="title">Basilique Notre-Dame de Fourvière</p>
-                            <KeyWordsPanel/>
-                            <RatingPanel value={4.3}/>
-                            <AddressPanel/>
-                            <HoursPanel/>
-                            <WebSitePanel/>
-                            <PricePanel/>
-                            <DescriptionPanel/>
-                            <FeedbackPanel/>
+                            <p className="title">{guideData.title}</p>
+                            <KeyWordsPanel keywords={guideData.keywords}/>
+                            <RatingPanel value={getRatingFromFeedback(guideData.reviews)}/>
+                            {address &&
+                                <AddressPanel address={address}/>
+                            }
+                            <HoursPanel hours={guideData.openingHours}/>
+                            <WebSitePanel website={guideData.website}/>
+                            <PricePanel
+                                prices={guideData.priceValue}
+                                pricesDescription={guideData.priceDesc}
+                            />
+                            <DescriptionPanel description={guideData.description}/>
+                            <FeedbackPanel feedbacks={guideData.reviews}/>
                         </Box>
                     </div>
                 </Modal>

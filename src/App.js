@@ -19,10 +19,7 @@ import Timeline from "./view/Timeline";
 import { AuthProvider } from './services/AuthProvider';
 
 import ProfileView from './view/Profile';
-
-import GuideModal from "./component/guide/GuideModal";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { Margin } from "@mui/icons-material";
+import GuideView from "./view/GuideView";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +50,11 @@ const router = createBrowserRouter([
     {
         path: "feature",
         element: <Feature/>,
+        errorElement: <Error/>
+    },
+    {
+        path: "map",
+        element: <GuideView/>,
         errorElement: <Error/>
     },
     {
@@ -89,34 +91,10 @@ const router = createBrowserRouter([
 
 function App() {
 
-  // Guide
-  const [showGuideModal, setShowGuideModal] = React.useState(false);
-
-  function handleShowGuideModal() {
-    setShowGuideModal(true);
-  };
-
-  function handleCloseGuideModal() {
-    setShowGuideModal(false);
-  };
-
   return (
     <div className="App">
       <ThemeProvider theme={defaultTheme}>
         <AuthProvider>
-            {/* <MapContainer center={[45.763210649627446, 4.82241931165369]} zoom={13} scrollWheelZoom={false} style={{marginTop: "1000px"}}>
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <Marker position={[45.763210649627446, 4.82241931165369]} eventHandlers={{
-                  click: (e) => {
-                    handleShowGuideModal()
-                  },
-                }}>
-              </Marker>
-              <GuideModal onClose={handleCloseGuideModal} isActive={showGuideModal} style={{zIndex: 1000}}/>
-            </MapContainer>, */}
           <CssBaseline/>
           <RouterProvider router={router}/>
         </AuthProvider>

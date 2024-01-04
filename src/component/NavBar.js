@@ -81,6 +81,10 @@ function MenuBar()
         name="menu_contact"
         link="/contact"
       />
+      <MenuBarElement
+        name="map"
+        link="/map"
+      />
       { token && token !== "null" ?
         <MenuBarElement
             name= "menu_dashboard"
