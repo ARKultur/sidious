@@ -19,6 +19,7 @@ export const JourneyTable = ({
   withoutAction,
 }) => {
   return (
+  
     <Container className="table-container">
       <TableContainer>
         <Table aria-label="simple table">
@@ -26,15 +27,15 @@ export const JourneyTable = ({
             <TableRow>
               {withoutAction ? (
                 <>
-                  <TableCell align="center">S.No</TableCell>
+                  <TableCell align="center">S.no</TableCell>
                   <TableCell align="center">Journeys Name</TableCell>
                 </>
               ) : (
                 <>
-                  <TableCell>S.No</TableCell>
+                  <TableCell>S.no</TableCell>
                   <TableCell align="right">Journeys Name</TableCell>
                   <TableCell align="right">Afficher</TableCell>
-                  <TableCell align="right">Modifier</TableCell>
+                 {/*<TableCell align="right">Modifier</TableCell>*/}
                   <TableCell align="right">Supprimer</TableCell>
                 </>
               )}
@@ -47,27 +48,27 @@ export const JourneyTable = ({
                   {withoutAction ? (
                     <>
                       <TableCell align="center" component="th" scope="row">
-                        {row.id}
+                        {id}
                       </TableCell>
                       <TableCell align="center">{row.name}</TableCell>
                     </>
                   ) : (
                     <>
                       <TableCell component="th" scope="row">
-                        {row.id}
+                        {id}
                       </TableCell>
                       <TableCell align="right">{row.name}</TableCell>
                       <TableCell align="right">
                         <IconButton
                           onClick={() => {
-                            showRow(row.id);
+                            showRow(row.uuid);
                           }}
                         >
                           <RoomIcon />
                         </IconButton>
                       </TableCell>
 
-                      <TableCell align="right">
+                    {/*  <TableCell align="right">
                         <IconButton
                           onClick={() => {
                             editRow(id);
@@ -75,11 +76,11 @@ export const JourneyTable = ({
                         >
                           <EditIcon />
                         </IconButton>
-                      </TableCell>
+                        </TableCell>*/}
                       <TableCell align="right">
                         <IconButton
                           onClick={() => {
-                            deleteRow(row.id);
+                            deleteRow(id);
                           }}
                         >
                           <ClearIcon />

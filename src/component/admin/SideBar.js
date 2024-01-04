@@ -80,6 +80,27 @@ export const AdminSideBar = (props) => {
       >
         Newsletter
       </Button>
+      <Button
+        style={
+          props.option === "suggestion"
+            ? {
+                width: 300,
+                height: 50,
+                justifyContent: "flex-start",
+                color: theme.palette.button.main,
+              }
+            : {
+                width: 300,
+                height: 50,
+                justifyContent: "flex-start",
+                color: theme.palette.greyText,
+              }
+        }
+        title="Suggestion"
+        onClick={() => navigate("/admin/suggestion")}
+      >
+        Suggestions
+      </Button>
     </Grid>
   );
 };

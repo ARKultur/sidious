@@ -16,6 +16,11 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
     description: "",
     longitude: 0,
     latitude: 0,
+    altitude: 0,
+    status: "",
+    order: 0,
+    model: "",
+    texture: "",
   };
   const [formData, setFormData] = useState(defaultValue || initialState);
   const [errors, setErrors] = useState("");
@@ -42,7 +47,7 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
   };
 
   const handleChange = (e) => {
-    if (e.target.name === "latitude" || e.target.name === "longitude") {
+    if (e.target.name === "latitude" || e.target.name === "longitude" || e.target.name === "altitude" || e.target.name === "order") {
       setFormData({ ...formData, [e.target.name]: parseInt(e.target.value) });
     }
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -117,8 +122,17 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
           <div className="modal-form-field">
             <TextField
               onChange={handleChange}
+              name="altitude"
+              defaultValue={formData.altitude}
+              label="Altitude"
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div className="modal-form-field">
+            <TextField
+              onChange={handleChange}
               name="status"
-              defaultValue={formData.longitude}
+              defaultValue={formData.status}
               label="Status"
               className="modal-form-field"
               style={{ width: "100%" }}
@@ -128,8 +142,28 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
             <TextField
               onChange={handleChange}
               name="order"
-              defaultValue={formData.longitude}
+              defaultValue={formData.order}
               label="Order"
+              className="modal-form-field"
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div className="modal-form-field">
+            <TextField
+              onChange={handleChange}
+              name="model"
+              defaultValue={formData.model}
+              label="Model"
+              className="modal-form-field"
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div className="modal-form-field">
+            <TextField
+              onChange={handleChange}
+              name="texture"
+              defaultValue={formData.texture}
+              label="Texture"
               className="modal-form-field"
               style={{ width: "100%" }}
             />

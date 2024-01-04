@@ -33,6 +33,7 @@ import AdminOrganisation from "./view/Admin/Organisation.js";
 import AdminOrganisationMarkers from "./view/Admin/Markers.js";
 import AdminOrganisationUsers from "./view/Admin/Users.js";
 import AdminOrganisationJourneys from "./view/Admin/Journeys.js";
+import AdminSuggestion from "./view/Admin/Suggestion.js";
 
 const JourneysRouter = () => {
   return (
@@ -72,6 +73,7 @@ const AdminRouter = () => {
       <Route path="/organisations/*" element={<OrganisationsRouter/>} />
       <Route path="/contact" element={<AdminContact/>} />
       <Route path="/newsletter" element={<AdminNewsletter/>} />
+      <Route path="/suggestion" element={<AdminSuggestion/>} />
     </Routes>
   );
 };

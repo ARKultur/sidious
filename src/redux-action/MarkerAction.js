@@ -27,14 +27,26 @@ export const requestOrganisationMarkers = createAsyncThunk(
   }
 );
 
+export const requestJourneyMarkers = createAsyncThunk(
+  'markersJourney/get',
+  async (params) => {
+    try { 
+      const result = await MarkerService.getJourneyMarkers(params.token, params.parkourId);
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
 export const addMarker = createAsyncThunk(
   'marker/post',
-  async (marker, { getState }) => {
+  async (params, { getState }) => {
     const states = getState();
     const markers = [].concat(states.rootReducer.markerReducer.markers);
     try { 
-      await MarkerService.addMarkerToDB(marker);
-      markers.push(marker); 
+      await MarkerService.addMarkerToDB(params.node, params.parkourId);
+      markers.push(params); 
       return (markers);
     } catch (error) {
       console.error(error);

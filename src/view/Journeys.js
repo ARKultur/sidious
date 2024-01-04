@@ -20,19 +20,19 @@ import { useState, useEffect } from "react";
 import "../styles/view/Dashboard.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  requestMarkers,
-  addMarker,
-  editMarker,
-  deleteMarker,
-  requestOrganisationMarkers,
-} from "../redux-action/MarkerAction";
+  requestJourneys,
+  addJourney,
+  editJourney,
+  deleteJourney,
+  requestOrganisationJourneys,
+} from "../redux-action/JourneyAction";
 import LoadingSpinner from "../animation/LoadingSpinner";
 import { JourneyModal } from "../component/JourneyModal";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const journeyStates = [{id: "0", name: "Art-Track"}, {id: "1", name: "Quick-Track"}, {id: "2", name: "London-Downtown"}]; //useSelector((state) => state.rootReducer.markerReducer);
+  const journeyStates = useSelector((state) => state.rootReducer.journeyReducer);
   const token = localStorage.getItem("token");
   const organisationId = localStorage.getItem("organisationId");
   const [journeys, setJourneys] = useState([]);
@@ -43,21 +43,22 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (organisationId !== "null" && token) {
-      //dispatch(requestOrganisationJourneys(token));
-      setJourneys(journeyStates); // setJourneys(journeyStates.journeys);
+      dispatch(requestOrganisationJourneys({token, organisationId}));
+      setJourneys(journeyStates.journeys); 
     }
   }, []);
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (journeyStates.journeys !== journeys) {
       setJourneys(journeyStates.journeys);
     }
-  }, [journeyStates.journeys]);*/
+  }, [journeyStates.journeys]);
 
   const deleteRow = (targetId) => {
-    const tmpJourneys = journeys.filter((journey) => journey.id !== targetId);
-    setJourneys(tmpJourneys);
-    //dispatch(deleteJourney(journeyStates.journeys[targetId]));
+    //const tmpJourneys = journeys.filter((journey) => journey.id !== targetId);
+    //setJourneys(tmpJourneys);
+    //console.log(journeyStates.journeys, targetId)
+    dispatch(deleteJourney(journeyStates.journeys[targetId]));
   };
 
   const editRow = (id) => {
@@ -72,18 +73,18 @@ export default function Dashboard() {
 
   const submitForm = (newRow) => {
     if (rowToEdit === null) {
-      //dispatch(addJourney(newRow));
-      journeys.push(newRow); 
+      dispatch(addJourney({journey: newRow, organisationId: organisationId}));
+      //journeys.push(newRow); 
     }
-    //journeys.map((marker, id) => {
-   //   if (id === rowToEdit) {
-        //dispatch(editMarker(newRow));
-        journeys.map((item, index) => {
+    journeyStates.journeys.map((marker, id) => {
+      if (id === rowToEdit) {
+        dispatch(editJourney(newRow));
+        /*journeys.map((item, index) => {
           if (item.id === newRow.id) {
             journeys[index] = newRow
           }
-        })
-      //}
+        })*/
+      }});
     //});
   };
 

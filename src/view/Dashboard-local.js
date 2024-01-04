@@ -43,7 +43,6 @@ export default function Dashboard() {
   const submitForm = (newRow) => {
     if (rowToEdit === null) {
       dispatch(addMarker(newRow));
-      console.log(states.markers);
     }
      states.markers.map((marker, id) => {
         if (id === rowToEdit) { 

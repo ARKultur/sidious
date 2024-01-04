@@ -10,18 +10,24 @@ import "../styles/component/MarkerModal.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 
+
 export const JourneyModal = ({ closeModal, onSubmit, defaultValue }) => {
+  const organisationId = localStorage.getItem("organisationId");
   const initialState = {
-    id: "",
     name: "",
+    description: "",
+    status: "",
+    OrganisationId: organisationId
   };
   const [formData, setFormData] = useState(defaultValue || initialState);
   const [errors, setErrors] = useState("");
 
   const validateForm = () => {
     if (
-      formData.id &&
-      formData.name
+      formData.name &&
+      formData.description &&
+      formData.status &&
+      formData.OrganisationId
     ) {
       setErrors("");
       return true;
@@ -38,7 +44,7 @@ export const JourneyModal = ({ closeModal, onSubmit, defaultValue }) => {
   };
 
   const handleChange = (e) => {
-    if (e.target.name === "id") {
+    if (e.target.name === "OrganisationId") {
       setFormData({ ...formData, [e.target.name]: parseInt(e.target.value) });
     }
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -83,21 +89,39 @@ export const JourneyModal = ({ closeModal, onSubmit, defaultValue }) => {
             flexDirection: "column",
           }}
         >
-           <div className="modal-form-field">
-            <TextField
-              onChange={handleChange}
-              name="id"
-              defaultValue={formData.id}
-              label="Id"
-              style={{ width: "100%"}}
-            />
-          </div>
           <div className="modal-form-field">
             <TextField
               onChange={handleChange}
               name="name"
               defaultValue={formData.name}
               label="Name"
+              style={{ width: "100%"}}
+            />
+          </div>
+          <div className="modal-form-field">
+            <TextField
+              onChange={handleChange}
+              name="description"
+              defaultValue={formData.description}
+              label="Description"
+              style={{ width: "100%"}}
+            />
+          </div>
+          <div className="modal-form-field">
+            <TextField
+              onChange={handleChange}
+              name="status"
+              defaultValue={formData.status}
+              label="Status"
+              style={{ width: "100%"}}
+            />
+          </div>
+          <div className="modal-form-field">
+            <TextField
+              onChange={handleChange}
+              name="organisationId"
+              defaultValue={formData.OrganisationId}
+              label="Organisation"
               style={{ width: "100%"}}
             />
           </div>

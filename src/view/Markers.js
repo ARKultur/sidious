@@ -24,6 +24,7 @@ import {
   editMarker,
   deleteMarker,
   requestOrganisationMarkers,
+  requestJourneyMarkers
 } from "../redux-action/MarkerAction";
 import { useParams, useLocation } from "react-router-dom";
 import { MarkerMap } from "../component/MarkerMap";
@@ -38,17 +39,15 @@ export default function Dashboard() {
   const [markers, setMarkers] = useState([]);
   const [rowToEdit, setRowToEdit] = useState(null);
   const theme = useTheme();
-  const { id } = useParams();
+  const params = useParams();
   const { t } = useTranslation();
   const [isDashboardMap, setDashboardMap] = React.useState(true);
   const [isModalOpen, setModalOpen] = React.useState(false);
 
-  console.log(id);
-
   useEffect(() => {
     if (organisationId !== "null" && token) {
       //dispatch(requestJourneyMarkers(token, journeyId));
-      dispatch(requestOrganisationMarkers(token));
+      dispatch(requestJourneyMarkers({token: token, parkourId: params.id}));
       setMarkers(markerStates.markers);
     }
   }, []);
@@ -71,13 +70,14 @@ export default function Dashboard() {
 
   const submitForm = (newRow) => {
     if (rowToEdit === null) {
-      dispatch(addMarker(newRow));
+      dispatch(addMarker({node: newRow, nodeId: null, order: newRow.order, parkourId: params.id}));
+    } else {
+      markerStates.markers.map((marker, id) => {
+        if (id === rowToEdit) {
+          dispatch(editMarker(newRow));
+        }
+      });
     }
-    markerStates.markers.map((marker, id) => {
-      if (id === rowToEdit) {
-        dispatch(editMarker(newRow));
-      }
-    });
   };
 
   return (

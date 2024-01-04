@@ -21,14 +21,34 @@ export const getOrganisationMarkers = async (token) => {
   }
 };
 
-export const addMarkerToDB = async (marker) => {
+
+export const getJourneyMarkers = async (token, uuid) => {
+  const URL = API_URL + `/api/nodes/parkour/${uuid}`;
+  const params = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  try {
+    const response = await axios.get(URL, params);
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const addMarkerToDB = async (marker, parkourUuid) => {
   const URL = API_URL + "/api/nodes";
   const token = localStorage.getItem("token");
   const jsonBody = {
     name: marker.name,
     longitude: Number(marker.longitude),
     latitude: Number(marker.latitude),
-    description: marker.description, 
+    altitude: Number(marker.altitude), 
+    description: marker.description,
+    model: marker.model,
+    texture: marker.texture,
+    status: marker.status,
+    parkours: [{parkourId: parkourUuid, order: Number(marker.order)}] 
   };
 
   const params = {
@@ -74,7 +94,9 @@ export const deleteMarkerToDB = async (marker) => {
         Authorization: `Bearer ${token}`,
       },
       data: {
-        name: marker.name,
+        node_id: marker.nodeId,
+        parkour_id: marker.parkourId,
+        name: marker.node.name,
       },
     });
   } catch (e) {
@@ -85,6 +107,7 @@ export const deleteMarkerToDB = async (marker) => {
 const MarkerService = {
   getMarkers,
   getOrganisationMarkers,
+  getJourneyMarkers,
   addMarkerToDB,
   editMarkerToDB,
   deleteMarkerToDB,
