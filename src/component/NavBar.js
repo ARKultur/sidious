@@ -82,7 +82,7 @@ function MenuBar()
         link="/contact"
       />
       <MenuBarElement
-        name="map"
+        name="menu_map"
         link="/map"
       />
       { token && token !== "null" ?
@@ -196,7 +196,7 @@ export default function NavBar(props)
                         aria-expanded={open ? 'true' : undefined}
                         onClick={DhandleClick}
                       >
-                        {username}
+                        {"Logged"}
                       </Button>
                       <Menu
                         id="basic-menu"

@@ -1,42 +1,55 @@
-import NavBar from "../component/NavBar";
-import FooterComponent from "../component/Footer";
-import { Button, Container, Grid, Typography, useTheme } from "@mui/material";
-import * as React from "react";
-import { useState, useEffect } from "react";
-import "../styles/view/Dashboard.css";
-import axios from "axios";
-import { API_URL } from "../config/API";
-import UsersTable from "../component/UsersTable";
-import OrganisationsTable from "../component/OrganisationsTable";
-import ContactTable from "../component/ContactTable";
-import NewsletterTable from "../component/NewsletterTable";
-import { AdminMarkerTable } from "../component/AdminMarkerTable";
+import NavBar from '../../component/NavBar';
+import FooterComponent from '../../component/Footer';
+import { Button, Container, Grid, Typography, useTheme } from '@mui/material';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import '../../styles/view/Dashboard.css';
+import axios from 'axios';
+import { API_URL } from '../../config/API';
+import UsersTable from '../../component/UserTable';
+import OrganisationsTable from '../../component/OrganisationsTable';
+import ContactTable from '../../component/ContactTable';
+import NewsletterTable from '../../component/NewsletterTable';
+import { AdminMarkerTable } from '../../component/admin/MarkerTable';
+import { AuthContext } from '../../services/AuthProvider';
+import { AdminSideBar } from '../../component/admin/SideBar';
+import { useNavigate } from 'react-router-dom';
+import SuggestionsTable from '../../component/SuggestionsTable';
 
-export default function Admin() {
+export default function AdminOrganisations() {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [IsSetup, setIsSetup] = useState(false);
   const [users, setUsers] = useState([]);
   const [markers, setMarkers] = useState([]);
   const [organisations, setOrganisations] = useState([]);
   const [menu, setMenu] = useState([
-    { isFocus: true, component: "UsersTable", name: "Users" },
-    { isFocus: false, component: "OrganisationsTable", name: "Organisations" },
-    { isFocus: false, component: "ContactTable", name: "Contact" },
-    { isFocus: false, component: "NewsletterTable", name: "Newsletter" },
-    {isFocus: false, component: "MarkersTable", name: "Markers"},
+    { isFocus: true, component: 'UsersTable', name: 'Users' },
+    { isFocus: false, component: 'OrganisationsTable', name: 'Organisations' },
+    { isFocus: false, component: 'ContactTable', name: 'Contact' },
+    { isFocus: false, component: 'NewsletterTable', name: 'Newsletter' },
+    { isFocus: false, component: 'MarkersTable', name: 'Markers' },
+    { isFocus: false, component: 'SuggestionsTable', name: 'Suggestions' },
   ]);
   const [table, setTable] = useState(<></>);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
+  const { logout } = React.useContext(AuthContext);
 
   useEffect(() => {
     const init = async () => {
-      let userRes = await axios.get(`${API_URL}/api/accounts/admin`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      try {
+        let userRes = await axios.get(`${API_URL}/api/accounts/admin`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-      setUsers(userRes.data);
+        setUsers(userRes.data);
+      } catch (e) {
+        logout();
+        window.location.replace('/');
+      }
+
       let orgRes = await axios.get(`${API_URL}/api/organisations`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -125,8 +138,8 @@ export default function Admin() {
         {
           name: marker.name,
           description: marker.description,
-          longitude: marker.longitude,
-          latitude: marker.latitude,
+          longitude: parseInt(marker.longitude),
+          latitude: parseInt(marker.latitude),
           status: marker.status,
           organisationId: marker.organisationId,
         },
@@ -196,11 +209,15 @@ export default function Admin() {
     setTable(getComponent());
   };
 
+  const showOrg = (id) => {
+    navigate(`/admin/organisations/${id}`);
+  };
+
   const getComponent = () => {
     const item = menu.filter((item) => item.isFocus === true);
     const name = item[0].component;
 
-    if (name === "OrganisationsTable")
+    if (name === 'OrganisationsTable')
       return (
         <OrganisationsTable
           rows={organisations}
@@ -209,7 +226,7 @@ export default function Admin() {
           deleteOrg={deleteOrg}
         />
       );
-    if (name === "ContactTable")
+    if (name === 'ContactTable')
       return (
         <ContactTable
           rows={organisations}
@@ -218,7 +235,7 @@ export default function Admin() {
           deleteOrg={deleteOrg}
         />
       );
-    if (name === "NewsletterTable")
+    if (name === 'NewsletterTable')
       return (
         <NewsletterTable
           rows={organisations}
@@ -227,7 +244,7 @@ export default function Admin() {
           deleteOrg={deleteOrg}
         />
       );
-    else if (name === "MarkersTable") {
+    else if (name === 'MarkersTable') {
       return (
         <AdminMarkerTable
           rows={markers}
@@ -235,56 +252,35 @@ export default function Admin() {
           deleteMarker={deleteMarker}
         />
       );
+    } else if (name === 'SuggestionsTable') {
+      return <SuggestionsTable />;
     } else
       return (
         <UsersTable rows={users} deleteUser={deleteUser} editUser={editUser} />
       );
   };
+
   return (
     <>
       <NavBar />
-      <Grid style={{ paddingTop: "100px", paddingLeft: "50px" }}>
+      <Grid style={{ paddingTop: '100px', paddingLeft: '50px' }}>
         <Typography
-          variant={"h1"}
+          variant={'h1'}
           color={theme.typography.color}
           style={{
-            marginBottom: "1rem",
-            fontSize: "3.75rem",
-            letterSpacing: "-0.025em",
+            marginBottom: '1rem',
+            fontSize: '3.75rem',
+            letterSpacing: '-0.025em',
             fontWeight: 800,
           }}
         >
-          {"Admin"}
+          {'Suggestion'}
         </Typography>
-        <Container>
-          <Container
-            className="dashboard-header"
-            style={{ flexDirection: "row" }}
-          >
-            <Button title="Users" onClick={() => setMenuFocus("Contact")}>
-              Contact
-            </Button>
-            <Button title="Users" onClick={() => setMenuFocus("Newsletter")}>
-              Newsletter
-            </Button>
-            <Button title="Users" onClick={() => setMenuFocus("Users")}>
-              Users
-            </Button>
-            <Button
-              title="Organisations"
-              onClick={() => setMenuFocus("Organisations")}
-            >
-              Organisations
-            </Button>
-            <Button
-              title="Markers"
-              onClick={() => setMenuFocus("Markers")}
-            >
-              Markers
-            </Button>
-          </Container>
-          <Container style={{ padding: "20px" }}>{table}</Container>
-        </Container>
+
+        <Grid style={{ display: 'flex', flexDirection: 'row', padding: 10 }}>
+          <AdminSideBar option={'suggestion'} />
+          <SuggestionsTable />;
+        </Grid>
       </Grid>
       <FooterComponent />
     </>

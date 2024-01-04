@@ -7,6 +7,7 @@
     "menu_pricing": "Pricing",
     "menu_contact": "Contact us",
     "menu_dashboard": "Dashboard",
+    "menu_map": "Map",
     "login": "Log in",
     "main_title": "Discover a world of culture at your fingertips",
     "main_subtitle": "ARKultur reinvents your cultural visits and offers an exceptional immersive experience by blending the future into the past with augmented reality",
@@ -80,6 +81,15 @@
     },
     "dashboard": {
       "title": "Dashboard"
+    },
+    "journey": {
+      "title": "My Journeys"
+    },
+    "marker": {
+      "title": "My Markers"
+    },
+    "map": {
+      "title": "My Map"
     },
     "feature": {
       "tab_title": "ARKultur - Features",

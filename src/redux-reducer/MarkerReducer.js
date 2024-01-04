@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { requestMarkers, requestOrganisationMarkers, addMarker, editMarker, deleteMarker } from "../redux-action/MarkerAction";
+import { requestMarkers, requestOrganisationMarkers, requestJourneyMarkers, addMarker, editMarker, deleteMarker } from "../redux-action/MarkerAction";
 const initialState = {
   markers: [],
   isLoading: false
@@ -28,6 +28,16 @@ const markerSlice = createSlice({
           state.markers = action.payload
         })
         builder.addCase(requestOrganisationMarkers.rejected, (state) => {
+          state.isLoading = false
+        })
+        builder.addCase(requestJourneyMarkers.pending, (state) => {
+          state.isLoading = true
+        })
+        builder.addCase(requestJourneyMarkers.fulfilled, (state, action) => {
+          state.isLoading = false
+          state.markers = action.payload
+        })
+        builder.addCase(requestJourneyMarkers.rejected, (state) => {
           state.isLoading = false
         })
         builder.addCase(addMarker.fulfilled, (state, action) => {

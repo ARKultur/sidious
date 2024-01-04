@@ -20,6 +20,10 @@
     box-shadow: 0 0 34px 0 rgba(0, 0, 0, 0.24);  
   }
 
+.modal-form-field {
+    margin-bottom: 15px !important;
+}
+
 .modal-btn {
     background-color: #165cd6 !important;
     color: white !important;

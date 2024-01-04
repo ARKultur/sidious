@@ -10,17 +10,14 @@ import "../styles/component/MarkerModal.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 
-export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
+
+export const JourneyModal = ({ closeModal, onSubmit, defaultValue }) => {
+  const organisationId = localStorage.getItem("organisationId");
   const initialState = {
     name: "",
     description: "",
-    longitude: 0,
-    latitude: 0,
-    altitude: 0,
     status: "",
-    order: 0,
-    model: "",
-    texture: "",
+    OrganisationId: organisationId
   };
   const [formData, setFormData] = useState(defaultValue || initialState);
   const [errors, setErrors] = useState("");
@@ -29,8 +26,8 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
     if (
       formData.name &&
       formData.description &&
-      formData.longitude &&
-      formData.latitude
+      formData.status &&
+      formData.OrganisationId
     ) {
       setErrors("");
       return true;
@@ -47,7 +44,7 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
   };
 
   const handleChange = (e) => {
-    if (e.target.name === "latitude" || e.target.name === "longitude" || e.target.name === "altitude" || e.target.name === "order") {
+    if (e.target.name === "OrganisationId") {
       setFormData({ ...formData, [e.target.name]: parseInt(e.target.value) });
     }
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -69,7 +66,19 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
   return (
     <Container className="modal-container">
       <Container className="modal-body">
-        <Container style={{display: 'flex', alignItems: "flex-end", justifyContent: 'flex-end'}}>
+        <Container className="modal-header">
+          <Typography
+            variant={"h1"}
+            color={"black"}
+            style={{
+              marginBottom: "1rem",
+              fontSize: "3.75rem",
+              letterSpacing: "-0.025em",
+              fontWeight: 800,
+            }}
+          >
+            Create new Journey
+          </Typography>
           <IconButton onClick={() => closeModal()}>
             <CloseIcon />
           </IconButton>
@@ -86,7 +95,7 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
               name="name"
               defaultValue={formData.name}
               label="Name"
-              style={{ width: "100%" }}
+              style={{ width: "100%"}}
             />
           </div>
           <div className="modal-form-field">
@@ -95,37 +104,7 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
               name="description"
               defaultValue={formData.description}
               label="Description"
-              multiline
-              className="modal-form-field"
-              style={{ width: "100%" }}
-            />
-          </div>
-          <div className="modal-form-field">
-            <TextField
-              onChange={handleChange}
-              name="longitude"
-              defaultValue={formData.longitude}
-              label="Longitude"
-              className="modal-form-field"
-              style={{ width: "100%" }}
-            />
-          </div>
-          <div className="modal-form-field">
-            <TextField
-              onChange={handleChange}
-              name="latitude"
-              defaultValue={formData.latitude}
-              label="Latitude"
-              style={{ width: "100%" }}
-            />
-          </div>
-          <div className="modal-form-field">
-            <TextField
-              onChange={handleChange}
-              name="altitude"
-              defaultValue={formData.altitude}
-              label="Altitude"
-              style={{ width: "100%" }}
+              style={{ width: "100%"}}
             />
           </div>
           <div className="modal-form-field">
@@ -134,38 +113,16 @@ export const MarkerModal = ({ closeModal, onSubmit, defaultValue }) => {
               name="status"
               defaultValue={formData.status}
               label="Status"
-              className="modal-form-field"
-              style={{ width: "100%" }}
+              style={{ width: "100%"}}
             />
           </div>
           <div className="modal-form-field">
             <TextField
               onChange={handleChange}
-              name="order"
-              defaultValue={formData.order}
-              label="Order"
-              className="modal-form-field"
-              style={{ width: "100%" }}
-            />
-          </div>
-          <div className="modal-form-field">
-            <TextField
-              onChange={handleChange}
-              name="model"
-              defaultValue={formData.model}
-              label="Model"
-              className="modal-form-field"
-              style={{ width: "100%" }}
-            />
-          </div>
-          <div className="modal-form-field">
-            <TextField
-              onChange={handleChange}
-              name="texture"
-              defaultValue={formData.texture}
-              label="Texture"
-              className="modal-form-field"
-              style={{ width: "100%" }}
+              name="organisationId"
+              defaultValue={formData.OrganisationId}
+              label="Organisation"
+              style={{ width: "100%"}}
             />
           </div>
           {errors && (

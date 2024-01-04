@@ -9,8 +9,8 @@ import TableRow from "@material-ui/core/TableRow";
 import { Container, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import ClearIcon from "@mui/icons-material/Clear";
-import "../styles/component/MarkerTable.css";
-import { AdminMarkerModal } from "./AdminMarkerModal";
+import "../../styles/component/MarkerTable.css";
+import { AdminMarkerModal } from "./MarkerModal";
 
 export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
@@ -48,6 +48,7 @@ export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
               <TableCell align="right">Latitude</TableCell>
               <TableCell align="right">Longitude</TableCell>
               <TableCell align="right">Status</TableCell>
+              <TableCell align="right">Order</TableCell>
               <TableCell align="right">Modifier</TableCell>
               <TableCell align="right">Supprimer</TableCell>
             </TableRow>
@@ -59,11 +60,12 @@ export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
                   <TableCell component="th" scope="row">
                     {id}
                   </TableCell>
-                  <TableCell align="right">{row.name}</TableCell>
-                  <TableCell align="right">{row.description}</TableCell>
-                  <TableCell align="right">{row.longitude}</TableCell>
-                  <TableCell align="right">{row.latitude}</TableCell>
-                  <TableCell align="right">{"Not Ready"}</TableCell>
+                  <TableCell align="right">{row.node.name}</TableCell>
+                  <TableCell align="right">{row.node.description}</TableCell>
+                  <TableCell align="right">{row.node.longitude}</TableCell>
+                  <TableCell align="right">{row.node.latitude}</TableCell>
+                  <TableCell align="right">{row.node.status}</TableCell>
+                  <TableCell align="right">{row.order}</TableCell>
                   <TableCell align="right">
                     <IconButton
                       onClick={() => {

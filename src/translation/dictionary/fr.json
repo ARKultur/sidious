@@ -7,6 +7,7 @@
     "menu_pricing": "Nos prix",
     "menu_contact": "Contactez nous",
     "menu_dashboard": "Dashboard",
+    "menu_map": "Carte",
     "login": "Connexion",
     "main_title": "Découvrez un monde de culture à portée de main",
     "main_subtitle": "ARKultur réinvente vos visites culturelles et vous offre une expérience immersive exceptionnelle en intégrant le futur dans le passé avec la réalité augmentée.",
@@ -79,6 +80,15 @@
     },
     "dashboard": {
       "title": "Dashboard"
+    },
+    "journey": {
+      "title": "Mes Parcours"
+    },
+    "marker": {
+      "title": "Mes Marqueurs"
+    },
+    "map": {
+      "title": "Ma Carte"
     },
     "markerForm": {
       "title": ""
