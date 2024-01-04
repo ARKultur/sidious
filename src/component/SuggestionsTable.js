@@ -25,12 +25,19 @@ import {
 } from '../API/Suggestions';
 import '../styles/component/MarkerTable.css';
 
-const SuggestionModal = ({ isModalOpen, handleClose, suggestion }) => {
+const SuggestionModal = ({
+  isModalOpen,
+  handleClose,
+  suggestion,
+  suggestions,
+  setSuggestions,
+}) => {
   const [fields, setFields] = React.useState({
     name: suggestion && suggestion.name,
     tag: suggestion && suggestion.tag,
     description: suggestion && suggestion.description,
     imageUrl: suggestion && suggestion.imageUrl,
+    uuid: suggestion && suggestion.uuid,
   });
 
   const handleSubmit = async (e) => {
@@ -38,6 +45,10 @@ const SuggestionModal = ({ isModalOpen, handleClose, suggestion }) => {
       e.preventDefault();
 
       await editSuggestions(fields);
+      const index = suggestions.findIndex((row) => row.uuid === fields.uuid);
+
+      suggestions[index] = fields;
+      setSuggestions(suggestions);
       handleClose();
     } catch (e) {
       console.log(e);
@@ -64,7 +75,7 @@ const SuggestionModal = ({ isModalOpen, handleClose, suggestion }) => {
                 fontWeight: 800,
               }}
             >
-              Edit suggestion N°{suggestion && suggestion.id}
+              Edit suggestion N°{suggestion && suggestion.uuid}
             </Typography>
             <IconButton onClick={() => handleClose()}>
               <CloseIcon />
@@ -114,7 +125,12 @@ const SuggestionModal = ({ isModalOpen, handleClose, suggestion }) => {
   );
 };
 
-const AddSuggestionModal = ({ isModalOpen, handleClose }) => {
+const AddSuggestionModal = ({
+  isModalOpen,
+  handleClose,
+  suggestions,
+  setSuggestions,
+}) => {
   const [fields, setFields] = React.useState({
     name: null,
     tag: null,
@@ -127,6 +143,7 @@ const AddSuggestionModal = ({ isModalOpen, handleClose }) => {
       e.preventDefault();
 
       await addSuggestions(fields);
+      setSuggestions([...suggestions, fields]);
       handleClose();
     } catch (e) {
       console.log(e);
@@ -203,12 +220,24 @@ const AddSuggestionModal = ({ isModalOpen, handleClose }) => {
   );
 };
 
-const SuggestionDeleteModal = ({ isModalOpen, handleClose, suggestion }) => {
+const SuggestionDeleteModal = ({
+  isModalOpen,
+  handleClose,
+  suggestion,
+  suggestions,
+  setSuggestions,
+}) => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
 
-      await deleteSuggestions(suggestion.id);
+      await deleteSuggestions(suggestion.uuid);
+
+      const index = suggestions.findIndex(
+        (row) => row.uuid === suggestion.uuid
+      );
+
+      suggestions.splice(index, 1);
       handleClose();
     } catch (e) {
       console.log(e);
@@ -235,7 +264,7 @@ const SuggestionDeleteModal = ({ isModalOpen, handleClose, suggestion }) => {
                 fontWeight: 800,
               }}
             >
-              Remove suggestion N°{suggestion && suggestion.id} ?
+              Remove suggestion N°{suggestion && suggestion.uuid} ?
             </Typography>
             <IconButton onClick={() => handleClose()}>
               <CloseIcon />
@@ -308,6 +337,8 @@ const SuggestionsTable = () => {
         <AddSuggestionModal
           isModalOpen={isModalAddOpen}
           handleClose={handleAddClose}
+          suggestions={suggestions}
+          setSuggestions={setSuggestions}
         />
       </Container>
     );
@@ -333,6 +364,8 @@ const SuggestionsTable = () => {
         <AddSuggestionModal
           isModalOpen={isModalAddOpen}
           handleClose={handleAddClose}
+          suggestions={suggestions}
+          setSuggestions={setSuggestions}
         />
       </Container>
       <TableContainer>
@@ -352,7 +385,7 @@ const SuggestionsTable = () => {
             {suggestions.map((row, index) => (
               <TableRow key={index}>
                 <TableCell component='th' scope='row'>
-                  {row.id}
+                  {row.uuid}
                 </TableCell>
                 <TableCell align='right'>{row.name}</TableCell>
                 <TableCell align='right'>{row.tag}</TableCell>
@@ -399,6 +432,8 @@ const SuggestionsTable = () => {
           isModalOpen={isModalOpen}
           handleClose={handleClose}
           suggestion={selectedSuggestion}
+          suggestions={suggestions}
+          setSuggestions={setSuggestions}
         />
       )}
       {isModalDeleteOpen && (
@@ -406,6 +441,8 @@ const SuggestionsTable = () => {
           isModalOpen={isModalDeleteOpen}
           handleClose={handleDeleteClose}
           suggestion={selectedSuggestion}
+          suggestions={suggestions}
+          setSuggestions={setSuggestions}
         />
       )}
     </Container>

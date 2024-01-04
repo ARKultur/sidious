@@ -3,7 +3,7 @@ import { API_URL } from '../config/API';
 
 export const getSuggestions = async () => {
   try {
-    const response = await axios.get(API_URL + '/api/suggestions', {
+    const response = await axios.get(API_URL + '/api/suggestion', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -18,7 +18,7 @@ export const getSuggestions = async () => {
 export const addSuggestions = async (suggestion) => {
   try {
     const response = await axios.post(
-      API_URL + '/api/suggestions',
+      API_URL + '/api/suggestion',
       {
         ...suggestion,
       },
@@ -38,7 +38,7 @@ export const addSuggestions = async (suggestion) => {
 export const editSuggestions = async (suggestion) => {
   try {
     const response = await axios.post(
-      API_URL + `/api/suggestions/${suggestion.id}`,
+      API_URL + `/api/suggestion/${suggestion.uuid}`,
       {
         ...suggestion,
       },
@@ -58,7 +58,7 @@ export const editSuggestions = async (suggestion) => {
 export const deleteSuggestions = async (suggestionid) => {
   try {
     const response = await axios.delete(
-      API_URL + `/api/suggestions/${suggestionid}`,
+      API_URL + `/api/suggestion/${suggestionid}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
