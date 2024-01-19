@@ -49,7 +49,7 @@ export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
               <TableCell align="right">Longitude</TableCell>
               <TableCell align="right">Status</TableCell>
               <TableCell align="right">Order</TableCell>
-              <TableCell align="right">Modifier</TableCell>
+             {/* <TableCell align="right">Modifier</TableCell>*/}
               <TableCell align="right">Supprimer</TableCell>
             </TableRow>
           </TableHead>
@@ -66,7 +66,7 @@ export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
                   <TableCell align="right">{row.node.latitude}</TableCell>
                   <TableCell align="right">{row.node.status}</TableCell>
                   <TableCell align="right">{row.order}</TableCell>
-                  <TableCell align="right">
+                  {/*<TableCell align="right">
                     <IconButton
                       onClick={() => {
                         editRow(id);
@@ -74,7 +74,7 @@ export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
                     >
                       <EditIcon />
                     </IconButton>
-                  </TableCell>
+                  </TableCell>*/}
                   <TableCell align="right">
                     <IconButton
                       onClick={() => {
@@ -96,7 +96,7 @@ export const AdminMarkerTable = ({ rows, editMarker, deleteMarker }) => {
             setRowToEdit(null);
           }}
           onSubmit={submitForm}
-          defaultValue={rowToEdit !== null && rows[rowToEdit]}
+          defaultValue={rowToEdit !== null && rows[rowToEdit].node}
         />
       }
     </Container>

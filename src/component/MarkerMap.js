@@ -86,7 +86,7 @@ export const MarkerMap = ({ markers }) => {
   return (
     <MapContainer
       ref={React.useRef()}
-      center={[51.5, -0.1]}
+      center={[48.81542692960723, 2.363079852507459]}
       zoom={12}
       scrollWheelZoom={false}
     >

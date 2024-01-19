@@ -46,8 +46,10 @@ export const addMarker = createAsyncThunk(
     const markers = [].concat(states.rootReducer.markerReducer.markers);
     try { 
       await MarkerService.addMarkerToDB(params.node, params.parkourId);
-      markers.push(params); 
-      return (markers);
+      if (markers[0] !== undefined) {
+        markers.push(params); 
+        return (markers);
+      } else {return [params]}
     } catch (error) {
       console.error(error);
     }

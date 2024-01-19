@@ -121,7 +121,7 @@ export default function AdminOrganisation() {
                     navigate(`/admin/organisations/${params.id}/journeys`)
                   }
                 >
-                  {"Edit journeys"}
+                  {"Handle journeys"}
                 </Button>
               </Grid>
 
@@ -149,14 +149,14 @@ export default function AdminOrganisation() {
                 >
                   {"Users"}
                 </Typography>
-                <Button
+                {/*<Button
                   title="Users"
                   onClick={() =>
                     navigate(`/admin/organisations/${params.id}/users`)
                   }
                 >
                   {"Edit user"}
-                </Button>
+                </Button>*/}
               </Grid>
               <UsersTable rows={users} withoutAction={true} />
             </Grid>
