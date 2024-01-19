@@ -2,12 +2,12 @@
 .modal {
     /* display: none; Cachez la modal par défaut */
     position: fixed; /* Restez en place même si la page est défilée */
-    z-index: 1; /* Placez la modal en haut de la pile */
     left: 0;
     top: 0;
     width: 100%; /* Largeur de l'écran */
     height: 100%; /* Hauteur de l'écran */
     overflow: auto; /* Activez le défilement si nécessaire */
+    z-index: 99999;
 }
 
 /* Style pour le contenu de la modal */

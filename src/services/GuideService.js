@@ -89,10 +89,3 @@ export async function getGuideImages(id) {
         .catch(console.log());
     return res.data;
 }
-
-export async function downloadGuideImage(id, name) {
-    console.log(`Name : ${name}`)
-    const res = await axios.get(`${API_URL}/api/guides/${id}/images/${name}`, {})
-        .catch(console.log());
-    return res.data;
-}

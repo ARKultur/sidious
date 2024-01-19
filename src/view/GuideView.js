@@ -7,9 +7,7 @@ import { getMarkers } from "../API/Marker";
 
 export default function GuideView()
 {
-    // const {
-    //     token,
-    // } = React.useContext(AuthContext);
+    const token = localStorage.getItem("token");
 
     // Guide
     const [showGuideModal, setShowGuideModal] = React.useState(false);
@@ -63,6 +61,7 @@ export default function GuideView()
                     style={{zIndex: 10, position: 'fixed'}}
                     guide={guide}
                     address={address}
+                    token={token}
                 />
             </div>
             <FooterComponent/>

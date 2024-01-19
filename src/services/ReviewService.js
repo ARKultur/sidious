@@ -1,9 +1,8 @@
 import axios from 'axios';
-
-const endpoint = 'http://x2024arkultur120290831001.westeurope.cloudapp.azure.com:4000/api';
+import { API_URL } from '../config/API';
 
 export async function createReview(token, guideId, data) {
-    const res = await axios.post(`${endpoint}/review/${guideId}`,
+    const res = await axios.post(`${API_URL}/api/review/${guideId}`,
         {
             stars: data.stars,
             message: data.message,
@@ -18,7 +17,7 @@ export async function createReview(token, guideId, data) {
 }
 
 export async function findReview(token, id, guideId) {
-    const res = await axios.get(`${endpoint}/review/${id}`,
+    const res = await axios.get(`${API_URL}/api/review/${id}`,
         {}, {
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +33,7 @@ export async function findReview(token, id, guideId) {
 }
 
 export async function patchReview(token, id, data) {
-    const res = await axios.patch(`${endpoint}/review/${id}`,
+    const res = await axios.patch(`${API_URL}/api/review/${id}`,
         {
             stars: data.stars,
             message: data.message,
@@ -49,7 +48,7 @@ export async function patchReview(token, id, data) {
 }
 
 export async function deleteReview(token, id) {
-    const res = await axios.delete(`${endpoint}/review/${id}`,
+    const res = await axios.delete(`${API_URL}/api/review/${id}`,
         {}, {
             headers: {
                 'Content-Type': 'application/json',

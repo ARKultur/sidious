@@ -10,14 +10,22 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import PublicIcon from '@mui/icons-material/Public';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import CommentIcon from '@mui/icons-material/Comment';
+import { TextField, Button, Paper } from '@mui/material';
+
 
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import { Avatar, Box } from "@mui/material";
 import Rating from '@mui/material/Rating';
-import { downloadGuideImage, getGuide, getGuideImages } from "../../services/GuideService";
+import { getGuide, getGuideImages } from "../../services/GuideService";
 import moment from "moment";
 import { API_URL } from "../../config/API";
+
+import { makeStyles } from '@mui/styles';
+import { createReview } from "../../services/ReviewService";
+
+
+import Carousel from 'react-material-ui-carousel'
 
 function AddressPanel(props) {
 
@@ -43,7 +51,7 @@ function KeyWordsPanel(props) {
         <div className="info-container h-panel">
             <Stack direction="row" spacing={1}>
                 {keywords && keywords.map((keyword) =>
-                    <Chip label={keyword} />
+                    <Chip key={keyword} label={keyword} variant="outlined" />
                 )}
             </Stack>
         </div>
@@ -58,10 +66,10 @@ function RatingPanel(props) {
         <div className="info-container">
             <p
                 style={
-                    {"margin-left": 0}
+                    {"marginLeft": 0}
                 }
             >
-                {value}
+                {value.toFixed(2)}
             </p>
             <Rating value={value} readOnly/>
         </div>
@@ -134,7 +142,7 @@ function DescriptionPanel(props) {
         <div className="info-container desc">
             <p
                 style={
-                    {"margin-left": 0}
+                    {"marginLeft": 0}
                 }
             >{description}</p>
         </div>
@@ -209,18 +217,128 @@ function FeedbackCard(props) {
     );
 }
 
+const useStyles = makeStyles((theme) => ({
+    form: {
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '100%',
+        margin: 'auto',
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    button: {
+        marginTop: theme.spacing(2),
+    },
+}));
+
 function FeedbackPanel(props) {
 
-    const { feedbacks } = props;
+    const { feedbacks, token, guideId } = props;
+
+    const classes = useStyles();
+    const [formData, setFormData] = React.useState({
+        stars: '',
+        message: '',
+    });
+
+    const [sortByNote, setSortByNote] = React.useState(false);
+    const [sortByDate, setSortByDate] = React.useState(false);
+    const [filteredSort, setFilteredSort] = React.useState([])
+    const [reviews, setReviews] = React.useState(feedbacks);
+
+    useEffect(() => {
+        setReviews(feedbacks)
+        setFilteredSort(feedbacks)
+    }, [feedbacks])
+
+    useEffect(() => {
+    }, [formData])
+
+    const handleSortReviews = (type) => {
+        if (type === "note") {
+            let filteredTmp = [];
+            if (sortByNote)
+                filteredTmp = reviews.sort((a, b) => a.stars - b.stars);
+            else
+                filteredTmp = reviews.sort((a, b) => b.stars - a.stars);
+            setFilteredSort(filteredTmp);
+            setSortByNote(!sortByNote)
+        }
+        if (type === "date") {
+            let filteredTmp = []
+            if (sortByDate)
+                filteredTmp =  reviews.sort((a, b) => new moment(a.datetime).format('YYYYMMDD') - new moment(b.datetime).format('YYYYMMDD'));
+            else
+                filteredTmp = reviews.sort((a, b) => new moment(b.datetime).format('YYYYMMDD') - new moment(a.datetime).format('YYYYMMDD'));
+            setFilteredSort(filteredTmp);
+            setSortByDate(!sortByDate)
+        }
+    }
+
+    const handleChange = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        createReview(token, guideId, { stars: parseInt(formData.stars), message: formData.message });
+        setFormData({
+            stars: '',
+            message: '',
+        });
+    };
 
     return (
         <>
+            {token && token != null && token != "null" &&
+                <>
+                    <div className="info-container">
+                        <CommentIcon className="icon"/>
+                        <p>Votre avis</p>
+                    </div>
+                    <form className={classes.form} onSubmit={handleSubmit}>
+                        <div style={{ width: "fit-content" }}>
+                            <Rating
+                                name="stars"
+                                value={formData.stars}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <TextField
+                            label="Describe your experience"
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            className={classes.message}
+                            margin="normal"
+                        />
+                        <Button type="submit" variant="contained" color="primary" className={classes.button}>
+                            Share
+                        </Button>
+                    </form>
+                </>
+            }
             <div className="info-container">
                 <CommentIcon className="icon"/>
                 <p>Avis</p>
             </div>
+            <Button
+                variant={sortByDate ? "contained" : "outlined"}
+                onClick={() => handleSortReviews("date")}
+            >
+                Sort by date
+            </Button>
+            <Button
+                variant={sortByNote ? "contained" : "outlined"}
+                onClick={() => handleSortReviews("note")}
+            >
+                Sort by note
+            </Button>
             <Stack className="feedback-stack">
-                {feedbacks && feedbacks.map((feedback) =>
+                {filteredSort && filteredSort.length > 0 && filteredSort.map((feedback) =>
                     <FeedbackCard key={feedback.datetime} feedback={feedback}/>
                 )}
             </Stack>
@@ -230,12 +348,9 @@ function FeedbackPanel(props) {
 
 export default function GuideModal(props)
 {
-
-    const { onClose, isActive, guide, address } = props;
+    const { onClose, isActive, guide, address, token } = props;
 
     // Sorting
-    const [sortByNote, setSortByNote] = React.useState(false);
-    const [sortByDate, setSortByDate] = React.useState(false);
     const [guideData, setGuideData] = React.useState(undefined);
     const [guideImages, setGuideImages] = React.useState(undefined);
 
@@ -251,20 +366,20 @@ export default function GuideModal(props)
     }
 
     function getRatingFromFeedback(feedbacks) {
-        return Math.round(feedbacks.map((feedback) => feedback.stars))
+        const list = feedbacks.map((feedback) => {
+            return feedback.stars
+        });
+
+        const result = list.reduce((sum, value) => sum + value, 0) / list.length;
+
+        return result;
     }
 
     async function getGuideData() {
         const data = await getGuide(guide.id);
-        const imagesNames = await getGuideImages(guide.id);
+        const images = await getGuideImages(guide.id);
 
-        // console.log(`data : ${JSON.stringify(data, null, 2)}`);
-        // console.log(`imagesNames : ${JSON.stringify(imagesNames, null, 2)}`);
         setGuideData(data);
-
-        const images = await imagesNames.map(async (name) => await downloadGuideImage(guide.id, name));
-        // console.log(`images : ${JSON.stringify(images, null, 2)}`)
-        // console.log(`images : ${JSON.stringify(images[0], null, 2)}`)
         setGuideImages(images);
     }
 
@@ -279,35 +394,51 @@ export default function GuideModal(props)
             console.log(guide);
             getGuideData();
         }
-        if (sortByDate) {
-            guide.reviews.sort((a, b) => a.datetime < b.datetime)
-        }
-        if (sortByNote) {
-            guide.reviews.sort((a, b) => a.stars < b.stars)
-        }
-    }, [guide, address, sortByDate, sortByNote])
+    }, [guide, address])
+
+    function Item(props) {
+        return (
+            <Paper height={300}>
+                <div
+                    className="image"
+                    // className="w-fit mx-auto relative"
+                >
+                    <img
+                        src={props.item}
+                        alt="Image1"
+                        // height={300}
+                        // style={{ width: "50vw" }}
+                        className="truc"
+                        // className="h-full w-full object-cover"
+                    />
+                </div>
+            </Paper>
+        )
+    }
+
 
     return (
         <>
             {isShow && guideData && (
                 <Modal onClose={close} frame={false}>
-                    <div className={`guide-panel ${isActive ? 'active' : ''}`}>
-                        {/* {guideImages &&
-                            <div className="image">
-                                <img
-                                    src={URL.createObjectURL(guideImages[0])}
-                                    alt="Image1"
-                                    className="h-full w-full object-cover"
-                                />
+                    <div className={`guide-panel ${isActive ? 'active' : ''}`} style={{ paddingTop: guideImages ? 50 : 25 }}>
+                        {guideImages &&
+                            <div className="w-full">
+                                <Carousel
+                                    navButtonsAlwaysVisible={true}
+                                    swipe={true}
+                                    cycleNavigation={true}
+                                    animation="fade"
+                                    autoPlay={true}
+                                    height={300}
+                                    fullHeightHover={false}
+                                >
+                                    {
+                                        [`${API_URL}/api/guides/1/images/${guideImages[0].id}`, `${API_URL}/api/guides/1/images/${guideImages[1].id}`].map((item, i) => <Item key={i} item={item} />)
+                                    }
+                                </Carousel>
                             </div>
-                        } */}
-                        <div className="image">
-                            <img
-                                src="https://images.pexels.com/photos/8430276/pexels-photo-8430276.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                                alt="Image1"
-                                className="h-full w-full object-cover"
-                            />
-                        </div>
+                        }
                         <Box className="information">
                             <p className="title">{guideData.title}</p>
                             <KeyWordsPanel keywords={guideData.keywords}/>
@@ -322,7 +453,11 @@ export default function GuideModal(props)
                                 pricesDescription={guideData.priceDesc}
                             />
                             <DescriptionPanel description={guideData.description}/>
-                            <FeedbackPanel feedbacks={guideData.reviews}/>
+                            <FeedbackPanel
+                                feedbacks={guideData.reviews}
+                                guideId={guide.id}
+                                token={token}
+                            />
                         </Box>
                     </div>
                 </Modal>
