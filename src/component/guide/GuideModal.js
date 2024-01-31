@@ -69,7 +69,7 @@ function RatingPanel(props) {
                     {"marginLeft": 0}
                 }
             >
-                {value.toFixed(2)}
+                {value.toFixed(2).replace(/\.00$/, '')}
             </p>
             <Rating value={value} readOnly/>
         </div>
@@ -372,7 +372,7 @@ export default function GuideModal(props)
 
         const result = list.reduce((sum, value) => sum + value, 0) / list.length;
 
-        return result;
+        return !result || isNaN(result) ? 0 : result;
     }
 
     async function getGuideData() {
@@ -422,7 +422,7 @@ export default function GuideModal(props)
             {isShow && guideData && (
                 <Modal onClose={close} frame={false}>
                     <div className={`guide-panel ${isActive ? 'active' : ''}`} style={{ paddingTop: guideImages ? 50 : 25 }}>
-                        {guideImages &&
+                        {guideImages.length &&
                             <div className="w-full">
                                 <Carousel
                                     navButtonsAlwaysVisible={true}
@@ -434,7 +434,9 @@ export default function GuideModal(props)
                                     fullHeightHover={false}
                                 >
                                     {
-                                        [`${API_URL}/api/guides/1/images/${guideImages[0].id}`, `${API_URL}/api/guides/1/images/${guideImages[1].id}`].map((item, i) => <Item key={i} item={item} />)
+                                        guideImages.map((image) => {
+                                            return `${API_URL}/api/guides/${guide.id}/images/${image.id}`;
+                                        }).map((item, i) => <Item key={i} item={item}/>)
                                     }
                                 </Carousel>
                             </div>
